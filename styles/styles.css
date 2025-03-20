@@ -24,11 +24,26 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.header-left {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* addition */
+    margin-top: 55px;
+    margin-bottom: 35px;
+    text-align: left;
+    padding-left: 30px;
+}
+
 .subheader {
     font-size: 20px;
     color: #555;
     margin-bottom: 50px;
+    padding: 0px 10px;
 }
+
 .cta-button {
     width: 200px;
     height: auto;
@@ -42,7 +57,6 @@ body {
 }
 
 .container {
-    max-width: 800px;
     margin: 0px;
     padding: 0px;
     flex: 1; /* Pushes footer down */
@@ -50,10 +64,9 @@ body {
 
 .card {
     background: white;
-    padding: 10px 35px;
-    margin: 25px 25px;
+    padding: 10px 0px;
+    margin: 30px 25px;
     border-radius: 16px;
-    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
     text-align: left;
     line-height: 1.5;
 }
@@ -61,8 +74,22 @@ body {
 .card h2 {
     font-size: 26px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #333;
+    padding: 0px 35px;
+}
+
+.card p, h1 {
+    padding: 0px 35px;
+}
+
+.card ul {
+    margin: 0px 15px;
+    margin-bottom: 12px;
+    color: #666;
+    font-size: 18px;
+    font-weight: 450;
+    color: #666;
 }
 
 .card p {
@@ -71,28 +98,41 @@ body {
     color: #666;
 }
 
-.email {
-    color: #327aff;
+.card .footer {
+    opacity: 0.5;
+    padding: 0px 30px;
+    margin-bottom: 10px;
 }
 
-.screenshots {
+.card .screenshots {
     display: flex;
     gap: 21px;
     overflow-x: auto; /* Enable horizontal scrolling */
     white-space: nowrap; /* Prevents images from wrapping */
     margin-bottom: 25px;
     padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-.screenshots::-webkit-scrollbar {
+.card .screenshots::-webkit-scrollbar {
     display: none; /* Hides scrollbar */
 }
 
-.screenshots img {
-    width: 200px;
+.card .screenshots img {
+    width: 154px;
     height: auto;
     border-radius: 18px;
     border: 0.5px solid rgba(0, 0, 0, 0.1); 
+}
+
+.card-subtitle {
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.email {
+    color: #327aff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -116,6 +156,10 @@ body {
     }
 
     .card p {
+        color: #9f9f9f;
+    }
+
+    .card ul {
         color: #9f9f9f;
     }
 }

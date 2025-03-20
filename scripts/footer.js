@@ -54,3 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error loading footer:", error));
 });
+function updateThemeColor() {
+    const metaThemeColor = document.querySelector("meta[name='theme-color']");
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (isDarkMode) {
+        metaThemeColor.setAttribute("content", "#000000"); // Dark mode color
+    } else {
+        metaThemeColor.setAttribute("content", "#f5f5f7"); // Light mode color
+    }
+}
+
+// Run on page load
+updateThemeColor();
+
+// Listen for system theme changes
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeColor);
+
