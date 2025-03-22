@@ -1,0 +1,121 @@
+@import url(styles-footer.css);
+
+html {
+    height: 100%; /* Ensure full height */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f7;
+    color: #000000;
+    text-align: center;
+    letter-spacing: 0px; /* Increases spacing */
+    height: 100%; /* Ensure full height */
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.header {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.subheader {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 50px;
+}
+.cta-button {
+    width: 200px;
+    height: auto;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.app-icon {
+    width: 100px;
+    height: auto;
+    margin-top: 50px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0px;
+    padding: 0px;
+    flex: 1; /* Pushes footer down */
+}
+
+.card {
+    background: white;
+    padding: 10px 35px;
+    margin: 25px 25px;
+    border-radius: 16px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+    text-align: left;
+    line-height: 1.5;
+}
+
+.card h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 18px;
+    font-weight: 450;
+    color: #666;
+}
+
+.email {
+    color: #327aff;
+}
+
+.screenshots {
+    display: flex;
+    gap: 21px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevents images from wrapping */
+    margin-bottom: 25px;
+    padding-top: 12px;
+}
+
+.screenshots::-webkit-scrollbar {
+    display: none; /* Hides scrollbar */
+}
+
+.screenshots img {
+    width: 200px;
+    height: auto;
+    border-radius: 18px;
+    border: 0.5px solid rgba(0, 0, 0, 0.1); 
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1e1e1e;
+        color: white;
+    }
+
+    .subheader {
+        color: #acacac;
+    }
+
+    .card {
+        background: #303030;
+        color: white; 
+        /* box-shadow: 0 10px 30px black; */
+    }
+
+    .card h2 {
+        color: white;
+    }
+
+    .card p {
+        color: #9f9f9f;
+    }
+}

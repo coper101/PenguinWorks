@@ -1,0 +1,57 @@
+footer {
+    background-color: white;  /* Background */
+    padding: 20px 24px;  /* Space around footer */
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 30px; /* Adjust spacing between items */
+    align-items: center;
+}
+
+footer li {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Ensure items align properly */
+}
+
+footer img {
+    width: 32px; /* Adjust icon size */
+    height: 32px;
+    vertical-align: middle; /* Align with text */
+}
+
+footer a {
+    color: #BEBEBE;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.left-links {
+    display: flex;
+    gap: 30px; /* Space between links */
+}
+
+.right-link {
+    margin-left: auto; /* Push "What's New" to the right */
+}
+
+@media (prefers-color-scheme: dark) {
+    footer {        
+        background-color: #303030;
+    }
+    footer a {
+        color: #BEBEBE;
+    }
+}

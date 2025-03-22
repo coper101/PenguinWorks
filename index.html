@@ -1,68 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Pill - Take Control of Your Data</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f7;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-        .header {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 30px 0;
-        }
-        .subheader {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 40px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-        .card h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .card p {
-            font-size: 16px;
-            color: #666;
-        }
-        .cta-button {
-            background-color: #007aff;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #005ecb;
-        }
-    </style>
+    <link rel="icon" type="image/png" href="assets/data-pill-icon.png">
+    <link rel="shortcut icon" href="assets/data-pill-icon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icon-192x192.png"> 
+    <link rel="stylesheet" href="styles/styles.css">
+    <script defer src="scripts/footer.js"></script>
 </head>
 <body>
     <div class="container">
+        <img src="assets/data-pill-icon.png" alt="Icon" class="app-icon">
         <div class="header">Data Pill</div>
         <div class="subheader">Effortlessly Monitor Data Usage, Wherever You Are!</div>
 
@@ -81,7 +32,11 @@
             <p>Stay informed at a glance with widgets on your home and lock screens.</p>
         </div>
 
-        <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://apps.apple.com/us/app/data-pill/id1661467660&ved=2ahUKEwj30pHq1pOMAxVOU2wGHVR_LpcQFnoECBYQAQ&usg=AOvVaw0SyIBSjxPSwqI6HPIk9pBo" class="cta-button">Download Data Pill</a>
+        <a href="https://apps.apple.com/us/app/data-pill/id1661467660" target="_blank">
+            <img src="assets/app-store-icon.svg" alt="Icon" class="cta-button">
+        </a>
     </div>
+
+    <div id="footer-container"></div>
 </body>
 </html>
