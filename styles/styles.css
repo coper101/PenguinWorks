@@ -44,6 +44,15 @@ body {
     padding: 0px 10px;
 }
 
+.subheaderTwo {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 50px;
+    padding: 0px 30px;
+    text-align: left;
+    line-height: 1.5;
+}
+
 .cta-button {
     width: 200px;
     height: auto;
@@ -79,7 +88,7 @@ body {
     padding: 0px 35px;
 }
 
-.card p, h1 {
+.card p, h1, h2, h3 {
     padding: 0px 35px;
 }
 
@@ -142,6 +151,10 @@ body {
     }
 
     .subheader {
+        color: #acacac;
+    }
+
+    .subheaderTwo {
         color: #acacac;
     }
 
