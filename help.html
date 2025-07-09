@@ -92,7 +92,7 @@
     <div class="container">
         <div class="header-left">Help</div>
         <p><em>By PenguinWorksCo</em><br>
-        <em>Last Updated: 5 Apr 2025</em></p>
+        <em>Last Updated: 6 July 2025</em></p>
     
         <h3>Basics</h3>
         <ul>
@@ -136,6 +136,7 @@
         <h3>Data</h3>
         <ul>
             <li><a href="#data-accuracy">Why is the Usage on App Not Accurate?</a></li>
+            <li><a href="#data-speed">How does the App Calculate the Data Speed? (Upcoming Feature)</a></li>
         </ul>
     
         <hr>
@@ -227,12 +228,16 @@
         <h4 id="data-accuracy">Q: Why is the Usage on App Not Accurate?</h4>
         <p>There might be a ± 1-5 MB difference due to API limitations. Check your phone's settings for exact data usage.</p>
     
+        <h4 id="data-speed">Q: How does the App Calculate the Speed?</h4>
+        <p>When "Tracking Data Amount Throughout the Day" is enabled in Settings, the app attempts to record the amount of data used every 5 minutes (or based on the selected time interval). However, this tracking is not always precise, as widget updates depend on the system's refresh schedule. If some intervals are missed, the app averages the available data.<br/><br/>For example, if you've used 0.1 MB over the last 3 intervals, the app will calculate the average as 0.1 MB ÷ 3 = 0.033 MB. All non-cumulative data points collected throughout the day are averaged and displayed as the speed (e.g., x MB / 5 min)</p>
+    
         <hr>
     
         <h3>Languages Supported</h3>
         <ul>
             <li>English</li>
             <li>German</li>
+            <li>Turkish (Upcoming)</li>
             <li>Chinese (🚜 Work in Progress)</li>
             <li>Filipino (🚜 Work in Progress)</li>
         </ul>
