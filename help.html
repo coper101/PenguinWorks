@@ -1,253 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Pill - Help</title>
-    <link rel="icon" type="image/png" href="assets/data-pill-icon.png">
-    <link rel="shortcut icon" href="assets/data-pill-icon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="icon-192x192.png"> 
-    <link rel="stylesheet" href="styles/styles-footer.css">
+    <link rel="icon" type="image/png" href="assets/data-pill-icon.png" />
+    <link
+      rel="shortcut icon"
+      href="assets/data-pill-icon.png"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="icon-192x192.png" />
+    <link rel="stylesheet" href="styles/styles-footer.css" />
     <script defer src="scripts/footer.js"></script>
     <style>
-        :root {
-            --background-light: #f5f5f7;
-            --text-light: #000000;
-            --background-dark: #000000;
-            --text-dark: #B0B0B0; /* Softer gray for dark mode readability */
-            --heading-dark: #D0D0D0; /* Slightly brighter headings in dark mode */
-            --link-color: #2E96F9;
-            --spacing: 25px;
-        }
+      :root {
+        --background-light: #f5f5f7;
+        --text-light: #000000;
+        --background-dark: #000000;
+        --text-dark: #b0b0b0; /* Softer gray for dark mode readability */
+        --heading-dark: #d0d0d0; /* Slightly brighter headings in dark mode */
+        --link-color: #2e96f9;
+        --spacing: 25px;
+      }
 
-        .header-left {
-            font-size: 36px;
-            font-weight: bold;
-            margin-top: 12px;
-            margin-bottom: 5px;
-            text-align: left;
-        }
+      .header-left {
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 12px;
+        margin-bottom: 5px;
+        text-align: left;
+      }
 
-        /* Base Styles */
+      /* Base Styles */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        line-height: 1.8; /* Improved readability */
+        max-width: var(--container-width);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        margin-left: var(--spacing);
+        margin-right: var(--spacing);
+      }
+
+      /* Headings */
+      h2,
+      h3,
+      h4 {
+        color: #333;
+        margin-top: 1.5rem;
+      }
+
+      /* Lists */
+      ul {
+        padding-left: 1.5rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Links */
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.2s ease, text-decoration 0.2s ease;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      @media (prefers-color-scheme: light) {
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.8; /* Improved readability */
-            max-width: var(--container-width);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            margin: 0;
-            padding: 0;
+          background-color: var(--background-light);
+          color: var(--text-light);
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: var(--background-dark);
+          color: var(--text-dark);
         }
 
-        .container {
-            margin-left: var(--spacing);
-            margin-right: var(--spacing);
+        h2,
+        h3,
+        h4 {
+          color: var(--heading-dark);
         }
-
-        /* Headings */
-        h2, h3, h4 {
-            color: #333;
-            margin-top: 1.5rem;
-        }
-
-        /* Lists */
-        ul {
-            padding-left: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Links */
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: var(--background-light);
-                color: var(--text-light);
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: var(--background-dark);
-                color: var(--text-dark);
-            }
-
-            h2, h3, h4 {
-                color: var(--heading-dark);
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header-left">Help</div>
-        <p><em>By PenguinWorksCo</em><br>
-        <em>Last Updated: 6 July 2025</em></p>
-    
-        <h3>Basics</h3>
-        <ul>
-            <li><a href="#basic-what-is-data-plan">What is a Data Plan?</a></li>
-            <li><a href="#basic-how-to-set-data-plan">How to Set the Data Plan?</a></li>
-            <li><a href="#basic-how-to-disable-data-plan">How to Disable Data Plan?</a></li>
-            <li><a href="#basic-diff-manual-auto-period">Difference Between Manual & Auto Period?</a></li>
-            <li><a href="#basic-diff-daily-plan">Difference Between Daily & Plan Usage?</a></li>
-            <li><a href="#basic-data-amount">What is Data Amount?</a></li>
-            <li><a href="#basic-data-untracked-amount">What is Untracked Amount?</a></li>
-            <li><a href="#basic-daily-limit">What is Daily Limit?</a></li>
-            <li><a href="#basic-plan-limit">What is Plan Limit?</a></li>
-        </ul>
-    
-        <h3>Pill</h3>
-        <ul>
-            <li><a href="#what-is-a-pill">What is a Pill?</a></li>
-            <li><a href="#how-to-show-weekly">How to Show Daily Usage for the Week?</a></li>
-            <li><a href="#how-to-show-period">How to Show All Daily Usage for the Current Period?</a></li>
-        </ul>
-    
-        <h3>Widget</h3>
-        <ul>
-            <li><a href="#widget-how-to-add-to-home">How to Add Widget to Homescreen?</a></li>
-            <li><a href="#widget-how-to-add-to-lock">How to Add Widget to Lockscreen?</a></li>
-            <li><a href="#widget-how-to-add-to-standby">How to Add to StandBy? (iOS 17)</a></li>
-            <li><a href="#widget-not-updating">Why Widget is not Updating?</a></li>
-            <li><a href="#widget-blank">Why My Widget is Blank / Black?</a></li>
-        </ul>
-    
-        <h3>Notifications</h3>
-        <ul>
-            <li><a href="#notif-not-working">Why Notifications are not Working?</a></li>
-        </ul>
-    
-        <h3>Backup</h3>
-        <ul>
-            <li><a href="#backup-how">How to Backup my App Data?</a></li>
-        </ul>
-    
-        <h3>Data</h3>
-        <ul>
-            <li><a href="#data-accuracy">Why is the Usage on App Not Accurate?</a></li>
-            <li><a href="#data-speed">How does the App Calculate the Data Speed?</a></li>
-            <li><a href="#data-track">Why is it not tracking my data usage?</a></li>
-        </ul>
-    
-        <hr>
-    
-        <!-- basics -->
-        <h4 id="basic-what-is-data-plan">Q: What is a Data Plan?</h4>
-        <p>A data plan is a service provided by mobile carriers, offering users internet access on their mobile devices for a set fee.</p>
-    
-        <h4 id="basic-how-to-set-data-plan">Q: How to Set the Data Plan?</h4>
-        <p>You need to set the period and the data amount your plan has. All of this can be edited from the Data Plan card.</p>
-    
-        <h4 id="basic-how-to-disable-data-plan">Q: How to Disable Data Plan?</h4>
-        <p>You can disable the data plan using the switch if you just want to monitor data on a daily basis.</p>
-    
-        <h4 id="basic-diff-manual-auto-period">Q: Difference Between Manual & Auto Period?</h4>
-        <ul>
-            <li><strong>Auto:</strong> Automatically sets the next billing cycle or period</li>
-            <li><strong>Manual:</strong> You set the period yourself</li>
-        </ul>
-        <p><strong>Note:</strong> Plan Period dates will be highlighted in red if today's date is not in range with the period selected.</p>
-    
-        <h4 id="basic-diff-daily-plan">Q: Difference between Daily & Plan Usage?</h4>
-        <ul>
-            <li>Daily usage refers to the amount of data consumed within a single day.</li>
-            <li>Plan usage encompasses the total data usage within the entire billing cycle specified by your mobile carrier.</li>
-        </ul>
-    
-        <h4 id="basic-data-amount">Q: What is a Data Amount?</h4>
-        <p>It is the maximum amount of internet data you can use within your billing cycle without incurring extra charges or experiencing reduced speeds.</p>
-    
-        <h4 id="basic-data-untracked-amount">Q: What is Untracked Amount?</h4>
-        <p>It is the amount of data usage from your mobile internet plan that occurred before you installed the Data Pill app. This added amount will be included in your total usage for the current period.</p>
-    
-        <h4 id="basic-daily-limit">Q: What is Daily Limit?</h4>
-        <p>The daily threshold set by the app to notify you if you've exceeded the daily limit through a notification.</p>
-    
-        <h4 id="basic-plan-limit">Q: What is Plan Limit?</h4>
-        <p>Similar to the Daily Limit, but applies to the entire plan period.</p>
-    
-        <hr>
-    
-        <!-- pill -->
-        <h4 id="what-is-a-pill">Q: What is a Pill?</h4>
-        <p>A Pill is a visual indicator that represents your daily or plan usage. It allows you to quickly see your data consumption.</p>
-        
-        <h4 id="how-to-show-weekly">Q: How to Show Daily Usage for the Week?</h4>
-        <p>Tap the Pill, then swipe left to view daily usage for the past 7 days.</p>
-        
-        <h4 id="how-to-show-period">Q: How to Show All Daily Usage for the Current Period?</h4>
-        <p>Tap the Pill, then scroll down to see the full breakdown of your usage for the current billing period.</p>    
-    
-        <hr>
-    
-        <!-- widget -->
-        <h4 id="widget-how-to-add-to-home">Q: How to Add Widget to Homescreen?</h4>
-        <p>To add a widget on the homescreen, long-press the home screen then tap the + button at the top-right corner of the screen. Search 'Data Pill' widget and choose the size you prefer.</p>
-        
-        <h4 id="widget-how-to-add-to-lock">Q: How to Add Widget to Lockscreen?</h4>
-        <p>To add a widget on the lockscreen, long-press the lockscreen then tap 'Customize'. Tap the bottom widget area and add the 'Data Pill' widget.</p>
-        
-        <h4 id="widget-how-to-add-to-standby">Q: How to Add to StandBy?</h4>
-        <p>To add a widget on StandBy screen, long-press the screen while on StandBy display. Unlock your phone then tap the + button at the top-left corner of the screen. Search 'Data Pill' widget and tap 'Add Widget' then tap 'Done'.</p>
-        
-        <h4 id="widget-not-updating">Q: Why Widget is not Updating?</h4>
-        <p>Widgets typically update every 5 minutes. However, updates might be delayed if you're not actively using the app or if you've reached the daily limit of 40-60 refreshes.</p>
-        
-        <h4 id="widget-blank">Q: Why My Widget is Blank / Black?</h4>
-        <p>On iOS 17, the widget may turn black after updating the app. This is a bug on iOS that we couldn't resolve. To fix this, restart your device or remove and re-add the widget on the homescreen.</p>
-    
-        <hr>
-    
-        <!-- notifications -->
-        <h4 id="notif-not-working">Q: Why Notifications are Not Working?</h4>
-        <p>Ensure the following:</p>
-        <ul>
-            <li>Device Settings: <br><em>Settings > Data Pill > Notifications > Allow Notifications</em></li>
-            <li>App Settings: <br><em>Settings > Notifications > Daily Usage & Plan Usage</em></li>
-        </ul>
-    
-        <hr>
-        
-        <!-- backup -->
-        <h4 id="backup-how">Q: How to Backup App Data?</h4>
-        <p>To backup your data, enable 'Data Pill' backup in Settings.<br/><em>Settings > [Your Name] > [This Device] > iCloud Backup > [This Device Backup] > Enable 'Data Pill'</em></p>
-        
-        <hr>
-    
-        <!-- data -->
-        <h4 id="data-accuracy">Q: Why is the Usage on App Not Accurate?</h4>
-        <p>There might be a ± 1-5 MB difference due to API limitations. Check your phone's settings for exact data usage.</p>
-    
-        <h4 id="data-speed">Q: How does the App Calculate the Speed?</h4>
-        <p>When "Tracking Data Amount Throughout the Day" is enabled in Settings, the app attempts to record the amount of data used every 5 minutes (or based on the selected time interval). However, this tracking is not always precise, as widget updates depend on the system's refresh schedule. If some intervals are missed, the app averages the available data.<br/><br/>For example, if you've used 0.1 MB over the last 3 intervals, the app will calculate the average as 0.1 MB ÷ 3 = 0.033 MB. All non-cumulative data points collected throughout the day are averaged and displayed as the speed (e.g., x MB / 5 min)</p>
+      <div class="header-left">Help</div>
+      <p>
+        <em>By PenguinWorksCo</em><br />
+        <em>Last Updated: 10 Aug 2025</em>
+      </p>
 
-        <h4 id="data-track">Q: Why it is not tracking my data usage?</h4>
-        <p>To track your data usage while the app is not open, you need to add the widget to your home screen or lock screen.<br/><br/>The widget updates your data usage only when it is refreshed by the system. If the widget isn't added or hasn't been refreshed, the data won't update.</p>
-    
-        <hr>
-    
-        <h3>Languages Supported</h3>
-        <ul>
-            <li>English</li>
-            <li>German</li>
-            <li>Turkish</li>
-            <li>Chinese (🚜 Work in Progress)</li>
-            <li>Filipino (🚜 Work in Progress)</li>
-        </ul>
-        <p>To change language of the app go to: <br/><em>Device Settings > Apps > Data Pill > Language > Select Language</em></p>
-        
+      <h3>Basics</h3>
+      <ul>
+        <li><a href="#basic-what-is-data-plan">What is a Data Plan?</a></li>
+        <li>
+          <a href="#basic-how-to-set-data-plan">How to Set the Data Plan?</a>
+        </li>
+        <li>
+          <a href="#basic-how-to-disable-data-plan"
+            >How to Disable Data Plan?</a
+          >
+        </li>
+        <li>
+          <a href="#basic-diff-manual-auto-period"
+            >Difference Between Manual & Auto Period?</a
+          >
+        </li>
+        <li>
+          <a href="#basic-diff-daily-plan"
+            >Difference Between Daily & Plan Usage?</a
+          >
+        </li>
+        <li><a href="#basic-data-amount">What is Data Amount?</a></li>
+        <li>
+          <a href="#basic-data-untracked-amount">What is Untracked Amount?</a>
+        </li>
+        <li><a href="#basic-daily-limit">What is Daily Limit?</a></li>
+        <li><a href="#basic-plan-limit">What is Plan Limit?</a></li>
+      </ul>
+
+      <h3>Pill</h3>
+      <ul>
+        <li><a href="#what-is-a-pill">What is a Pill?</a></li>
+        <li>
+          <a href="#how-to-show-weekly"
+            >How to Show Daily Usage for the Week?</a
+          >
+        </li>
+        <li>
+          <a href="#how-to-show-period"
+            >How to Show All Daily Usage for the Current Period?</a
+          >
+        </li>
+      </ul>
+
+      <h3>Widget</h3>
+      <ul>
+        <li>
+          <a href="#widget-how-to-add-to-home"
+            >How to Add Widget to Homescreen?</a
+          >
+        </li>
+        <li>
+          <a href="#widget-how-to-add-to-lock"
+            >How to Add Widget to Lockscreen?</a
+          >
+        </li>
+        <li>
+          <a href="#widget-how-to-add-to-standby"
+            >How to Add to StandBy? (iOS 17)</a
+          >
+        </li>
+        <li><a href="#widget-not-updating">Why Widget is not Updating?</a></li>
+        <li><a href="#widget-blank">Why My Widget is Blank / Black?</a></li>
+      </ul>
+
+      <h3>Notifications</h3>
+      <ul>
+        <li>
+          <a href="#notif-not-working">Why Notifications are not Working?</a>
+        </li>
+      </ul>
+
+      <h3>Backup</h3>
+      <ul>
+        <li><a href="#backup-how">How to Backup my App Data?</a></li>
+      </ul>
+
+      <h3>Data</h3>
+      <ul>
+        <li>
+          <a href="#data-accuracy">Why is the Usage on App Not Accurate?</a>
+        </li>
+        <li>
+          <a href="#data-speed">How does the App Calculate the Data Speed?</a>
+        </li>
+        <li><a href="#data-track">Why is it not tracking my data usage?</a></li>
+      </ul>
+
+      <hr />
+
+      <!-- basics -->
+      <h4 id="basic-what-is-data-plan">Q: What is a Data Plan?</h4>
+      <p>
+        A data plan is a service provided by mobile carriers, offering users
+        internet access on their mobile devices for a set fee.
+      </p>
+
+      <h4 id="basic-how-to-set-data-plan">Q: How to Set the Data Plan?</h4>
+      <p>
+        You need to set the period and the data amount your plan has. All of
+        this can be edited from the Data Plan card.
+      </p>
+
+      <h4 id="basic-how-to-disable-data-plan">Q: How to Disable Data Plan?</h4>
+      <p>
+        You can disable the data plan using the switch if you just want to
+        monitor data on a daily basis.
+      </p>
+
+      <h4 id="basic-diff-manual-auto-period">
+        Q: Difference Between Manual & Auto Period?
+      </h4>
+      <ul>
+        <li>
+          <strong>Auto:</strong> Automatically sets the next billing cycle or
+          period
+        </li>
+        <li><strong>Manual:</strong> You set the period yourself</li>
+      </ul>
+      <p>
+        <strong>Note:</strong> Plan Period dates will be highlighted in red if
+        today's date is not in range with the period selected.
+      </p>
+
+      <h4 id="basic-diff-daily-plan">
+        Q: Difference between Daily & Plan Usage?
+      </h4>
+      <ul>
+        <li>
+          Daily usage refers to the amount of data consumed within a single day.
+        </li>
+        <li>
+          Plan usage encompasses the total data usage within the entire billing
+          cycle specified by your mobile carrier.
+        </li>
+      </ul>
+
+      <h4 id="basic-data-amount">Q: What is a Data Amount?</h4>
+      <p>
+        It is the maximum amount of internet data you can use within your
+        billing cycle without incurring extra charges or experiencing reduced
+        speeds.
+      </p>
+
+      <h4 id="basic-data-untracked-amount">Q: What is Untracked Amount?</h4>
+      <p>
+        It is the amount of data usage from your mobile internet plan that
+        occurred before you installed the Data Pill app. This added amount will
+        be included in your total usage for the current period.
+      </p>
+
+      <h4 id="basic-daily-limit">Q: What is Daily Limit?</h4>
+      <p>
+        The daily threshold set by the app to notify you if you've exceeded the
+        daily limit through a notification.
+      </p>
+
+      <h4 id="basic-plan-limit">Q: What is Plan Limit?</h4>
+      <p>Similar to the Daily Limit, but applies to the entire plan period.</p>
+
+      <hr />
+
+      <!-- pill -->
+      <h4 id="what-is-a-pill">Q: What is a Pill?</h4>
+      <p>
+        A Pill is a visual indicator that represents your daily or plan usage.
+        It allows you to quickly see your data consumption.
+      </p>
+
+      <h4 id="how-to-show-weekly">Q: How to Show Daily Usage for the Week?</h4>
+      <p>
+        Tap the Pill, then swipe left to view daily usage for the past 7 days.
+      </p>
+
+      <h4 id="how-to-show-period">
+        Q: How to Show All Daily Usage for the Current Period?
+      </h4>
+      <p>
+        Tap the Pill, then scroll down to see the full breakdown of your usage
+        for the current billing period.
+      </p>
+
+      <hr />
+
+      <!-- widget -->
+      <h4 id="widget-how-to-add-to-home">
+        Q: How to Add Widget to Homescreen?
+      </h4>
+      <p>
+        To add a widget on the homescreen, long-press the home screen then tap
+        the + button at the top-right corner of the screen. Search 'Data Pill'
+        widget and choose the size you prefer.
+      </p>
+
+      <h4 id="widget-how-to-add-to-lock">
+        Q: How to Add Widget to Lockscreen?
+      </h4>
+      <p>
+        To add a widget on the lockscreen, long-press the lockscreen then tap
+        'Customize'. Tap the bottom widget area and add the 'Data Pill' widget.
+      </p>
+
+      <h4 id="widget-how-to-add-to-standby">Q: How to Add to StandBy?</h4>
+      <p>
+        To add a widget on StandBy screen, long-press the screen while on
+        StandBy display. Unlock your phone then tap the + button at the top-left
+        corner of the screen. Search 'Data Pill' widget and tap 'Add Widget'
+        then tap 'Done'.
+      </p>
+
+      <h4 id="widget-not-updating">Q: Why Widget is not Updating?</h4>
+      <p>
+        Widgets typically update every 5 minutes. However, updates might be
+        delayed if you're not actively using the app or if you've reached the
+        daily limit of 40-60 refreshes.
+      </p>
+
+      <h4 id="widget-blank">Q: Why My Widget is Blank / Black?</h4>
+      <p>
+        On iOS 17, the widget may turn black after updating the app. This is a
+        bug on iOS that we couldn't resolve. To fix this, restart your device or
+        remove and re-add the widget on the homescreen.
+      </p>
+
+      <hr />
+
+      <!-- notifications -->
+      <h4 id="notif-not-working">Q: Why Notifications are Not Working?</h4>
+      <p>Ensure the following:</p>
+      <ul>
+        <li>
+          Device Settings: <br /><em
+            >Settings > Data Pill > Notifications > Allow Notifications</em
+          >
+        </li>
+        <li>
+          App Settings: <br /><em
+            >Settings > Notifications > Daily Usage & Plan Usage</em
+          >
+        </li>
+      </ul>
+
+      <hr />
+
+      <!-- backup -->
+      <h4 id="backup-how">Q: How to Backup & Restore my Records?</h4>
+      <p>
+        To backup your data, enable 'Data Pill' backup in Settings.<br /><em
+          >Settings > [Your Name] > [This Device] > iCloud Backup > [This Device
+          Backup] > Enable 'Data Pill'</em
+        >
+      </p>
+
+      <p>
+        You can also back up your data manually by exporting it to a
+        <strong>CSV file</strong> in Settings.
+      </p>
+      <p>
+        When restoring from a CSV file, please make sure it follows these rules:
+      </p>
+
+      <ul>
+        <li>
+          Exactly two columns:
+          <ol>
+            <li>
+              <strong>Date</strong> &ndash; format: d MMM yyyy (month name can
+              be in German, Turkish, Chinese, Filipino, or English)
+            </li>
+            <li>
+              <strong>Number (Amount Used in MB)</strong> &ndash; must be a
+              whole number (no decimals)
+            </li>
+          </ol>
+        </li>
+        <li>Keep the file structure exactly the same for smooth importing.</li>
+      </ul>
+      <hr />
+
+      <!-- data -->
+      <h4 id="data-accuracy">Q: Why is the Usage on App Not Accurate?</h4>
+      <p>
+        There might be a ± 1-5 MB difference due to API limitations. Check your
+        phone's settings for exact data usage.
+      </p>
+
+      <h4 id="data-speed">Q: How does the App Calculate the Speed?</h4>
+      <p>
+        When "Tracking Data Amount Throughout the Day" is enabled in Settings,
+        the app attempts to record the amount of data used every 5 minutes (or
+        based on the selected time interval). However, this tracking is not
+        always precise, as widget updates depend on the system's refresh
+        schedule. If some intervals are missed, the app averages the available
+        data.<br /><br />For example, if you've used 0.1 MB over the last 3
+        intervals, the app will calculate the average as 0.1 MB ÷ 3 = 0.033 MB.
+        All non-cumulative data points collected throughout the day are averaged
+        and displayed as the speed (e.g., x MB / 5 min)
+      </p>
+
+      <h4 id="data-track">Q: Why it is not tracking my data usage?</h4>
+      <p>
+        To track your data usage while the app is not open, you need to add the
+        widget to your home screen or lock screen.<br /><br />The widget updates
+        your data usage only when it is refreshed by the system. If the widget
+        isn't added or hasn't been refreshed, the data won't update.
+      </p>
+
+      <hr />
+
+      <h3>Languages Supported</h3>
+      <ul>
+        <li>English</li>
+        <li>German</li>
+        <li>Turkish</li>
+        <li>Chinese (🚜 Work in Progress)</li>
+        <li>Filipino (🚜 Work in Progress)</li>
+      </ul>
+      <p>
+        To change language of the app go to: <br /><em
+          >Device Settings > Apps > Data Pill > Language > Select Language</em
+        >
+      </p>
     </div>
     <div id="footer-container"></div>
-</body>
+  </body>
 </html>
