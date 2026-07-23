@@ -151,6 +151,122 @@ body {
     margin-bottom: 10px;
 }
 
+.help-meta {
+    color: #666;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: -22px 0px 30px;
+    padding: 0px 30px;
+    text-align: left;
+}
+
+.help-page .card {
+    padding: 18px 0px;
+}
+
+.help-page .card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0px;
+    margin-bottom: 12px;
+}
+
+.help-intro p {
+    max-width: 760px;
+}
+
+.help-topic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 4px 35px 24px;
+}
+
+.help-topic-grid a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 6px 14px;
+    border-radius: 18px;
+    background: #eef6ff;
+    color: #327aff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.help-topic-grid a:hover {
+    text-decoration: none;
+    background: #dfefff;
+}
+
+.help-card {
+    scroll-margin-top: 20px;
+}
+
+.help-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1f1f1f;
+    line-height: 1.3;
+    margin: 26px 0px 8px;
+    padding: 22px 35px 0px;
+    border-top: 1px solid #ececf0;
+}
+
+.help-card h3:first-of-type {
+    margin-top: 10px;
+    padding-top: 0px;
+    border-top: 0px;
+}
+
+.help-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.help-card ul {
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.help-card li {
+    margin-bottom: 8px;
+}
+
+.help-card a {
+    color: #327aff;
+}
+
+.help-card em {
+    color: #777;
+    font-style: normal;
+}
+
+.setting-path {
+    display: block;
+    width: fit-content;
+    max-width: calc(100% - 70px);
+    margin: 10px 35px 18px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #eef6ff;
+    color: #327aff;
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.help-card li .setting-path {
+    max-width: 100%;
+    margin: 10px 0px 18px;
+}
+
 .email {
     color: #327aff;
 }
@@ -185,5 +301,32 @@ body {
 
     .card ul {
         color: #9f9f9f;
+    }
+
+    .help-meta {
+        color: #9f9f9f;
+    }
+
+    .help-topic-grid a {
+        background: rgba(50, 122, 255, 0.18);
+        color: #78a7ff;
+    }
+
+    .help-topic-grid a:hover {
+        background: rgba(50, 122, 255, 0.26);
+    }
+
+    .help-card h3 {
+        color: white;
+        border-top-color: #424242;
+    }
+
+    .help-card em {
+        color: #bdbdbd;
+    }
+
+    .setting-path {
+        background: rgba(50, 122, 255, 0.18);
+        color: #78a7ff;
     }
 }
