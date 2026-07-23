@@ -154,7 +154,7 @@ body {
 .help-meta {
     color: #666;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.5;
     margin: -22px 0px 30px;
     padding: 0px 30px;
@@ -193,7 +193,7 @@ body {
     background: #eef6ff;
     color: #327aff;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -249,7 +249,7 @@ body {
 
 .setting-path {
     display: block;
-    width: fit-content;
+    width: auto;
     max-width: calc(100% - 70px);
     margin: 10px 35px 18px;
     padding: 12px 14px;
@@ -257,7 +257,7 @@ body {
     background: #eef6ff;
     color: #327aff;
     font-size: 15px;
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.4;
     overflow-wrap: anywhere;
 }
@@ -265,6 +265,69 @@ body {
 .help-card li .setting-path {
     max-width: 100%;
     margin: 10px 0px 18px;
+}
+
+@media (max-width: 600px) {
+    .help-page .header-left {
+        margin-bottom: 10px;
+    }
+
+    .help-meta {
+        font-size: 14px;
+        margin: 0px 0px 24px;
+        padding: 0px 30px;
+    }
+
+    .help-page .card {
+        padding: 16px 0px;
+    }
+
+    .help-page .card h2 {
+        font-size: 22px;
+        padding: 0px 26px;
+    }
+
+    .help-page .card p {
+        padding: 0px 26px;
+    }
+
+    .help-topic-grid {
+        gap: 8px;
+        padding: 4px 26px 20px;
+    }
+
+    .help-topic-grid a {
+        min-height: 34px;
+        padding: 6px 12px;
+        font-size: 13px;
+        border-radius: 17px;
+    }
+
+    .help-card h3 {
+        font-size: 16px;
+        padding: 20px 26px 0px;
+        margin-top: 24px;
+    }
+
+    .help-card h3:first-of-type {
+        padding-top: 0px;
+    }
+
+    .help-card p,
+    .help-card ul {
+        font-size: 15px;
+    }
+
+    .help-card ul {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .setting-path {
+        max-width: calc(100% - 52px);
+        margin: 10px 26px 18px;
+        font-size: 14px;
+    }
 }
 
 .email {
