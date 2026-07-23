@@ -1,5 +1,9 @@
 @import url(styles-footer.css);
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html {
     height: 100%; /* Ensure full height */
 }
@@ -15,6 +19,7 @@ body {
     height: 100%; /* Ensure full height */
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
@@ -66,13 +71,17 @@ body {
 }
 
 .container {
+    width: 100%;
+    min-width: 0;
     margin: 0px;
     padding: 0px;
     flex: 1; /* Pushes footer down */
+    overflow-x: hidden;
 }
 
 .card {
     background: white;
+    width: calc(100% - 50px);
     padding: 10px 0px;
     margin: 30px 25px;
     border-radius: 16px;
@@ -115,6 +124,7 @@ body {
 
 .card .screenshots {
     display: flex;
+    min-width: 0;
     gap: 21px;
     overflow-x: auto; /* Enable horizontal scrolling */
     white-space: nowrap; /* Prevents images from wrapping */
@@ -129,6 +139,7 @@ body {
 }
 
 .card .screenshots img {
+    flex: 0 0 auto;
     width: 154px;
     height: auto;
     border-radius: 18px;
