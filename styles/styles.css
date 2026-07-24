@@ -197,19 +197,34 @@ body {
 .language-switcher {
     flex: 0 0 auto;
     margin-top: 42px;
+    position: relative;
+    display: inline-block;
+}
+
+.language-switcher::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 11px;
+    width: 12px;
+    height: 7px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    background-color: #327aff;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .language-switcher select {
     -webkit-appearance: none;
     appearance: none;
+    display: block;
     border: 0px;
     border-radius: 15px;
     background-color: white;
-    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22%23327AFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E");
-    background-position: right 11px center;
-    background-repeat: no-repeat;
-    background-size: 12px 7px;
+    background-image: none;
     color: #327aff;
+    -webkit-text-fill-color: #327aff;
     font: inherit;
     font-size: 14px;
     font-weight: 600;
@@ -511,9 +526,13 @@ body {
         color: #78a7ff;
     }
 
+    .language-switcher::after {
+        background-color: #78a7ff;
+    }
+
     .language-switcher select {
         background-color: #303030;
-        background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22%2378A7FF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E");
         color: #78a7ff;
+        -webkit-text-fill-color: #78a7ff;
     }
 }
