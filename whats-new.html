@@ -8,21 +8,33 @@
     <link rel="shortcut icon" href="assets/data-pill-icon.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="icon-192x192.png"> 
     <link rel="stylesheet" href="styles/styles.css">
+    <script defer src="scripts/i18n.js"></script>
     <script defer src="scripts/footer.js"></script>
 </head>
 <body>
     <div class="container">
 
-        <div class="header-left">What's New?</div>
+        <div class="page-title-row">
+            <div class="header-left" data-i18n="whatsNew.title">What's New?</div>
+            <div class="language-switcher">
+                <select data-i18n-language-select aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="zh-Hans">中文</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="fil">Filipino</option>
+                </select>
+            </div>
+        </div>
 
         <div class="card">
-            <h2>Streaks, Rewards & Dynamic Themes</h2>
+            <h2 data-i18n="whatsNew.v290.title">Streaks, Rewards & Dynamic Themes</h2>
             <ul>
-                <li style="margin-bottom: 1em;"><strong>Daily Streaks:</strong><br/>Stay in the safe zone and build a streak as you manage your data plan day by day.</li>
-                <li style="margin-bottom: 1em;"><strong>Streak Rewards:</strong><br/>Hit streak milestones to unlock Super Pill trial days and keep your progress going.</li>
-                <li style="margin-bottom: 1em;"><strong>Days Left:</strong><br/>See how many days are left in your plan directly in the app and on your widgets.</li>
-                <li style="margin-bottom: 1em;"><strong>Dynamic Themes:</strong><br/>Choose System, Dark, or Light mode, with improved widget colors that adapt to your look.</li>
-                <li><strong>Smarter Home & Widgets:</strong><br/>Streaks, data status, days left, and Super Pill subscription details are easier to check at a glance.</li>
+                <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v290.streaks"><strong>Daily Streaks:</strong><br/>Stay in the safe zone and build a streak as you manage your data plan day by day.</li>
+                <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v290.rewards"><strong>Streak Rewards:</strong><br/>Hit streak milestones to unlock Super Pill trial days and keep your progress going.</li>
+                <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v290.daysLeft"><strong>Days Left:</strong><br/>See how many days are left in your plan directly in the app and on your widgets.</li>
+                <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v290.themes"><strong>Dynamic Themes:</strong><br/>Choose System, Dark, or Light mode, with improved widget colors that adapt to your look.</li>
+                <li data-i18n-html="whatsNew.v290.homeWidgets"><strong>Smarter Home & Widgets:</strong><br/>Streaks, data status, days left, and Super Pill subscription details are easier to check at a glance.</li>
             </ul>
 
             <div class="screenshots">
@@ -41,10 +53,10 @@
         </div>
 
         <div class="card">
-            <h2>Startup Guide & Import Data</h2>
+            <h2 data-i18n="whatsNew.v270.title">Startup Guide & Import Data</h2>
             <ul>
-                <li style="margin-bottom: 1em;"><strong>New Startup Guide:</strong><br/>Get started quickly with our new step-by-step guide.</li> 
-                <li style="margin-bottom: 1em;"><strong>Import Data:</strong><br/>Easily import your existing data using CSV files.</li> 
+                <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v270.guide"><strong>New Startup Guide:</strong><br/>Get started quickly with our new step-by-step guide.</li> 
+                <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v270.import"><strong>Import Data:</strong><br/>Easily import your existing data using CSV files.</li> 
             </ul>
 
             <div class="screenshots">
@@ -58,8 +70,8 @@
         </div>
 
         <div class="card">
-            <h2>Visualize your data every few minutes</h2>
-             <p>You can now enable tracking to see how much data you’ve used every X minutes.
+            <h2 data-i18n="whatsNew.v250.title">Visualize your data every few minutes</h2>
+             <p data-i18n="whatsNew.v250.description">You can now enable tracking to see how much data you’ve used every X minutes.
 Watch your data usage trend over time with our new line chart, so you stay in control and avoid surprises.
             </p>
             <div class="screenshots">
@@ -71,12 +83,12 @@ Watch your data usage trend over time with our new line chart, so you stay in co
         </div>
 
         <div class="card">
-            <h2>Custom Particles & New Pill Shapes</h2>
-            <p>Get creative with our new interactive pill feature!
+            <h2 data-i18n="whatsNew.v240.title">Custom Particles & New Pill Shapes</h2>
+            <p data-i18n-html="whatsNew.v240.description">Get creative with our new interactive pill feature!
                 <ul>
-                    <li style="margin-bottom: 1em;"><strong>Animated Particles:</strong><br/>Add particles that move up, down, or in any direction inside your pills.</li> 
-                    <li style="margin-bottom: 1em;"><strong>Full Control:</strong><br/>Customize particle shape, speed, opacity, and more.</li> 
-                    <li><strong>More Pill Options:</strong><br/>Choose from basic shapes to fun emoji pills.</li> 
+                    <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v240.particles"><strong>Animated Particles:</strong><br/>Add particles that move up, down, or in any direction inside your pills.</li> 
+                    <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v240.control"><strong>Full Control:</strong><br/>Customize particle shape, speed, opacity, and more.</li> 
+                    <li data-i18n-html="whatsNew.v240.options"><strong>More Pill Options:</strong><br/>Choose from basic shapes to fun emoji pills.</li> 
                 </ul>
             </p>
             <div class="screenshots">
@@ -90,11 +102,11 @@ Watch your data usage trend over time with our new line chart, so you stay in co
         </div>
 
         <div class="card">
-            <h2>App Alerts & Tips</h2>
-            <p>We&#39;ve added smart alerts and helpful tips to help you stay in control of your data usage!
+            <h2 data-i18n="whatsNew.v230.title">App Alerts & Tips</h2>
+            <p data-i18n-html="whatsNew.v230.description">We&#39;ve added smart alerts and helpful tips to help you stay in control of your data usage!
                 <ul>
-                    <li style="margin-bottom: 1em;"><strong>Real-time Alerts:</strong><br/>Get notified when you reach or exceed your mobile data limit — right inside the app.</li> 
-                    <li><strong>Smart Tips to Save Data:</strong><br/>Discover easy, practical ways to reduce data usage and avoid overages.</li> 
+                    <li style="margin-bottom: 1em;" data-i18n-html="whatsNew.v230.alerts"><strong>Real-time Alerts:</strong><br/>Get notified when you reach or exceed your mobile data limit — right inside the app.</li> 
+                    <li data-i18n-html="whatsNew.v230.tips"><strong>Smart Tips to Save Data:</strong><br/>Discover easy, practical ways to reduce data usage and avoid overages.</li> 
                 </ul>
             </p>
             <div class="screenshots">
@@ -107,8 +119,8 @@ Watch your data usage trend over time with our new line chart, so you stay in co
         </div>
 
         <div class="card">
-            <h2>More Widgets on Lockscreen & Homescreen</h2>
-            <p>View weekly usage on your homescreen and free up space for other widgets on your lockscreen with the new compact widget</p>
+            <h2 data-i18n="whatsNew.v220.title">More Widgets on Lockscreen & Homescreen</h2>
+            <p data-i18n="whatsNew.v220.description">View weekly usage on your homescreen and free up space for other widgets on your lockscreen with the new compact widget</p>
             <div class="screenshots">
                 <img src="assets/whats-new-2-2-0/screenshot-1.png" alt="">
                 <img src="assets/whats-new-2-2-0/screenshot-2.png" alt="">
@@ -119,8 +131,8 @@ Watch your data usage trend over time with our new line chart, so you stay in co
         </div>
 
         <div class="card">
-            <h2>Record History & Widget Customization</h2>
-            <p>View past data in a chart and customize the appearance of the widgets by changing the background and text color</p>
+            <h2 data-i18n="whatsNew.v210.title">Record History & Widget Customization</h2>
+            <p data-i18n="whatsNew.v210.description">View past data in a chart and customize the appearance of the widgets by changing the background and text color</p>
             <div class="screenshots">
                 <img src="assets/whats-new-2-1-0/screenshot-1.png" alt="">
                 <img src="assets/whats-new-2-1-0/screenshot-4.png" alt="">
@@ -131,38 +143,38 @@ Watch your data usage trend over time with our new line chart, so you stay in co
         </div>
 
         <div class="card">
-            <h2>Revamped UI ✨</h2>
-            <p>Added new cards to show This Week usage, progress and plan progress. Also change the type of period for data plan either Range or Day</p>
-            <h2>More Features on Super Pill Plan 🚀</h2>
+            <h2 data-i18n="whatsNew.v200.title">Revamped UI ✨</h2>
+            <p data-i18n="whatsNew.v200.description">Added new cards to show This Week usage, progress and plan progress. Also change the type of period for data plan either Range or Day</p>
+            <h2 data-i18n="whatsNew.v200.superTitle">More Features on Super Pill Plan 🚀</h2>
             <ul>
-                <li>Data Insights Card</li>
-                <li>Customize Pill Shape and Flow</li>
-                <li>Customize Widgets</li>
-                <li>Customize App Icon and Accent</li>
-                <li>View & Export All Data Records</li>
+                <li data-i18n="whatsNew.v200.insights">Data Insights Card</li>
+                <li data-i18n="whatsNew.v200.shape">Customize Pill Shape and Flow</li>
+                <li data-i18n="whatsNew.v200.widgets">Customize Widgets</li>
+                <li data-i18n="whatsNew.v200.icon">Customize App Icon and Accent</li>
+                <li data-i18n="whatsNew.v200.records">View & Export All Data Records</li>
             </ul>
             <div class="footer">v2.0.0</div>
         </div>
 
         <div class="card">
-            <h2>Data Unit</h2>
-            <p>You can now switch between GB or MB to view your data usage</p>
+            <h2 data-i18n="whatsNew.v130.title">Data Unit</h2>
+            <p data-i18n="whatsNew.v130.description">You can now switch between GB or MB to view your data usage</p>
             <div class="footer">v1.3.0</div>
         </div>
 
         <div class="card">
-            <h2>Adjustable Notification Threshold</h2>
+            <h2 data-i18n="whatsNew.v120.title">Adjustable Notification Threshold</h2>
             <!-- untracked data amount, new this week views -->
             <ul class="features">
-                <li>Untracked Data Amount</li>
-                <li>New Views for This Week's Data</li>
-                <li>Adjustable Notification Thresholds</li>
+                <li data-i18n="whatsNew.v120.untracked">Untracked Data Amount</li>
+                <li data-i18n="whatsNew.v120.views">New Views for This Week's Data</li>
+                <li data-i18n="whatsNew.v120.thresholds">Adjustable Notification Thresholds</li>
             </ul>
             <div class="footer">v1.2.0</div>
         </div>
 
         <div class="card">
-            <h2>Pill Customizations, Notifications</h2>
+            <h2 data-i18n="whatsNew.v110.title">Pill Customizations, Notifications</h2>
             <div class="footer">v1.1.0</div>
         </div>
 

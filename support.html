@@ -8,15 +8,28 @@
     <link rel="shortcut icon" href="assets/data-pill-icon.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="icon-192x192.png"> 
     <link rel="stylesheet" href="styles/styles.css">
+    <script defer src="scripts/i18n.js"></script>
     <script defer src="scripts/footer.js"></script>
 </head>
 <body>
     <div class="container">
+        <div class="page-title-row">
+            <div class="header-left" data-i18n="support.title">Support</div>
+            <div class="language-switcher">
+                <select data-i18n-language-select aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="zh-Hans">中文</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="fil">Filipino</option>
+                </select>
+            </div>
+        </div>
         <div class="card">
-            <h1>Support</h1>
-            <p>For any feedback or issues encountered, contact us via email:</p>
+            <h1 data-i18n="support.card.title">Need help?</h1>
+            <p data-i18n="support.emailIntro">For any feedback or issues encountered, contact us via email:</p>
             <p><a href="mailto:penguinworksco@gmail.com" class="email">penguinworksco@gmail.com</a></p>
-            <p>You may also go to 'Report a Bug' or 'Request a Feature' in the app settings.</p>
+            <p data-i18n="support.appSettings">You may also go to 'Report a Bug' or 'Request a Feature' in the app settings.</p>
         </div>
     </div>
 

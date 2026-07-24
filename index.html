@@ -9,27 +9,39 @@
     <link rel="shortcut icon" href="assets/data-pill-icon.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="icon-192x192.png"> 
     <link rel="stylesheet" href="styles/styles.css">
+    <script defer src="scripts/i18n.js"></script>
     <script defer src="scripts/footer.js"></script>
 </head>
 <body>
     <div class="container">
+        <div class="top-language-row">
+            <div class="language-switcher">
+                <select data-i18n-language-select aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="zh-Hans">中文</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="fil">Filipino</option>
+                </select>
+            </div>
+        </div>
         <img src="assets/data-pill-icon.png" alt="Icon" class="app-icon">
-        <div class="header">Data Pill</div>
-        <div class="subheader">Effortlessly Monitor Data Usage, Wherever You Are!</div>
+        <div class="header" data-i18n="home.title">Data Pill</div>
+        <div class="subheader" data-i18n="home.subtitle">Effortlessly Monitor Data Usage, Wherever You Are!</div>
 
         <div class="card">
-            <h2>Data Plan Management</h2>
-            <p>Tailor your data plan, set usage limits, and visualize your data consumption with our unique pill-shaped bar.</p>
+            <h2 data-i18n="home.plan.title">Data Plan Management</h2>
+            <p data-i18n="home.plan.description">Tailor your data plan, set usage limits, and visualize your data consumption with our unique pill-shaped bar.</p>
         </div>
 
         <div class="card">
-            <h2>Flexible Options for Non-Data Plans</h2>
-            <p>Track your data with daily budgets, even without a traditional data plan.</p>
+            <h2 data-i18n="home.flexible.title">Flexible Options for Non-Data Plans</h2>
+            <p data-i18n="home.flexible.description">Track your data with daily budgets, even without a traditional data plan.</p>
         </div>
 
         <div class="card">
-            <h2>Monitor Anywhere, Anytime</h2>
-            <p>Stay informed at a glance with widgets on your home and lock screens.</p>
+            <h2 data-i18n="home.widgets.title">Monitor Anywhere, Anytime</h2>
+            <p data-i18n="home.widgets.description">Stay informed at a glance with widgets on your home and lock screens.</p>
         </div>
 
         <a href="https://apps.apple.com/us/app/data-pill/id1661467660" target="_blank">
