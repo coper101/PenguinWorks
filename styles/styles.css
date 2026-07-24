@@ -440,6 +440,7 @@ body {
     .page-title-row {
         display: block;
         padding-right: 0px;
+        text-align: left;
     }
 
     .language-switcher {
@@ -453,6 +454,7 @@ body {
     }
 
     .top-language-row {
+        justify-content: flex-start;
         padding: 14px 16px 0px;
     }
 
