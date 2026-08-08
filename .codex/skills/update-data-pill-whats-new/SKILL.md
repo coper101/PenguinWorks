@@ -18,6 +18,8 @@ node .codex/skills/update-data-pill-whats-new/scripts/preflight.js \
   3.0.0
 ```
 
+For an explicit rerun of an existing release, add `--allow-existing`. This is only for correcting or syncing an entry that already exists; it does not permit creating a duplicate release card.
+
 The checker must verify, in order:
 
 1. The iOS project directory exists.
@@ -26,11 +28,11 @@ The checker must verify, in order:
 4. The website contains a readable What’s New release version.
 5. The iOS version is newer than the latest website version.
 6. The requested version, when supplied, matches the iOS marketing version.
-7. The requested version is not already present in the website.
+7. The requested version is not already present in the website, unless this is an explicit `--allow-existing` rerun.
 
 If any check fails, stop immediately. Report the exact failure and the corrective action. Do not inspect for upload candidates, upload to Firebase, generate website edits, or modify translations after a failed preflight.
 
-The skill must also verify that screenshots are attached to the current Codex task before any upload step. If none are attached, stop and ask the user to attach the What’s New screenshots. Never use App Store assets from `/Users/windversi/Desktop/Data Pill App /Assets/3.0.0` for this workflow.
+The skill must also verify that screenshots are attached to the current Codex task before any upload step. If none are attached, stop and ask the user to attach the What’s New screenshots. Never use App Store promo assets from `/Users/windversi/Desktop/Data Pill App /Assets/<version>/` as What’s New screenshots.
 
 Firebase uploads use the project owner account `penguinworksco@gmail.com`. Before uploading, verify that Google Cloud and Firebase CLI are authenticated with that account and that the active project is `data-pill`. Do not use `darylgialolo@gmail.com` for this workflow.
 
@@ -51,19 +53,21 @@ If the version is missing, ask for it before editing. If screenshots are not att
 
 Run the Mandatory Preflight first. After it passes, identify the website repository and inspect its existing What’s New implementation before editing. Read `whats-new.html`, `scripts/i18n.js`, and the relevant shared CSS. Locate the iOS project and search it with `rg` for the release version, feature names, changelog/release notes, widget configuration, streaks, themes, or other terms represented by the screenshots.
 
-Use the iOS project as the source of truth for behavior and terminology. Do not claim a feature based only on a screenshot when the project contradicts it. If the project does not contain release notes, infer only visible facts and ask about ambiguous behavior.
+Use `/docs/app-store/whats-new-<version>.md` in the iOS project as the source of truth for the release title, summary, feature list, and terminology. Use the versioned `/Assets/<version>/` folder only to understand whether an asset is App Store promo artwork; do not use those promo assets for the What’s New screenshot strip. Do not claim a feature based only on a screenshot when the release notes contradict it. If the release notes are missing, stop and ask the user to add them or provide release wording.
 
 ### 2. Prepare screenshot assets
 
 For each screenshot:
 
 - Preserve the supplied order unless the user specifies another order.
-- Prefer existing website asset conventions and filenames such as `assets/whats-new-<version>/`.
+- Use attached What’s New screenshots only. Do not substitute screenshots from the iOS App Store assets directory.
 - If the user supplied Firebase URLs, use those URLs or copy them into the website's established local-image pattern as appropriate.
-- If the user supplied local screenshots, inspect them when needed and search the repo for an existing Firebase CLI/configuration or documented upload script.
+- If the user supplied local screenshots, inspect them when needed and use the project Firebase upload workflow.
 - Use a discovered, already-configured upload workflow only when it is clearly scoped to the intended Firebase project. Otherwise stop before uploading and ask the user to upload the files, then continue once URLs are available.
 
-Never expose Firebase tokens in source files, logs, or the final response beyond URLs the user explicitly supplied for the page.
+When rerunning an existing release with `--allow-existing` and the user says not to upload, reuse the existing Firebase URLs already in `whats-new.html`; do not call the upload workflow.
+
+Never expose Firebase tokens in source files, logs, or the final response beyond URLs required by the page.
 
 ### 3. Add the release to the website
 

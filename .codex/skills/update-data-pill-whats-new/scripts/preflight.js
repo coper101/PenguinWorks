@@ -33,6 +33,7 @@ function main() {
     const websiteRoot = path.resolve(process.argv[2] || process.cwd());
     const iosRoot = path.resolve(process.argv[3] || "/Users/windversi/Desktop/Data Pill App /Data-Pill-iOS");
     const requestedVersion = process.argv[4] || "";
+    const allowExisting = process.argv.includes("--allow-existing");
     const xcodeProject = path.join(iosRoot, "Data Pill.xcodeproj");
     const projectFile = path.join(xcodeProject, "project.pbxproj");
     const whatsNewFile = path.join(websiteRoot, "whats-new.html");
@@ -78,10 +79,11 @@ function main() {
     const websiteVersions = releaseMatches.map((match) => readVersion(match[1], "website release version"));
     const latestWebsiteVersion = websiteVersions.reduce((highest, version) => compareVersions(version, highest) > 0 ? version : highest);
     const duplicate = websiteVersions.some((version) => compareVersions(version, appVersion) === 0);
-    if (duplicate) {
+    if (duplicate && !allowExisting) {
         return fail(`Version ${appVersion.join(".")} already exists in ${whatsNewFile}. Confirm whether the existing entry should be edited manually.`);
     }
-    if (compareVersions(appVersion, latestWebsiteVersion) <= 0) {
+    const isExistingReleaseSync = allowExisting && duplicate && compareVersions(appVersion, latestWebsiteVersion) === 0;
+    if (compareVersions(appVersion, latestWebsiteVersion) <= 0 && !isExistingReleaseSync) {
         return fail(`iOS project version is ${appVersion.join(".")} and the latest website version is ${latestWebsiteVersion.join(".")}. The iOS version must be newer; no update is needed.`);
     }
     if (requestedVersion) {
@@ -97,7 +99,8 @@ function main() {
         xcodeProject,
         appVersion: appVersion.join("."),
         latestWebsiteVersion: latestWebsiteVersion.join("."),
-        requestedVersion: requestedVersion || appVersion.join(".")
+        requestedVersion: requestedVersion || appVersion.join("."),
+        existingReleaseUpdate: duplicate
     }, null, 2));
 }
 
