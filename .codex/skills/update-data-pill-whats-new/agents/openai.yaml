@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Data Pill What's New"
+  short_description: "Create Data Pill release notes from an iOS project"
+  default_prompt: "Use $update-data-pill-whats-new to create the next Data Pill What's New version from this iOS project and these screenshots."
