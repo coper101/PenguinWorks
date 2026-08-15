@@ -31,9 +31,9 @@ Website pages for PenguinWorks apps.
 
 Project-local skills are stored in `.codex/skills/`.
 
-### Update Data Pill What’s New
+### Data Pill Update What’s New
 
-**Path:** `.codex/skills/update-data-pill-whats-new/`
+**Path:** `.codex/skills/data-pill-update-ws/`
 
 Creates a new Data Pill What’s New release from the iOS project and screenshots attached to the Codex task. The workflow:
 
@@ -50,7 +50,7 @@ Creates a new Data Pill What’s New release from the iOS project and screenshot
 Run it with a version number:
 
 ```text
-$update-data-pill-whats-new 3.0.0
+$data-pill-update-ws 3.0.0
 ```
 
 The default iOS project path is:

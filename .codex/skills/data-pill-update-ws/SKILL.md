@@ -1,6 +1,6 @@
 ---
-name: update-data-pill-whats-new
-description: Update the Data Pill website's What’s New release page from an iOS project and supplied screenshots. Use when adding a release such as 3.0.0, documenting new iOS features, adding screenshot cards, updating localized copy, or syncing release notes between an iOS project and the website.
+name: data-pill-update-ws
+description: Update the Data Pill website's What’s New release page from the iOS project and supplied screenshots. Use when adding releases such as 3.0.0 or 3.1.0, documenting iOS features, uploading screenshot cards, updating localized copy, or syncing release notes between the iOS project and website.
 ---
 
 # Update Data Pill What’s New
@@ -12,7 +12,7 @@ Create the next Data Pill release entry from the source iOS project and screensh
 Run every preflight check before uploading screenshots or editing any website file. Use the bundled read-only checker:
 
 ```bash
-node .codex/skills/update-data-pill-whats-new/scripts/preflight.js \
+node .codex/skills/data-pill-update-ws/scripts/preflight.js \
   /Users/windversi/Desktop/VSCode/data-pill-website/PenguinWorks \
   "/Users/windversi/Desktop/Data Pill App /Data-Pill-iOS" \
   3.0.0

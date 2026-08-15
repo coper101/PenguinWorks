@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deploy PenguinWorks Changes"
+  short_description: "Validate, commit, and deploy website changes"
+  default_prompt: "Use $dep-changes to validate, commit, and push the current PenguinWorks website changes to main for live deployment."
