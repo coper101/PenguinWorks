@@ -1,0 +1,331 @@
+/* Weather Studio — shared design system.
+   Loaded by every Weather Studio page. Owns the brand tokens (extracted from
+   the Weather Studio app), base document styling, floating navigation, footer,
+   responsive conventions, dark mode, and reduced-motion handling. Pages opt in
+   with <body class="ws"> and add a page-specific stylesheet on top.
+
+   Brand tokens mirror the app: cool blue-white light surfaces, deep indigo
+   widgets, and a blue → purple accent gradient. */
+
+:root {
+    color-scheme: light dark;
+    /* Brand accents — Weather Studio indigo (from App AccentColor) */
+    --ws-blue: #5447D1;
+    --ws-indigo: #6B4FE8;
+    --ws-purple: #8A55F5;
+
+    /* Signature blue → purple gradient, used sparingly */
+    --ws-gradient: linear-gradient(135deg, #4D6FEA 0%, #6B4FE8 55%, #8A55F5 100%);
+
+    /* Light surfaces — cool blue-white, like the app's iPad UI */
+    --ws-bg: #F5F7FC;
+    --ws-bg-top: #FAFCFE;
+    --ws-surface: rgba(255, 255, 255, 0.66);
+    --ws-surface-solid: #FFFFFF;
+    --ws-text: #1D1D1F;
+    --ws-text-secondary: #6E6E73;
+    --ws-divider: rgba(23, 26, 46, 0.10);
+    --ws-glass-border: rgba(23, 26, 46, 0.08);
+    --ws-callout-bg: rgba(23, 26, 46, 0.045);
+    --ws-callout-border: rgba(23, 26, 46, 0.08);
+    --ws-shadow: rgba(23, 26, 46, 0.12);
+    --ws-nav-bg: rgba(255, 255, 255, 0.72);
+
+    /* Widget appearance — deep indigo / navy, from the widget defaults */
+    --ws-widget-solid: #242A36;
+    --ws-widget-night-a: #101B45;
+    --ws-widget-night-b: #30245F;
+    --ws-widget-sky-a: #2F9DFF;
+    --ws-widget-sky-b: #A9DAFF;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ws-blue: #6B57EB;
+        --ws-indigo: #8A6BF5;
+        --ws-purple: #9A6BFF;
+
+        /* Deep navy / near-black with a blue cast */
+        --ws-bg: #0A0F1C;
+        --ws-bg-top: #101522;
+        --ws-surface: rgba(255, 255, 255, 0.06);
+        --ws-surface-solid: #17192A;
+        --ws-text: rgba(255, 255, 255, 0.95);
+        --ws-text-secondary: rgba(255, 255, 255, 0.62);
+        --ws-divider: rgba(255, 255, 255, 0.12);
+        --ws-glass-border: rgba(255, 255, 255, 0.10);
+        --ws-callout-bg: rgba(255, 255, 255, 0.05);
+        --ws-callout-border: rgba(255, 255, 255, 0.08);
+        --ws-shadow: rgba(0, 0, 0, 0.35);
+        --ws-nav-bg: rgba(22, 26, 42, 0.62);
+
+        --ws-widget-solid: #1C2230;
+    }
+}
+
+/* MARK: Base document */
+html {
+    scroll-behavior: smooth;
+}
+
+body.ws {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    background: var(--ws-bg);
+    background-image: linear-gradient(180deg, var(--ws-bg-top) 0%, var(--ws-bg) 46%, var(--ws-bg) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--ws-text);
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: block;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body.ws a {
+    color: var(--ws-blue);
+    text-decoration: none;
+}
+
+body.ws a:hover {
+    text-decoration: underline;
+}
+
+body.ws a:focus-visible {
+    outline: 3px solid var(--ws-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* MARK: Skip link */
+.ws-skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    padding: 10px 16px;
+    background: var(--ws-text);
+    color: var(--ws-bg);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 0 10px 0;
+    z-index: 100;
+}
+
+.ws-skip:focus {
+    left: 0;
+}
+
+/* MARK: Gradient text */
+.ws-grad-text {
+    background: var(--ws-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* MARK: Floating navigation */
+.ws-nav-wrap {
+    position: sticky;
+    top: 14px;
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.ws-nav {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 640px;
+    padding: 8px 12px 8px 16px;
+    border-radius: 999px;
+    background: var(--ws-nav-bg);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid var(--ws-glass-border);
+    box-shadow: 0 10px 34px rgba(23, 26, 46, 0.10);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.ws-nav .ws-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ws-text);
+}
+
+.ws-nav .ws-brand:hover {
+    text-decoration: none;
+}
+
+.ws-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.ws-nav-links a {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ws-blue);
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+}
+
+.ws-nav-links a:hover {
+    background: var(--ws-callout-bg);
+    text-decoration: none;
+}
+
+/* MARK: Buttons */
+.ws-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    background: var(--ws-gradient);
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    box-shadow: 0 12px 28px rgba(75, 84, 224, 0.32);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.ws-btn:hover {
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(75, 84, 224, 0.38);
+    filter: saturate(1.08);
+}
+
+.ws-btn:focus-visible {
+    outline: 3px solid var(--ws-blue);
+    outline-offset: 3px;
+}
+
+.ws-link-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ws-blue);
+}
+
+.ws-link-cta .ws-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.ws-link-cta:hover .ws-arrow {
+    transform: translateX(4px);
+}
+
+/* MARK: Eyebrow */
+.ws-eyebrow {
+    margin: 0 0 14px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ws-blue);
+}
+
+/* MARK: Footer */
+.ws-footer {
+    border-top: 1px solid var(--ws-divider);
+    background: transparent;
+}
+
+.ws-footer-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 30px 48px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 28px;
+    font-size: 13px;
+    color: var(--ws-text-secondary);
+}
+
+.ws-footer .ws-footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--ws-text-secondary);
+}
+
+.ws-footer a {
+    color: inherit;
+}
+
+.ws-footer a:hover {
+    text-decoration: underline;
+}
+
+/* MARK: Responsive */
+@media (max-width: 900px) {
+    .ws-footer-inner {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ws-nav-wrap {
+        top: 10px;
+        padding: 0 12px;
+    }
+
+    .ws-nav {
+        padding: 7px 8px 7px 12px;
+    }
+
+    .ws-nav .ws-brand {
+        font-size: 15px;
+    }
+
+    .ws-nav-links a {
+        font-size: 14px;
+        padding: 7px 12px;
+    }
+
+    .ws-footer-inner {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* MARK: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    body.ws *,
+    body.ws *::before,
+    body.ws *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}

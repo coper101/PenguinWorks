@@ -1,0 +1,226 @@
+/* Weather Studio — homepage styles.
+   Built on the shared Weather Studio design system (weather-studio.css).
+   This file owns homepage layout: a clean hero, editorial feature sections
+   with text and subtle layout only (no fake app UI), and the privacy panel. */
+
+/* MARK: Main container */
+.ws-home-main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+
+/* MARK: Hero */
+.ws-hero {
+    position: relative;
+    padding: 96px 0 128px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ws-hero-glow {
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    width: min(720px, 100%);
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, rgba(85, 74, 220, 0.14) 0%, rgba(138, 85, 245, 0.07) 55%, rgba(138, 85, 245, 0) 75%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ws-hero > *:not(.ws-hero-glow) {
+    position: relative;
+    z-index: 1;
+}
+
+.ws-hero-eyebrow {
+    margin: 0 0 18px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ws-blue);
+}
+
+.ws-hero-title {
+    margin: 0 0 22px;
+    font-size: clamp(52px, 8vw, 88px);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.0;
+    color: var(--ws-text);
+    text-wrap: balance;
+}
+
+.ws-hero-lead {
+    margin: 0 auto 38px;
+    max-width: 560px;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ws-text-secondary);
+}
+
+.ws-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 18px 26px;
+}
+
+/* MARK: Feature sections (editorial) */
+.ws-section {
+    padding: 112px 0;
+    border-top: 1px solid var(--ws-divider);
+    text-align: center;
+}
+
+.ws-section-copy {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.ws-section-copy h2 {
+    margin: 0 0 18px;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    color: var(--ws-text);
+    text-wrap: balance;
+}
+
+.ws-section-copy p:not(.ws-eyebrow) {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--ws-text-secondary);
+}
+
+/* MARK: Privacy panel */
+.ws-privacy-panel {
+    max-width: 720px;
+    margin: 112px auto 104px;
+    padding: 56px 48px;
+    border-radius: 32px;
+    border: 1px solid var(--ws-glass-border);
+    background: var(--ws-surface);
+    -webkit-backdrop-filter: blur(22px) saturate(1.4);
+    backdrop-filter: blur(22px) saturate(1.4);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.ws-privacy-panel .ws-eyebrow {
+    margin-bottom: 16px;
+}
+
+.ws-privacy-panel h2 {
+    margin: 0 0 16px;
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ws-text);
+    text-wrap: balance;
+}
+
+.ws-privacy-panel p:not(.ws-eyebrow) {
+    margin: 0 auto 30px;
+    max-width: 520px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ws-text-secondary);
+}
+
+.ws-panel-points {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 32px;
+    padding: 0;
+}
+
+.ws-panel-points li {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--ws-divider);
+    background: var(--ws-surface-solid);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ws-text);
+}
+
+/* MARK: Motion */
+@media (prefers-reduced-motion: no-preference) {
+    .ws-hero-eyebrow,
+    .ws-hero-title,
+    .ws-hero-lead,
+    .ws-hero-cta {
+        animation: ws-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    .ws-hero-title { animation-delay: 0.05s; }
+    .ws-hero-lead { animation-delay: 0.10s; }
+    .ws-hero-cta { animation-delay: 0.15s; }
+
+    @keyframes ws-rise {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* MARK: Responsive */
+@media (max-width: 900px) {
+    .ws-home-main {
+        padding: 0 32px;
+    }
+
+    .ws-section {
+        padding: 92px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .ws-home-main {
+        padding: 0 20px;
+    }
+
+    .ws-hero {
+        padding-top: 60px;
+        padding-bottom: 92px;
+    }
+
+    .ws-hero-lead {
+        font-size: 18px;
+    }
+
+    .ws-hero-cta {
+        gap: 14px;
+    }
+
+    .ws-section {
+        padding: 76px 0;
+    }
+
+    .ws-section-copy p:not(.ws-eyebrow) {
+        font-size: 17px;
+    }
+
+    .ws-privacy-panel {
+        padding: 44px 22px;
+        margin: 92px auto 80px;
+    }
+}
