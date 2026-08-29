@@ -1,0 +1,15 @@
+/* Weather Studio — Support page styles.
+   Built on the shared design system (weather-studio.css).
+   Adds spacing for the question/answer blocks. */
+
+.ws-qa {
+    margin-top: 32px;
+}
+
+.ws-qa:first-of-type {
+    margin-top: 0;
+}
+
+.ws-qa h3 {
+    margin-top: 0;
+}

@@ -1,98 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#F5F7FC">
-    <meta name="color-scheme" content="light dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="color-scheme" content="light dark" />
     <title>Weather Studio</title>
-    <link rel="stylesheet" href="weather-studio.css">
-    <link rel="stylesheet" href="home.css">
-</head>
-<body class="ws">
-
+    <link rel="stylesheet" href="weather-studio.css" />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body class="ws">
     <a class="ws-skip" href="#home-main">Skip to content</a>
 
-    <div class="ws-nav-wrap">
-        <nav class="ws-nav" aria-label="Primary">
-            <a class="ws-brand" href="./">Weather Studio</a>
-            <div class="ws-nav-links">
-                <a href="privacy-policy.html">Privacy Policy</a>
-            </div>
+    <header class="ws-header">
+      <div class="ws-header-inner">
+        <a class="ws-brand" href="./">Weather Studio Widgets</a>
+        <nav class="ws-header-nav" aria-label="Primary">
+          <a href="support.html">Support</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
         </nav>
-    </div>
+      </div>
+    </header>
 
-    <main id="home-main" class="ws-home-main">
+    <main id="home-main" class="ws-main">
+      <section class="ws-hero">
+        <h1 class="ws-title">Weather Tiles, Your Way.</h1>
+        <p class="ws-hero-lead">
+          Weather Studio Widgets is a customizable weather app for iPhone and
+          iPad. Build dashboards and widgets around the weather information that
+          matters to you.
+        </p>
+      </section>
 
-        <!-- MARK: HERO -->
-        <section class="ws-hero">
-            <div class="ws-hero-glow" aria-hidden="true"></div>
-            <p class="ws-hero-eyebrow">Weather Studio</p>
-            <h1 class="ws-hero-title">Weather,<br><span class="ws-grad-text">your way.</span></h1>
-            <p class="ws-hero-lead">Build dashboards and widgets around the weather information that matters to you.</p>
-            <div class="ws-hero-cta">
-                <a class="ws-btn" href="#dashboard">Explore Weather Studio</a>
-                <a class="ws-link-cta" href="privacy-policy.html">Privacy Policy <span class="ws-arrow" aria-hidden="true">→</span></a>
-            </div>
-        </section>
+      <div class="ws-content">
+        <h2>Dashboards</h2>
+        <p>
+          Resize, arrange, and customize weather tiles around the information
+          you care about.
+        </p>
 
-        <!-- MARK: DASHBOARD -->
-        <section id="dashboard" class="ws-section">
-            <div class="ws-section-copy">
-                <p class="ws-eyebrow">Dashboard</p>
-                <h2>Build the dashboard you want.</h2>
-                <p>Resize, arrange, and customize weather tiles around the information you care about.</p>
-            </div>
-        </section>
+        <h2>Home Screen widgets</h2>
+        <p>Create personalized Small, Medium, and Large widgets.</p>
 
-        <!-- MARK: WIDGETS -->
-        <section id="widgets" class="ws-section">
-            <div class="ws-section-copy">
-                <p class="ws-eyebrow">Home Screen widgets</p>
-                <h2>Weather that fits your Home Screen.</h2>
-                <p>Create personalized Small, Medium, and Large widgets.</p>
-            </div>
-        </section>
+        <h2>Lock Screen widgets</h2>
+        <p>Customize Circular, Rectangular, and Inline widgets.</p>
 
-        <!-- MARK: LOCK SCREEN -->
-        <section id="lock" class="ws-section">
-            <div class="ws-section-copy">
-                <p class="ws-eyebrow">Lock Screen widgets</p>
-                <h2>Right on your Lock Screen.</h2>
-                <p>Customize Circular, Rectangular, and Inline widgets.</p>
-            </div>
-        </section>
+        <h2>Multiple locations</h2>
+        <p>Save locations and customize layouts independently.</p>
 
-        <!-- MARK: MULTIPLE LOCATIONS -->
-        <section id="locations" class="ws-section">
-            <div class="ws-section-copy">
-                <p class="ws-eyebrow">Multiple locations</p>
-                <h2>A different setup for every place.</h2>
-                <p>Save locations and customize layouts independently.</p>
-            </div>
-        </section>
+        <h2>Privacy</h2>
+        <p>
+          Weather Studio is designed to provide personalized weather while
+          minimizing the information it processes. See the
+          <a href="privacy-policy.html">Privacy Policy</a>.
+        </p>
 
-        <!-- MARK: PRIVACY -->
-        <section class="ws-privacy-panel">
-            <p class="ws-eyebrow">Privacy</p>
-            <h2>Private by design.</h2>
-            <p>Weather Studio is designed to provide personalized weather while minimizing the information it processes.</p>
-            <ul class="ws-panel-points">
-                <li>No ads</li>
-                <li>No cross-app tracking</li>
-                <li>No account required</li>
-            </ul>
-            <a class="ws-link-cta" href="privacy-policy.html">Read Privacy Policy <span class="ws-arrow" aria-hidden="true">→</span></a>
-        </section>
-
+        <h2>Help</h2>
+        <p>
+          For help using Weather Studio, see <a href="support.html">Support</a>.
+        </p>
+      </div>
     </main>
 
     <footer class="ws-footer">
-        <div class="ws-footer-inner">
-            <a class="ws-footer-brand" href="./">Weather Studio</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <span>© 2026 Weather Studio</span>
-        </div>
+      <div class="ws-footer-inner">
+        <p class="ws-footer-copy">© 2026 PenguinWorksCo</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

@@ -1,65 +1,48 @@
-/* Weather Studio — shared design system.
-   Loaded by every Weather Studio page. Owns the brand tokens (extracted from
-   the Weather Studio app), base document styling, floating navigation, footer,
-   responsive conventions, dark mode, and reduced-motion handling. Pages opt in
-   with <body class="ws"> and add a page-specific stylesheet on top.
+/* Weather Studio — modern, minimal shared design system.
+   Loaded by every Weather Studio page. Owns brand tokens (extracted from the
+   Weather Studio app), base document styling, a slim blurred header, the page
+   title block, shared content typography, a polished centered footer,
+   responsive conventions, dark mode, and reduced-motion handling.
+   Pages opt in with <body class="ws"> and add a page-specific stylesheet.
 
-   Brand tokens mirror the app: cool blue-white light surfaces, deep indigo
-   widgets, and a blue → purple accent gradient. */
+   Direction: a calm, modern product/legal page — strong but restrained type,
+   generous whitespace, subtle accent color, hairline separators, no pills,
+   badges, or decorative clutter. */
 
 :root {
     color-scheme: light dark;
-    /* Brand accents — Weather Studio indigo (from App AccentColor) */
+    /* Brand accent — Weather Studio indigo (from App AccentColor) */
     --ws-blue: #5447D1;
-    --ws-indigo: #6B4FE8;
-    --ws-purple: #8A55F5;
+    --ws-blue-hover: #3E31BC;
 
-    /* Signature blue → purple gradient, used sparingly */
-    --ws-gradient: linear-gradient(135deg, #4D6FEA 0%, #6B4FE8 55%, #8A55F5 100%);
+    /* Minimal surfaces */
+    --ws-bg: #FFFFFF;
+    --ws-bg-top: #F4F6FC;
+    --ws-header-bg: rgba(255, 255, 255, 0.72);
+    --ws-footer-bg: rgba(20, 22, 40, 0.028);
+    --ws-callout-bg: rgba(23, 26, 46, 0.04);
+    --ws-callout-border: rgba(23, 26, 46, 0.08);
 
-    /* Light surfaces — cool blue-white, like the app's iPad UI */
-    --ws-bg: #F5F7FC;
-    --ws-bg-top: #FAFCFE;
-    --ws-surface: rgba(255, 255, 255, 0.66);
-    --ws-surface-solid: #FFFFFF;
     --ws-text: #1D1D1F;
     --ws-text-secondary: #6E6E73;
-    --ws-divider: rgba(23, 26, 46, 0.10);
-    --ws-glass-border: rgba(23, 26, 46, 0.08);
-    --ws-callout-bg: rgba(23, 26, 46, 0.045);
-    --ws-callout-border: rgba(23, 26, 46, 0.08);
-    --ws-shadow: rgba(23, 26, 46, 0.12);
-    --ws-nav-bg: rgba(255, 255, 255, 0.72);
-
-    /* Widget appearance — deep indigo / navy, from the widget defaults */
-    --ws-widget-solid: #242A36;
-    --ws-widget-night-a: #101B45;
-    --ws-widget-night-b: #30245F;
-    --ws-widget-sky-a: #2F9DFF;
-    --ws-widget-sky-b: #A9DAFF;
+    --ws-divider: rgba(23, 26, 46, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --ws-blue: #6B57EB;
-        --ws-indigo: #8A6BF5;
-        --ws-purple: #9A6BFF;
+        --ws-blue: #9A8CFF;
+        --ws-blue-hover: #B4A9FF;
 
-        /* Deep navy / near-black with a blue cast */
-        --ws-bg: #0A0F1C;
-        --ws-bg-top: #101522;
-        --ws-surface: rgba(255, 255, 255, 0.06);
-        --ws-surface-solid: #17192A;
-        --ws-text: rgba(255, 255, 255, 0.95);
-        --ws-text-secondary: rgba(255, 255, 255, 0.62);
-        --ws-divider: rgba(255, 255, 255, 0.12);
-        --ws-glass-border: rgba(255, 255, 255, 0.10);
+        --ws-bg: #0B0C10;
+        --ws-bg-top: #12141C;
+        --ws-header-bg: rgba(11, 12, 16, 0.7);
+        --ws-footer-bg: rgba(255, 255, 255, 0.03);
         --ws-callout-bg: rgba(255, 255, 255, 0.05);
         --ws-callout-border: rgba(255, 255, 255, 0.08);
-        --ws-shadow: rgba(0, 0, 0, 0.35);
-        --ws-nav-bg: rgba(22, 26, 42, 0.62);
 
-        --ws-widget-solid: #1C2230;
+        --ws-text: #F5F5F7;
+        --ws-text-secondary: #9B9BA4;
+        --ws-divider: rgba(255, 255, 255, 0.14);
     }
 }
 
@@ -71,16 +54,15 @@ html {
 body.ws {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
     background: var(--ws-bg);
-    background-image: linear-gradient(180deg, var(--ws-bg-top) 0%, var(--ws-bg) 46%, var(--ws-bg) 100%);
+    background-image: linear-gradient(180deg, var(--ws-bg-top) 0%, var(--ws-bg) 260px);
     background-repeat: no-repeat;
-    background-attachment: fixed;
     color: var(--ws-text);
     text-align: left;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     display: block;
-    line-height: 1.6;
+    line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -89,14 +71,16 @@ body.ws {
 body.ws a {
     color: var(--ws-blue);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 body.ws a:hover {
+    color: var(--ws-blue-hover);
     text-decoration: underline;
 }
 
 body.ws a:focus-visible {
-    outline: 3px solid var(--ws-blue);
+    outline: 2px solid var(--ws-blue);
     outline-offset: 2px;
     border-radius: 4px;
 }
@@ -106,12 +90,12 @@ body.ws a:focus-visible {
     position: absolute;
     left: -9999px;
     top: 0;
-    padding: 10px 16px;
+    padding: 8px 14px;
     background: var(--ws-text);
     color: var(--ws-bg);
     font-size: 14px;
     font-weight: 600;
-    border-radius: 0 0 10px 0;
+    border-radius: 0 0 8px 0;
     z-index: 100;
 }
 
@@ -119,199 +103,236 @@ body.ws a:focus-visible {
     left: 0;
 }
 
-/* MARK: Gradient text */
-.ws-grad-text {
-    background: var(--ws-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-/* MARK: Floating navigation */
-.ws-nav-wrap {
+/* MARK: Slim header */
+.ws-header {
     position: sticky;
-    top: 14px;
-    z-index: 60;
-    display: flex;
-    justify-content: center;
-    padding: 0 20px;
+    top: 0;
+    z-index: 50;
+    background: var(--ws-header-bg);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid var(--ws-divider);
 }
 
-.ws-nav {
-    pointer-events: auto;
+.ws-header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    width: 100%;
-    max-width: 640px;
-    padding: 8px 12px 8px 16px;
-    border-radius: 999px;
-    background: var(--ws-nav-bg);
-    -webkit-backdrop-filter: blur(20px) saturate(1.6);
-    backdrop-filter: blur(20px) saturate(1.6);
-    border: 1px solid var(--ws-glass-border);
-    box-shadow: 0 10px 34px rgba(23, 26, 46, 0.10);
-    transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.ws-nav .ws-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
+.ws-brand {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 650;
     letter-spacing: -0.01em;
     color: var(--ws-text);
 }
 
-.ws-nav .ws-brand:hover {
+.ws-brand:hover {
+    color: var(--ws-blue);
     text-decoration: none;
 }
 
-.ws-nav-links {
+.ws-header-nav {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 22px;
 }
 
-.ws-nav-links a {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ws-blue);
-    padding: 8px 16px;
-    border-radius: 999px;
-    transition: background 0.2s ease;
-}
-
-.ws-nav-links a:hover {
-    background: var(--ws-callout-bg);
-    text-decoration: none;
-}
-
-/* MARK: Buttons */
-.ws-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 26px;
-    border-radius: 999px;
-    background: var(--ws-gradient);
-    color: #ffffff;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    box-shadow: 0 12px 28px rgba(75, 84, 224, 0.32);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-}
-
-.ws-btn:hover {
-    color: #ffffff;
-    text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 16px 36px rgba(75, 84, 224, 0.38);
-    filter: saturate(1.08);
-}
-
-.ws-btn:focus-visible {
-    outline: 3px solid var(--ws-blue);
-    outline-offset: 3px;
-}
-
-.ws-link-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--ws-blue);
-}
-
-.ws-link-cta .ws-arrow {
-    display: inline-block;
-    transition: transform 0.25s ease;
-}
-
-.ws-link-cta:hover .ws-arrow {
-    transform: translateX(4px);
-}
-
-/* MARK: Eyebrow */
-.ws-eyebrow {
-    margin: 0 0 14px;
+.ws-header-nav a {
     font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ws-text-secondary);
+}
+
+.ws-header-nav a:hover {
     color: var(--ws-blue);
+    text-decoration: none;
 }
 
-/* MARK: Footer */
-.ws-footer {
-    border-top: 1px solid var(--ws-divider);
-    background: transparent;
-}
-
-.ws-footer-inner {
-    max-width: 980px;
+/* MARK: Main column */
+.ws-main {
+    max-width: 800px;
     margin: 0 auto;
-    padding: 30px 48px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px 28px;
+    padding: 48px 24px 72px;
+}
+
+/* MARK: Page title block */
+.ws-page-header {
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--ws-divider);
+}
+
+.ws-title {
+    margin: 0 0 18px;
+    font-size: clamp(34px, 4.5vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--ws-text);
+    text-wrap: balance;
+}
+
+.ws-statement {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ws-text);
+}
+
+.ws-intro {
+    margin: 0 0 16px;
+    max-width: 640px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ws-text-secondary);
+}
+
+.ws-meta {
+    margin: 0;
     font-size: 13px;
     color: var(--ws-text-secondary);
 }
 
-.ws-footer .ws-footer-brand {
-    display: inline-flex;
+/* MARK: Content typography */
+.ws-content h2 {
+    margin: 44px 0 12px;
+    font-size: 23px;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    color: var(--ws-text);
+}
+
+.ws-content h2:first-of-type {
+    margin-top: 36px;
+}
+
+.ws-content h3 {
+    margin: 28px 0 8px;
+    font-size: 18px;
+    font-weight: 650;
+    line-height: 1.3;
+    color: var(--ws-text);
+}
+
+.ws-content p {
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ws-text);
+}
+
+.ws-content p:last-child {
+    margin-bottom: 0;
+}
+
+.ws-content ul {
+    margin: 0 0 16px;
+    padding-left: 24px;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ws-text);
+}
+
+.ws-content li {
+    margin-bottom: 8px;
+}
+
+.ws-content li:last-child {
+    margin-bottom: 0;
+}
+
+/* MARK: Footer */
+.ws-footer {
+    margin-top: 48px;
+    border-top: 1px solid var(--ws-divider);
+    background: var(--ws-footer-bg);
+}
+
+.ws-footer-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 44px;
+    text-align: center;
+}
+
+.ws-footer-brand {
+    display: block;
+    margin: 0 0 14px;
+    font-size: 16px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: var(--ws-text);
+}
+
+.ws-footer-brand:hover {
+    color: var(--ws-blue);
+    text-decoration: none;
+}
+
+.ws-footer-nav {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
-    font-weight: 600;
+    justify-content: center;
+}
+
+.ws-footer-nav a {
+    font-size: 14px;
+    font-weight: 500;
     color: var(--ws-text-secondary);
 }
 
-.ws-footer a {
-    color: inherit;
+.ws-footer-nav a:hover {
+    color: var(--ws-blue);
+    text-decoration: none;
 }
 
-.ws-footer a:hover {
-    text-decoration: underline;
+.ws-footer-nav a + a {
+    margin-left: 12px;
+}
+
+.ws-footer-nav a + a::before {
+    content: "·";
+    margin-right: 12px;
+    color: var(--ws-text-secondary);
+}
+
+.ws-footer-copy {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--ws-text-secondary);
 }
 
 /* MARK: Responsive */
-@media (max-width: 900px) {
-    .ws-footer-inner {
-        padding-left: 32px;
-        padding-right: 32px;
-    }
-}
-
 @media (max-width: 480px) {
-    .ws-nav-wrap {
-        top: 10px;
-        padding: 0 12px;
+    .ws-header-inner {
+        padding: 12px 16px;
     }
 
-    .ws-nav {
-        padding: 7px 8px 7px 12px;
+    .ws-header-nav {
+        gap: 16px;
     }
 
-    .ws-nav .ws-brand {
-        font-size: 15px;
+    .ws-header-nav a {
+        font-size: 13px;
     }
 
-    .ws-nav-links a {
-        font-size: 14px;
-        padding: 7px 12px;
+    .ws-main {
+        padding: 32px 20px 56px;
+    }
+
+    .ws-page-header {
+        padding-bottom: 24px;
     }
 
     .ws-footer-inner {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 32px 20px 36px;
     }
 }
 
