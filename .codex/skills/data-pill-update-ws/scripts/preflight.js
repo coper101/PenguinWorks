@@ -93,6 +93,14 @@ function main() {
         }
     }
 
+    const releaseNotesFile = path.join(iosRoot, "app-store", "releases", appVersion.join("."), "release_notes.txt");
+    if (!fs.existsSync(releaseNotesFile) || !fs.statSync(releaseNotesFile).isFile()) {
+        return fail(`Canonical release notes are missing: ${releaseNotesFile}. Run $dep-release-content in the iOS project before updating the website.`);
+    }
+    if (!fs.readFileSync(releaseNotesFile, "utf8").trim()) {
+        return fail(`Canonical release notes are empty: ${releaseNotesFile}. Add the release copy with $dep-release-content before updating the website.`);
+    }
+
     console.log(JSON.stringify({
         ok: true,
         iosRoot,
@@ -100,7 +108,8 @@ function main() {
         appVersion: appVersion.join("."),
         latestWebsiteVersion: latestWebsiteVersion.join("."),
         requestedVersion: requestedVersion || appVersion.join("."),
-        existingReleaseUpdate: duplicate
+        existingReleaseUpdate: duplicate,
+        releaseNotesFile
     }, null, 2));
 }
 

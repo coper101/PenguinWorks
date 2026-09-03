@@ -1,6 +1,6 @@
 ---
 name: data-pill-update-ws
-description: Update the Data Pill website's What’s New release page from the iOS project and supplied screenshots. Use when adding releases such as 3.0.0 or 3.1.0, documenting iOS features, uploading screenshot cards, updating localized copy, or syncing release notes between the iOS project and website.
+description: Update the Data Pill website's What’s New release page from the versioned iOS release package and supplied screenshots. Use when adding a Data Pill release, uploading screenshot cards, updating localized copy, or syncing release notes to the website.
 ---
 
 # Update Data Pill What’s New
@@ -29,6 +29,7 @@ The checker must verify, in order:
 5. The iOS version is newer than the latest website version.
 6. The requested version, when supplied, matches the iOS marketing version.
 7. The requested version is not already present in the website, unless this is an explicit `--allow-existing` rerun.
+8. The canonical release-notes file exists at `app-store/releases/<version>/release_notes.txt` in the iOS project.
 
 If any check fails, stop immediately. Report the exact failure and the corrective action. Do not inspect for upload candidates, upload to Firebase, generate website edits, or modify translations after a failed preflight.
 
@@ -51,9 +52,9 @@ If the version is missing, ask for it before editing. If screenshots are not att
 
 ### 1. Run preflight and inspect both projects
 
-Run the Mandatory Preflight first. After it passes, identify the website repository and inspect its existing What’s New implementation before editing. Read `whats-new.html`, `scripts/i18n.js`, and the relevant shared CSS. Locate the iOS project and search it with `rg` for the release version, feature names, changelog/release notes, widget configuration, streaks, themes, or other terms represented by the screenshots.
+Run the Mandatory Preflight first. After it passes, identify the website repository and inspect its existing What’s New implementation before editing. Read `whats-new.html`, `scripts/i18n.js`, and the relevant shared CSS. Locate the iOS project and search it with `rg` for the release version, feature names, widget configuration, streaks, themes, or other terms represented by the screenshots.
 
-Use `/docs/app-store/whats-new-<version>.md` in the iOS project as the source of truth for the release title, summary, feature list, and terminology. Use the versioned `/Assets/<version>/` folder only to understand whether an asset is App Store promo artwork; do not use those promo assets for the What’s New screenshot strip. Do not claim a feature based only on a screenshot when the release notes contradict it. If the release notes are missing, stop and ask the user to add them or provide release wording.
+Use `app-store/releases/<version>/release_notes.txt` in the iOS project as the source of truth for the release title, summary, feature list, and terminology. It is the versioned release record prepared by `$dep-release-content`. Do not use the mutable `fastlane/metadata/*/release_notes.txt` folder as a source, and do not use `/docs/app-store/whats-new-<version>.md` as a fallback. Use the versioned `/Assets/<version>/` folder only to identify App Store promo artwork; never use those promo assets for the What’s New screenshot strip. Do not claim a feature based only on a screenshot when the release notes contradict it. If the release package is missing, stop and ask the user to prepare it with `$dep-release-content`.
 
 ### 2. Prepare screenshot assets
 
