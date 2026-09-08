@@ -34,6 +34,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   background: var(--echo-black);
   color: var(--echo-white);
   font-family: "JetBrains Mono", monospace;
@@ -57,18 +58,34 @@ a { color: inherit; }
   pointer-events: none;
 }
 
+/* Skip link: standard off-screen until keyboard focus brings it in. */
 .skip-link {
   position: fixed;
-  z-index: 10;
-  top: var(--screen-padding);
-  left: var(--screen-padding);
-  padding: 12px;
-  border: 1px solid var(--echo-white);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: inline-block;
+  margin: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--echo-purple);
   background: var(--echo-black);
-  transform: translateY(-180%);
+  color: var(--echo-white);
+  text-decoration: none;
+  transform: translateY(calc(-100% - 40px));
+  opacity: 0;
+  pointer-events: none;
 }
 
-.skip-link:focus { transform: none; }
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* #main receives focus after the skip link activates; it is only a programmatic
+   focus target and must not paint a full-page focus ring. */
+main[tabindex="-1"]:focus { outline: none; }
 
 .shell {
   width: min(calc(100% - var(--screen-padding) * 2), var(--content-width));
@@ -83,8 +100,6 @@ a { color: inherit; }
 }
 
 .terminal-info,
-.terminal-box,
-.echo-card,
 .status-panel {
   border: 1px solid var(--echo-white);
   background: transparent;
@@ -112,8 +127,7 @@ a { color: inherit; }
 .terminal-status { margin: 5px 0 0; color: var(--echo-muted); }
 
 .text-link,
-.button,
-.store-item {
+.button {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
@@ -140,8 +154,7 @@ a { color: inherit; }
 }
 
 .button:hover,
-.text-link:hover,
-.card-link:hover { opacity: 0.7; }
+.text-link:hover { opacity: 0.7; }
 
 .button:disabled { cursor: wait; opacity: 0.4; }
 
@@ -163,68 +176,31 @@ button:focus-visible {
   padding-block: var(--box-gap) 28px;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: var(--box-gap);
-  padding: var(--box-padding);
-  border-color: var(--echo-green);
-}
-
-.hero h1,
-.page-heading h1,
-.section-heading h2,
-.cta h2 {
-  margin: 0;
-  color: var(--echo-green);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.hero-copy { margin: 10px 0 0; }
 .command-copy { color: var(--echo-muted); }
 .command-copy span { display: block; }
 .command-copy span::before { content: "> "; }
 
-.section-heading,
-.page-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--box-gap);
-}
-
-.section-heading { margin-top: 4px; }
 .section-note,
 .eyebrow,
-.load-status,
+.feed-status,
 .echo-label,
-.pulse-count {
+.pulse-count,
+.void-subtitle {
   margin: 0;
   color: var(--echo-muted);
 }
 
-.echo-carousel {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(280px, 360px);
-  gap: var(--box-gap);
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scrollbar-color: var(--echo-green) transparent;
-}
-
+/* ---------------------------------------------------------------------------
+   Echo card (mirrors the mobile PublicEchoCard / Void card). Cards are the
+   site's main bordered elements and grow to their content; no equal heights.
+--------------------------------------------------------------------------- */
 .echo-card {
   min-width: 0;
-  min-height: 230px;
   display: flex;
   flex-direction: column;
   padding: var(--box-padding);
-  border-color: var(--echo-green);
-  scroll-snap-align: start;
+  border: 1px solid var(--echo-green);
+  background: transparent;
 }
 
 .echo-card-meta {
@@ -232,14 +208,27 @@ button:focus-visible {
   align-items: baseline;
   justify-content: space-between;
   gap: var(--box-gap);
-  overflow-wrap: anywhere;
 }
 
-.beacon-id { color: var(--echo-green); }
+.beacon-id { color: var(--echo-green); overflow-wrap: anywhere; }
 .pulse-count { flex: 0 0 auto; }
-.echo-label { padding-top: var(--box-padding); }
 
-.echo-card blockquote {
+.echo-label {
+  padding-top: var(--box-padding);
+  letter-spacing: 0.04em;
+}
+
+.echo-label + .echo-transmission,
+.echo-label + .echo-reply { margin-top: 4px; }
+
+.echo-transmission {
+  margin: 0;
+  color: var(--echo-white);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.echo-reply {
   margin: 0;
   color: var(--echo-green);
   font: inherit;
@@ -247,15 +236,101 @@ button:focus-visible {
   white-space: pre-wrap;
 }
 
-.card-link {
-  align-self: flex-start;
-  margin-top: auto;
-  padding: 13px 16px;
-  border: 1px solid var(--echo-white);
-  color: var(--echo-white);
-  text-decoration: none;
+/* ---------------------------------------------------------------------------
+   Landing page
+--------------------------------------------------------------------------- */
+.landing-page .shell {
+  width: min(calc(100% - clamp(36px, 8vw, 112px)), 1180px);
 }
 
+.landing-page .terminal-main {
+  gap: 0;
+  padding-block: 0;
+}
+
+.landing-page .hero {
+  padding-block: clamp(96px, 17vh, 180px) clamp(96px, 16vh, 170px);
+}
+
+.landing-page .hero h1 {
+  margin: 0;
+  color: var(--echo-green);
+  font: inherit;
+  font-size: clamp(58px, 10vw, 112px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.landing-page .hero-copy {
+  margin-top: clamp(30px, 5vw, 52px);
+  font-size: clamp(13px, 1.45vw, 16px);
+  line-height: 2;
+}
+
+.landing-page .section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--box-gap);
+  margin: 0 0 clamp(30px, 4.5vw, 52px);
+}
+
+.landing-page .section-heading h2 {
+  margin: 0;
+  color: var(--echo-green);
+  font: inherit;
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.landing-page .section-note {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+/* Carousel: one scrolling strip. Cards are sized to their content and keep
+   their full spacing; nothing beyond this container is ever overflowed. */
+.echo-carousel {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+  touch-action: pan-x pan-y;
+}
+
+.echo-carousel::-webkit-scrollbar { display: none; }
+
+.echo-carousel-track {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  gap: clamp(24px, 3.4vw, 44px);
+  padding-block: 8px 14px;
+}
+
+.echo-carousel-track .echo-card {
+  flex: 0 0 auto;
+  width: clamp(270px, 29vw, 350px);
+}
+
+.landing-page .echo-carousel .status-panel {
+  margin-block: 8px 14px;
+  border: 0;
+}
+
+.landing-page .section-action {
+  display: flex;
+  justify-content: center;
+  padding-block: clamp(54px, 9vw, 92px) clamp(108px, 15vw, 176px);
+}
+
+.landing-page .section-action .button { min-width: 196px; }
+
+/* ---------------------------------------------------------------------------
+   Status panels / empty + error states
+--------------------------------------------------------------------------- */
 .status-panel {
   min-height: 120px;
   display: grid;
@@ -267,63 +342,138 @@ button:focus-visible {
   white-space: pre-line;
 }
 
-.section-action { display: flex; justify-content: flex-end; }
-
-.cta {
-  padding: var(--box-padding);
-  border: 1px solid var(--echo-white);
+/* ---------------------------------------------------------------------------
+   The Void
+--------------------------------------------------------------------------- */
+.void-page .void-main {
+  display: flex;
+  flex-direction: column;
+  width: min(calc(100% - clamp(32px, 7vw, 120px)), 880px);
+  padding-block: 30px 120px;
 }
 
-.cta h2 { color: var(--echo-white); }
-.cta p { margin: 10px 0 0; }
-.cta .store-links { margin-top: var(--box-gap); }
-
-.page-heading {
-  padding: var(--box-padding);
-  border: 1px solid var(--echo-green);
+.void-back {
+  margin: 0 0 clamp(34px, 7vw, 76px);
 }
 
-.page-heading-copy { margin: 6px 0 0; color: var(--echo-muted); }
+.void-back-link {
+  color: var(--echo-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
 
-.echo-grid {
+.void-back-link:hover { color: var(--echo-white); }
+
+.void-title h1 {
+  margin: 0;
+  color: var(--echo-green);
+  font: inherit;
+  font-size: clamp(40px, 7.5vw, 76px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.void-subtitle {
+  margin-top: clamp(16px, 3vw, 26px);
+  font-size: clamp(13px, 1.5vw, 16px);
+}
+
+.void-feed {
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(56px, 9vw, 110px);
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(30px, 4.5vw, 54px);
+}
+
+.feed-list .echo-card { width: 100%; min-height: 0; }
+
+.feed-status {
+  margin-top: 28px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* Subtle bottom cue: sits just under the last loaded Echo while more pages may
+   follow. It is decorative (pointer-events: none) and disappears on its own. */
+.feed-fade {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-  gap: var(--box-gap);
+  place-items: center;
+  height: 118px;
+  margin-top: -44px;
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0) 34%,
+    rgb(0 0 0 / 0.78) 82%,
+    rgb(0 0 0 / 0.96) 100%
+  );
+  pointer-events: none;
 }
 
-.echo-grid .echo-card { min-height: 250px; }
+.feed-fade-copy {
+  align-self: end;
+  margin: 0 0 26px;
+  color: var(--echo-muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  opacity: 0.72;
+}
 
-.load-controls { text-align: center; }
-.load-status { margin-bottom: 10px; white-space: pre-line; }
+.feed-sentinel {
+  height: 1px;
+}
 
+.void-page .feed-retry {
+  align-self: center;
+  margin-top: 18px;
+}
+
+/* ---------------------------------------------------------------------------
+   Permalink (/echo/e/?id=...)
+--------------------------------------------------------------------------- */
 .permalink-shell {
-  min-height: calc(100vh - 88px);
+  min-height: calc(100vh - 110px);
   display: grid;
   place-items: center;
 }
 
 .permalink-wrap {
-  width: min(100%, 620px);
-  display: grid;
+  width: min(100%, 720px);
+  display: flex;
+  flex-direction: column;
   gap: var(--box-gap);
 }
 
-.permalink-wrap .echo-card { min-height: 300px; }
+.permalink-wrap .echo-card { width: 100%; min-height: 0; }
+
 .permalink-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
+/* ---------------------------------------------------------------------------
+   Footer / stores
+--------------------------------------------------------------------------- */
 .site-footer {
   display: grid;
-  gap: var(--box-gap);
-  padding-block: 0 28px;
+  gap: 56px;
+  padding-block: 56px 40px;
 }
 
-.store-terminal {
-  padding: var(--box-padding);
-  border: 1px solid var(--echo-white);
+.store-links { display: flex; flex-wrap: wrap; gap: 28px 44px; }
+
+.store-item {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--echo-green);
+  text-decoration: none;
 }
 
-.store-terminal > p { margin: 0 0 10px; color: var(--echo-green); }
-.store-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.store-item::before { content: "> "; color: var(--echo-purple); }
 .store-item[aria-disabled="true"] { color: var(--echo-muted); cursor: default; }
 
 .footer-meta {
@@ -340,22 +490,29 @@ button:focus-visible {
 .footer-meta a { text-decoration: none; }
 .footer-meta a:hover { color: var(--echo-white); }
 
+.landing-page .site-footer {
+  gap: clamp(60px, 9vw, 100px);
+  padding-top: 10px;
+}
+
 @keyframes blink { 50% { opacity: 0; } }
 
 @media (max-width: 620px) {
   .site-header { grid-template-columns: minmax(0, 1fr) auto; }
   .terminal-info { min-height: 62px; }
   .terminal-icon { width: 32px; height: 32px; }
-  .hero { grid-template-columns: 1fr; align-items: start; }
-  .hero .button { justify-self: start; }
-  .section-heading { align-items: flex-start; flex-direction: column; gap: 4px; }
-  .echo-carousel {
-    width: calc(100% + var(--screen-padding));
-    grid-auto-columns: min(84vw, 350px);
-    padding-right: 12vw;
-  }
-  .page-heading { align-items: flex-start; flex-direction: column; }
   .footer-meta { align-items: flex-start; flex-direction: column; }
+
+  .echo-carousel-track { gap: 22px; }
+  .echo-carousel-track .echo-card { width: min(82vw, 350px); }
+
+  .landing-page .shell { width: calc(100% - 36px); }
+  .landing-page .hero { padding-block: 84px 92px; }
+  .landing-page .section-heading { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .landing-page .store-links { flex-direction: column; gap: 14px; }
+
+  .void-page .void-main { width: calc(100% - 36px); padding-top: 22px; }
+  .feed-list { gap: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

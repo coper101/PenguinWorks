@@ -16,7 +16,7 @@
 
   try {
     const echo = await window.EchoWeb.getEcho(id);
-    detail.replaceChildren(window.EchoWeb.createCard(echo, { link: false }));
+    detail.replaceChildren(window.EchoWeb.createCard(echo));
   } catch {
     showNotFound();
   } finally {

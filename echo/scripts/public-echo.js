@@ -1,9 +1,22 @@
 (function createEchoWebClient(global) {
   "use strict";
 
-  const PUBLIC_KEYS = ["createdAt", "echoText", "id", "publicBeaconId", "pulseCount"];
+  // Exact public projection allowlist. Only these fields may ever be rendered
+  // from the public web contract; the feed and single-Echo validators both
+  // reject any payload that is missing a field or carries an extra one.
+  const PUBLIC_KEYS = [
+    "createdAt",
+    "echoText",
+    "id",
+    "publicBeaconId",
+    "pulseCount",
+    "transmissionText",
+  ];
   const ID_PATTERN = /^[A-Za-z0-9]{20}$/;
   const BEACON_PATTERN = /^BX-[A-F0-9]{20}$/;
+  // UI shows only the pseudonym prefix (BX- + 6 hex chars); the full value is
+  // still validated above and never shortened on the wire or in storage.
+  const DISPLAY_BEACON_LENGTH = 9; // "BX-" + 6 chars
 
   function hasExactKeys(value, keys) {
     if (!value || typeof value !== "object" || Array.isArray(value)) return false;
@@ -16,6 +29,8 @@
       ID_PATTERN.test(value.id) &&
       BEACON_PATTERN.test(value.publicBeaconId) &&
       typeof value.echoText === "string" && value.echoText.trim().length > 0 &&
+      typeof value.transmissionText === "string" &&
+      value.transmissionText.trim().length > 0 &&
       typeof value.createdAt === "string" && Number.isFinite(Date.parse(value.createdAt)) &&
       Number.isSafeInteger(value.pulseCount) && value.pulseCount >= 0;
   }
@@ -56,10 +71,31 @@
   }
 
   function pulseLabel(count) {
-    return `PULSES ${count.toLocaleString()}`;
+    return `PULSES ${count}`;
   }
 
-  function createCard(echo, options) {
+  // Presentation-only shortening of the public Beacon pseudonym. The full
+  // publicBeaconId keeps its entropy on the backend and in any shared URL; only
+  // the human-readable label is trimmed for the UI.
+  function displayBeacon(publicBeaconId) {
+    if (typeof publicBeaconId !== "string" || publicBeaconId.length <= DISPLAY_BEACON_LENGTH) {
+      return publicBeaconId || "";
+    }
+    return publicBeaconId.slice(0, DISPLAY_BEACON_LENGTH);
+  }
+
+  function createLabel(text) {
+    const label = document.createElement("p");
+    label.className = "echo-label";
+    label.textContent = text;
+    return label;
+  }
+
+  // Mirrors the mobile PublicEchoCard/Void card: header row (signal star +
+  // short Beacon left, PULSES right) above SOMEONE'S TRANSMISSION + the
+  // original transmission, then ECHO + the Echo reply. Cards are never
+  // interactive on the public site; permalinks live at /echo/e/?id=...
+  function createCard(echo) {
     const article = document.createElement("article");
     article.className = "echo-card";
 
@@ -67,41 +103,41 @@
     meta.className = "echo-card-meta";
     const beacon = document.createElement("span");
     beacon.className = "beacon-id";
-    beacon.textContent = `✦ ${echo.publicBeaconId}`;
+    beacon.textContent = `✦ ${displayBeacon(echo.publicBeaconId)}`;
     const pulses = document.createElement("span");
     pulses.className = "pulse-count";
     pulses.textContent = pulseLabel(echo.pulseCount);
     meta.append(beacon, pulses);
 
-    const label = document.createElement("p");
-    label.className = "echo-label";
-    label.textContent = "ECHO";
-    const text = document.createElement("blockquote");
-    text.textContent = echo.echoText;
-    article.append(meta, label, text);
+    const transmission = document.createElement("p");
+    transmission.className = "echo-transmission";
+    transmission.textContent = echo.transmissionText;
 
-    if (options?.link !== false) {
-      const link = document.createElement("a");
-      link.className = "card-link";
-      link.href = `/echo/e/?id=${encodeURIComponent(echo.id)}`;
-      link.textContent = "OPEN SIGNAL →";
-      link.setAttribute("aria-label", `Open Echo from ${echo.publicBeaconId}`);
-      article.append(link);
-    }
+    const reply = document.createElement("blockquote");
+    reply.className = "echo-reply";
+    reply.textContent = echo.echoText;
+
+    article.append(
+      meta,
+      createLabel("SOMEONE'S TRANSMISSION"),
+      transmission,
+      createLabel("ECHO"),
+      reply,
+    );
     return article;
   }
 
   function renderStoreLinks(container) {
     const stores = global.ECHO_WEB_CONFIG?.stores || {};
     const items = [
-      [stores.appStoreUrl, "APP STORE"],
-      [stores.googlePlayUrl, "GOOGLE PLAY"],
+      [stores.appStoreUrl, "Available on the App Store"],
+      [stores.googlePlayUrl, "Get it on Google Play"],
     ];
     items.forEach(([url, label]) => {
       const configured = typeof url === "string" && /^https:\/\//.test(url);
       const item = document.createElement(configured ? "a" : "span");
       item.className = "store-item";
-      item.textContent = `[${label}]`;
+      item.textContent = label;
       if (configured) {
         item.href = url;
         item.rel = "noopener noreferrer";

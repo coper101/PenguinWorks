@@ -13,41 +13,36 @@
     <link rel="canonical" href="https://penguinworksco.work/echo/void/" />
     <link rel="icon" type="image/png" href="../assets/echo-icon.png" />
     <link rel="apple-touch-icon" href="../assets/echo-icon.png" />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.css?v=3" />
     <title>The Void — Echo</title>
   </head>
-  <body>
+  <body class="void-page">
     <canvas id="space-background" class="space-background" aria-hidden="true"></canvas>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header shell">
-      <a class="terminal-info" href="../" aria-label="Echo home">
-        <img class="terminal-icon" src="../assets/echo-icon.png" alt="" width="38" height="38" />
-        <span class="terminal-copy">
-          <span class="terminal-title">ECHO TERMINAL</span>
-          <span class="terminal-status">&gt; VOID RECEIVER</span>
-        </span>
-      </a>
-      <a class="text-link" href="../">◀ BACK</a>
-    </header>
+    <main id="main" class="void-main shell" tabindex="-1">
+      <nav class="void-back" aria-label="Back">
+        <a class="void-back-link" href="../">◀ BACK</a>
+      </nav>
 
-    <main id="main" class="terminal-main shell">
-      <header class="page-heading">
-        <div>
-          <h1>THE VOID</h1>
-          <p class="page-heading-copy">PUBLIC SIGNALS / READ-ONLY</p>
-        </div>
+      <header class="void-title">
+        <h1>THE VOID</h1>
+        <p class="void-subtitle">Public signals from anonymous Beacons.</p>
       </header>
-      <div id="void-grid" class="echo-grid" aria-live="polite" aria-busy="true"></div>
-      <div class="load-controls">
-        <p id="void-status" class="load-status">&gt; ACCESSING VOID<span class="cursor" aria-hidden="true">_</span></p>
-        <button id="load-more" class="button" type="button" hidden>LOAD MORE</button>
+
+      <div id="void-feed" class="void-feed" aria-live="polite" aria-busy="true">
+        <div id="feed-list" class="feed-list"></div>
+        <p id="feed-status" class="feed-status" role="status" hidden></p>
+        <div id="feed-fade" class="feed-fade" aria-hidden="true" hidden>
+          <span class="feed-fade-copy">▾ MORE SIGNALS BELOW</span>
+        </div>
+        <button id="feed-retry" class="button feed-retry" type="button" hidden>TRY AGAIN</button>
+        <div id="feed-sentinel" class="feed-sentinel" aria-hidden="true"></div>
       </div>
     </main>
 
     <footer class="site-footer shell">
-      <section class="store-terminal" aria-label="Echo app availability">
-        <p>AVAILABLE ON THE APP STORE AND GOOGLE PLAY</p>
+      <section class="store-availability" aria-label="Echo app availability">
         <div id="store-links" class="store-links"></div>
       </section>
       <div class="footer-meta">
@@ -58,7 +53,7 @@
 
     <script src="../config.js"></script>
     <script src="../scripts/space-background.js"></script>
-    <script src="../scripts/public-echo.js"></script>
-    <script src="../scripts/void.js"></script>
+    <script src="../scripts/public-echo.js?v=3"></script>
+    <script src="../scripts/void.js?v=3"></script>
   </body>
 </html>
