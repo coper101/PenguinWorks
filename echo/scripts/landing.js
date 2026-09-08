@@ -1,3 +1,33 @@
+// Home hero reveal: the fixed ECHO/store bar stays hidden at the top of the
+// page and only appears once the hero has scrolled out of view. While the bar
+// is shown, the in-hero store links are made inert so there is never a second
+// set of focusable store links.
+(function initHomeBar() {
+  "use strict";
+
+  const hero = document.querySelector(".landing-page .hero");
+  const topbar = document.querySelector(".landing-page .echo-topbar");
+  const heroStores = document.querySelector(".hero-stores");
+  if (!hero || !topbar || !("IntersectionObserver" in window)) return;
+
+  // Watch the ECHO title: once it has scrolled out of view the compact store
+  // bar is revealed; when the title returns the normal hero presentation shows
+  // again. The observer avoids polling scroll position.
+  const target = document.querySelector(".landing-page .hero h1") || hero;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const titleVisible = entries.some((entry) => entry.isIntersecting);
+      topbar.classList.toggle("echo-topbar--shown", !titleVisible);
+      if (heroStores) {
+        if (titleVisible) heroStores.removeAttribute("inert");
+        else heroStores.setAttribute("inert", "");
+      }
+    },
+    { threshold: 0 },
+  );
+  observer.observe(target);
+})();
+
 (async function loadLandingPage() {
   "use strict";
 

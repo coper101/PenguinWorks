@@ -118,9 +118,15 @@ body > header.echo-topbar {
 
 .echo-nav a:hover { color: var(--echo-white); }
 
-.echo-nav-home,
-.echo-nav-brand {
-  color: var(--echo-white);
+.echo-nav .echo-nav-home,
+.echo-nav .echo-nav-brand {
+  color: var(--echo-green);
+}
+
+.echo-nav .echo-nav-home:hover,
+.echo-nav .echo-nav-brand:hover {
+  color: var(--echo-green);
+  opacity: 0.75;
 }
 
 .echo-nav-stores {
@@ -310,8 +316,42 @@ button:focus-visible {
   padding-block: 0;
 }
 
+/* Home page only: the ECHO + store bar is fixed (never reserves space) and
+   stays hidden until the hero has scrolled out of view. */
+.landing-page .echo-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-120%);
+  visibility: hidden;
+  transition: transform 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.landing-page .echo-topbar.echo-topbar--shown {
+  transform: translateY(0);
+  visibility: visible;
+  transition: transform 0.35s ease;
+}
+
 .landing-page .hero {
-  padding-block: clamp(52px, 8vh, 88px) clamp(44px, 7vh, 72px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: clamp(28px, 5vw, 96px);
+  padding-block: clamp(44px, 7vh, 76px) clamp(44px, 7vh, 72px);
+}
+
+.landing-page .hero-main {
+  min-width: 0;
+}
+
+.landing-page .hero-stores {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-top: clamp(8px, 2vw, 20px);
 }
 
 .landing-page .hero h1 {
@@ -640,7 +680,8 @@ button:focus-visible {
   .echo-carousel-track .echo-card { width: min(82vw, 350px); }
 
   .landing-page .shell { width: calc(100% - 36px); }
-  .landing-page .hero { padding-block: 56px 64px; }
+  .landing-page .hero { grid-template-columns: 1fr; padding-block: 52px 56px; }
+  .landing-page .hero-stores { padding-top: clamp(22px, 5vw, 34px); }
   .landing-page .section-heading { flex-direction: column; align-items: flex-start; gap: 8px; }
 
   .void-page .void-main { width: calc(100% - 36px); padding-top: 28px; }
@@ -650,4 +691,6 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .cursor { animation: none; }
+  .landing-page .echo-topbar,
+  .landing-page .echo-topbar.echo-topbar--shown { transition: none; }
 }
