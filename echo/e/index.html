@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="A public Echo from The Void." />
+    <meta property="og:title" content="An Echo from The Void" />
+    <meta property="og:description" content="A public Echo from The Void." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://penguinworksco.work/echo/e/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://penguinworksco.work/echo/e/" />
+    <link rel="icon" type="image/png" href="../assets/echo-icon.png" />
+    <link rel="apple-touch-icon" href="../assets/echo-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <title>An Echo from The Void</title>
+  </head>
+  <body>
+    <canvas id="space-background" class="space-background" aria-hidden="true"></canvas>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header shell">
+      <a class="terminal-info" href="../" aria-label="Echo home">
+        <img class="terminal-icon" src="../assets/echo-icon.png" alt="" width="38" height="38" />
+        <span class="terminal-copy">
+          <span class="terminal-title">ECHO TERMINAL</span>
+          <span class="terminal-status">&gt; SIGNAL LOCK</span>
+        </span>
+      </a>
+      <a class="text-link" href="../void/">THE VOID</a>
+    </header>
+
+    <main id="main" class="terminal-main permalink-shell shell">
+      <div class="permalink-wrap">
+        <div id="echo-detail" aria-live="polite" aria-busy="true">
+          <div class="status-panel">&gt; LOCATING SIGNAL<span class="cursor" aria-hidden="true">_</span></div>
+        </div>
+        <div class="permalink-actions">
+          <a class="button" href="../void/">◀ BACK TO THE VOID</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer shell">
+      <section class="store-terminal" aria-label="Echo app availability">
+        <p>AVAILABLE ON THE APP STORE AND GOOGLE PLAY</p>
+        <div id="store-links" class="store-links"></div>
+      </section>
+      <div class="footer-meta">
+        <p>© PENGUINWORKS</p>
+        <nav aria-label="Echo links"><a href="../">ECHO</a><a href="../support.html">SUPPORT</a></nav>
+      </div>
+    </footer>
+
+    <script src="../config.js"></script>
+    <script src="../scripts/space-background.js"></script>
+    <script src="../scripts/public-echo.js"></script>
+    <script src="../scripts/permalink.js"></script>
+  </body>
+</html>
