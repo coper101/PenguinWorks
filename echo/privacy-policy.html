@@ -1,141 +1,229 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Echo Privacy Policy." />
+    <link rel="canonical" href="https://penguinworksco.work/echo/privacy-policy.html" />
+    <link rel="icon" type="image/png" href="./assets/echo-icon.png" />
+    <link rel="apple-touch-icon" href="./assets/echo-icon.png" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
     <title>Privacy Policy | Echo</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background: #000;
-        color: #fff;
-        font-family: "JetBrains Mono", monospace;
-        padding: 18px; /* outer padding */
-      }
-
-      .container {
-        border: 2px solid #fff;
-        padding: 25px; /* inner padding */
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.5;
-      }
-
-      h1 {
-        font-weight: normal;
-        margin-bottom: 8px;
-        font-size: 1.2em;
-        color: #84c98d;
-      }
-      h2 {
-        font-weight: normal;
-        margin-top: 45px;
-        margin-bottom: 16px;
-        font-size: 1em;
-      }
-      p {
-        margin: 5px 0;
-        font-size: 0.9em;
-        color: #ffffff;
-        opacity: 0.6;
-      }
-      a {
-        color: #fff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .subtitle {
-        margin-bottom: 25px;
-        margin-top: 25px;
-      }
-    </style>
   </head>
   <body>
-    <div class="container">
-      <h1>ECHO TERMINAL | PRIVACY POLICY</h1>
-      <p class="subtitle">> Last updated: March 29, 2026<br />> PenguinWorks</p>
+    <canvas id="space-background" class="space-background" aria-hidden="true"></canvas>
 
-      <h2>1. Introduction</h2>
-      <p>
-        > Echo allows users to send and receive anonymous quotes. <br />
-        > You do not need to create an account, and we do not collect personal
-        information such as your name or email. <br />
-        > Each session is authenticated anonymously via Firebase.
-      </p>
+    <main id="main" class="legal-main" tabindex="-1">
+      <nav class="legal-nav" aria-label="Echo pages">
+        <a class="legal-home" href="./">◀ ECHO</a>
+        <div class="legal-links">
+          <a href="./privacy-policy.html" aria-current="page">PRIVACY</a>
+          <a href="./terms-of-service.html">TERMS</a>
+          <a href="./support.html">SUPPORT</a>
+          <a href="./help.html">HELP</a>
+        </div>
+      </nav>
 
-      <h2>2. Information We Collect</h2>
-      <p>> - Anonymous Firebase ID (auto-generated, no personal data)</p>
-      <p>> - Device information (non-identifiable)</p>
-      <p>> - Usage events (e.g., quote sent/received timestamps)</p>
-      <p>> No data is linked to your identity.</p>
+      <header class="legal-heading">
+        <h1>ECHO TERMINAL | PRIVACY POLICY</h1>
+        <p class="legal-meta">&gt; Last updated: September 8, 2026</p>
+        <p class="legal-meta">&gt; PenguinWorks</p>
+      </header>
 
-      <h2>3. How Your Data Is Used</h2>
-      <p>> - To enable sending and receiving quotes anonymously</p>
-      <p>> - To manage subscriptions and usage limits</p>
-      <p>> - To improve stability and user experience</p>
-      <p>> We never sell or share your data with third parties.</p>
+      <div class="legal-body">
+        <section aria-labelledby="privacy-1">
+          <h2 id="privacy-1">1. Introduction</h2>
+          <p>
+            &gt; Echo lets you transmit text and receive an AI-generated
+            response called an Echo. Echo is designed to be used without a
+            traditional named account: you sign in anonymously and are not asked
+            to provide your name or email address.
+          </p>
+          <p>
+            &gt; This policy explains what information Echo handles, what is
+            private to you, and what becomes public when you choose to cast an
+            Echo into The Void.
+          </p>
+        </section>
 
-      <h2>4. Subscriptions</h2>
-      <p>> - Orbital-24 (Free): Send and receive every 12 hours</p>
-      <p>> - Nebula-12 (Paid): Send and receive every 4 hours</p>
-      <p>> Purchases are processed securely through your device's app store.</p>
+        <section aria-labelledby="privacy-2">
+          <h2 id="privacy-2">2. Anonymous Authentication</h2>
+          <p>
+            &gt; Echo authenticates you with an anonymous Firebase account. The
+            anonymous account is identified by an internal identifier, not by
+            personal information such as your name or email.
+          </p>
+          <p>
+            &gt; Reinstalling or clearing Echo does not guarantee that server
+            records linked to your anonymous account are reset or deleted.
+          </p>
+        </section>
 
-      <h2>5. Data Storage and Security</h2>
-      <p>
-        > Data is stored securely on Firebase servers. Uninstalling the app
-        deletes your local session and creates a new anonymous ID upon
-        reinstall.
-      </p>
+        <section aria-labelledby="privacy-3">
+          <h2 id="privacy-3">3. Private / Service Data</h2>
+          <p>
+            &gt; Echo stores the information needed to provide the app to your
+            anonymous account. This is service data and is not shown publicly:
+          </p>
+          <p>
+            &gt; - the text you transmit and the AI-generated Echoes returned to
+            you, including your Echo archive/history
+          </p>
+          <p>
+            &gt; - your terminal/plan (for example Orbital-24 or Nebula-12),
+            transmission allowance state for the current orbit, and any rewards
+            you claim
+          </p>
+          <p>
+            &gt; - subscription and entitlement status, such as whether a
+            Nebula-12 subscription is active
+          </p>
+          <p>
+            &gt; - Pulse memberships (which public Echoes you have Pulsed) and
+            which Echoes you have seen
+          </p>
+          <p>
+            &gt; - push-notification device tokens if you enable notifications
+          </p>
+          <p>
+            &gt; - crash and stability data so Echo can be improved
+          </p>
+          <p>
+            &gt; Your Firebase account identifier is internal. It is never shown
+            publicly and is not the same as your public Beacon identifier.
+          </p>
+        </section>
 
-      <h2>6. Third-Party Services</h2>
-      <p>
-        > Echo uses Firebase and RevenueCat to handle authentication and
-        subscription management. <br />
-        > These services follow their own privacy policies.
-      </p>
-      <p>
-        > - Firebase:
-        <a href="https://firebase.google.com/support/privacy"
-          >https://firebase.google.com/support/privacy</a
-        >
-      </p>
-      <p>
-        > - RevenueCat:
-        <a href="https://www.revenuecat.com/privacy"
-          >https://www.revenuecat.com/privacy</a
-        >
-      </p>
+        <section aria-labelledby="privacy-4">
+          <h2 id="privacy-4">4. AI Generation</h2>
+          <p>
+            &gt; When you transmit text, Echo sends that text to an AI model
+            provider (currently Google Gemini) to generate your Echo.
+          </p>
+          <p>
+            &gt; Your transmissions and Echoes are not shown publicly unless you
+            choose to cast an Echo into The Void.
+          </p>
+        </section>
 
-      <h2>7. Your Rights</h2>
-      <p>
-        > Since no personal data is stored, there is no account to delete.
-        However, you can reset your anonymous session by reinstalling the app.
-      </p>
+        <section aria-labelledby="privacy-5">
+          <h2 id="privacy-5">5. The Void and Public Data</h2>
+          <p>
+            &gt; When you confirm a Cast to Void action, your transmission and
+            its associated Echo become public. Public Void data may include:
+          </p>
+          <p>
+            &gt; - the transmission text and the Echo text
+          </p>
+          <p>
+            &gt; - creation information and the Pulse count
+          </p>
+          <p>
+            &gt; - an anonymous public Beacon identifier (for example a value
+            beginning with BX-)
+          </p>
+          <p>
+            &gt; Public Void content may appear in the mobile Void and on the
+            Echo public website. A public Beacon is not intended to reveal your
+            real-world identity, and your Firebase account identifier is never
+            exposed as a public Beacon.
+          </p>
+          <p>
+            &gt; If you remove an Echo from The Void, it stops being
+            discoverable in new public reads; content served through cached
+            public feeds may remain visible for a short time.
+          </p>
+        </section>
 
-      <h2>8. Contact</h2>
-      <p>> If you have questions, contact us at: 📧 penguinworksco@gmail.com</p>
+        <section aria-labelledby="privacy-6">
+          <h2 id="privacy-6">6. Moderation</h2>
+          <p>
+            &gt; Content may be subject to moderation. PenguinWorks may prevent
+            content from appearing publicly, or hide or remove public content,
+            where necessary for safety, abuse prevention, legal compliance, or
+            operation of the service.
+          </p>
+        </section>
 
-      <h2>9. Changes</h2>
-      <p>
-        > This Privacy Policy may be updated occasionally. <br />
-        > Any updates will appear on this page. <br />
-      </p>
+        <section aria-labelledby="privacy-7">
+          <h2 id="privacy-7">7. Purchases and Subscriptions</h2>
+          <p>
+            &gt; Nebula-12 is offered as a subscription through the Apple App
+            Store and Google Play. Your payment is processed by the applicable
+            store, and Echo uses RevenueCat to confirm and manage subscription
+            entitlement status.
+          </p>
+          <p>
+            &gt; PenguinWorks does not directly process App Store or Google Play
+            payment credentials.
+          </p>
+        </section>
 
-      <p>
-        <br />
-        > © 2026 PenguinWorks. All rights reserved.
-      </p>
-    </div>
+        <section aria-labelledby="privacy-8">
+          <h2 id="privacy-8">8. Services Used to Operate Echo</h2>
+          <p>
+            &gt; Echo relies on service providers to operate. Transmission and
+            Echo content is processed or stored by these providers in order to
+            provide the app:
+          </p>
+          <p>
+            &gt; - Firebase (Google): anonymous authentication, Cloud Firestore
+            data storage, Cloud Functions server logic, Cloud Messaging for
+            notifications, App Check, and Crashlytics for crash reporting
+          </p>
+          <p>
+            &gt; - Google Gemini: generates AI Echoes from your transmission
+          </p>
+          <p>
+            &gt; - RevenueCat: subscription and entitlement management
+          </p>
+          <p>
+            &gt; - Apple App Store and Google Play: purchases and subscriptions
+          </p>
+          <p>
+            &gt; Echo may also collect limited product analytics that describe
+            feature usage without including your transmission or Echo content.
+            Product analytics are only transmitted by builds that have an
+            analytics App ID configured.
+          </p>
+        </section>
+
+        <section aria-labelledby="privacy-9">
+          <h2 id="privacy-9">9. Sharing</h2>
+          <p>
+            &gt; PenguinWorks does not sell personal information. Service data
+            is shared only with the providers described above as needed to
+            operate Echo, or where required by law. Data you choose to cast into
+            The Void is intentionally public.
+          </p>
+        </section>
+
+        <section aria-labelledby="privacy-10">
+          <h2 id="privacy-10">10. Your Choices and Contact</h2>
+          <p>
+            &gt; You choose what to transmit and what to cast into The Void.
+            Removing an Echo from The Void makes it stop appearing publicly.
+          </p>
+          <p>
+            &gt; If you have questions about this policy or your data, contact:
+            📧
+            <a href="mailto:penguinworksco@gmail.com">penguinworksco@gmail.com</a>
+          </p>
+        </section>
+      </div>
+
+      <footer class="legal-footer">
+        <p>© 2026 PenguinWorks</p>
+        <nav aria-label="Echo legal links">
+          <a href="./privacy-policy.html">PRIVACY</a>
+          <a href="./terms-of-service.html">TERMS</a>
+          <a href="./support.html">SUPPORT</a>
+          <a href="./help.html">HELP</a>
+        </nav>
+      </footer>
+    </main>
+
+    <script src="./scripts/space-background.js"></script>
   </body>
 </html>

@@ -1,74 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Help | Echo</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background: #000;
-        color: #fff;
-        font-family: "JetBrains Mono", monospace;
-        padding: 18px; /* outer padding */
-      }
-
-      .container {
-        border: 2px solid #fff;
-        padding: 25px; /* inner padding */
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.5;
-      }
-
-      h1 {
-        font-weight: normal;
-        margin-bottom: 8px;
-        font-size: 1.2em;
-        color: #84c98d;
-      }
-      h2 {
-        font-weight: normal;
-        margin-top: 45px;
-        margin-bottom: 16px;
-        font-size: 1em;
-      }
-      p {
-        margin: 5px 0;
-        font-size: 0.9em;
-        color: #ffffff;
-        opacity: 0.6;
-      }
-      a {
-        color: #fff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .subtitle {
-        margin-bottom: 25px;
-        margin-top: 25px;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Echo support." />
+    <link rel="canonical" href="https://penguinworksco.work/echo/support.html" />
+    <link rel="icon" type="image/png" href="./assets/echo-icon.png" />
+    <link rel="apple-touch-icon" href="./assets/echo-icon.png" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
+    <title>Support | Echo</title>
   </head>
   <body>
-    <div class="container">
-      <h1>ECHO TERMINAL | SUPPORT</h1>
-      <h2>✉️ Contact Support</h2>
-      <p>
-        If you have any problems or questions, email us at:
-        <a href="mailto:penguinworksco@gmail.com">penguinworksco@gmail.com</a>
-      </p>
-    </div>
+    <canvas id="space-background" class="space-background" aria-hidden="true"></canvas>
+
+    <main id="main" class="legal-main" tabindex="-1">
+      <nav class="legal-nav" aria-label="Echo pages">
+        <a class="legal-home" href="./">◀ ECHO</a>
+        <div class="legal-links">
+          <a href="./privacy-policy.html">PRIVACY</a>
+          <a href="./terms-of-service.html">TERMS</a>
+          <a href="./support.html" aria-current="page">SUPPORT</a>
+          <a href="./help.html">HELP</a>
+        </div>
+      </nav>
+
+      <header class="legal-heading">
+        <h1>ECHO TERMINAL | SUPPORT</h1>
+        <p class="legal-meta">&gt; PenguinWorks</p>
+      </header>
+
+      <div class="legal-body">
+        <section aria-labelledby="support-1">
+          <h2 id="support-1">Contact</h2>
+          <p>
+            &gt; If you have any problems or questions, email us at: 📧
+            <a href="mailto:penguinworksco@gmail.com">penguinworksco@gmail.com</a>
+          </p>
+          <p>
+            &gt; Before reaching out, try the Help page for the basics of how
+            transmissions, Echoes, allowances, and The Void work.
+          </p>
+        </section>
+
+        <section aria-labelledby="support-2">
+          <h2 id="support-2">When You Write In</h2>
+          <p>
+            &gt; Include the Echo version you are using, the device and app
+            store (Apple App Store or Google Play) you installed Echo from, and
+            a description of what happened.
+          </p>
+          <p>
+            &gt; Please do not include your transmission text or other sensitive
+            content in a support message unless it is needed to resolve your
+            issue.
+          </p>
+        </section>
+      </div>
+
+      <footer class="legal-footer">
+        <p>© 2026 PenguinWorks</p>
+        <nav aria-label="Echo legal links">
+          <a href="./privacy-policy.html">PRIVACY</a>
+          <a href="./terms-of-service.html">TERMS</a>
+          <a href="./support.html">SUPPORT</a>
+          <a href="./help.html">HELP</a>
+        </nav>
+      </footer>
+    </main>
+
+    <script src="./scripts/space-background.js"></script>
   </body>
 </html>
