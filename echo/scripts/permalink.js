@@ -2,8 +2,6 @@
   "use strict";
 
   const detail = document.querySelector("#echo-detail");
-  const stores = document.querySelector("#store-links");
-  window.EchoWeb.renderStoreLinks(stores);
   const id = new URLSearchParams(window.location.search).get("id") || "";
 
   function showNotFound() {

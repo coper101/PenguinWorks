@@ -7,12 +7,9 @@
   const fade = document.querySelector("#feed-fade");
   const retry = document.querySelector("#feed-retry");
   const sentinel = document.querySelector("#feed-sentinel");
-  const stores = document.querySelector("#store-links");
 
   const PAGE_SIZE = 12;
   const EMPTY_COPY = "> NO MORE SIGNALS IN RANGE\n> CHECK THE VOID AGAIN LATER";
-
-  window.EchoWeb.renderStoreLinks(stores);
 
   const seenIds = new Set();
   let cursor = null;

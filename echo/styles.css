@@ -42,7 +42,7 @@ body {
   line-height: 1.55;
 }
 
-body > *:not(.space-background) {
+body > *:not(.space-background):not(.echo-topbar):not(.skip-link) {
   position: relative;
   z-index: 1;
 }
@@ -86,6 +86,68 @@ a { color: inherit; }
 /* #main receives focus after the skip link activates; it is only a programmatic
    focus target and must not paint a full-page focus ring. */
 main[tabindex="-1"]:focus { outline: none; }
+
+/* ---------------------------------------------------------------------------
+   Shared pinned top navigation. Sticky so the Echo back link, store links, and
+   the legal page links stay visible while scrolling. A translucent black bar
+   keeps the particle field visible behind it.
+--------------------------------------------------------------------------- */
+body > header.echo-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgb(0 0 0 / 0.72);
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.echo-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  width: min(calc(100% - clamp(32px, 7vw, 120px)), 1180px);
+  margin-inline: auto;
+  padding-block: 12px;
+}
+
+.echo-nav a {
+  color: var(--echo-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.echo-nav a:hover { color: var(--echo-white); }
+
+.echo-nav-home,
+.echo-nav-brand {
+  color: var(--echo-white);
+}
+
+.echo-nav-stores {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+}
+
+.echo-nav-store {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--echo-green);
+}
+
+.echo-nav-store::before { content: ">"; color: var(--echo-purple); }
+
+.echo-nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-left: auto;
+}
+
+.echo-nav a[aria-current="page"] { color: var(--echo-green); }
 
 .shell {
   width: min(calc(100% - var(--screen-padding) * 2), var(--content-width));
@@ -315,6 +377,14 @@ button:focus-visible {
   width: clamp(270px, 29vw, 350px);
 }
 
+/* Landing carousel bleeds edge-to-edge across the full viewport while the
+   rest of the page stays inside the content shell. The scroll container keeps
+   the overflow internal, so no page-level horizontal scrollbar appears. */
+.landing-page .echo-carousel {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
 .landing-page .echo-carousel .status-panel {
   margin-block: 8px 14px;
   border: 0;
@@ -349,20 +419,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   width: min(calc(100% - clamp(32px, 7vw, 120px)), 880px);
-  padding-block: 30px 120px;
+  padding-block: clamp(40px, 7vw, 84px) 120px;
 }
-
-.void-back {
-  margin: 0 0 clamp(34px, 7vw, 76px);
-}
-
-.void-back-link {
-  color: var(--echo-muted);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-}
-
-.void-back-link:hover { color: var(--echo-white); }
 
 .void-title h1 {
   margin: 0;
@@ -438,7 +496,7 @@ button:focus-visible {
    Permalink (/echo/e/?id=...)
 --------------------------------------------------------------------------- */
 .permalink-shell {
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 120px);
   display: grid;
   place-items: center;
 }
@@ -455,27 +513,11 @@ button:focus-visible {
 .permalink-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ---------------------------------------------------------------------------
-   Footer / stores
+   Footer
 --------------------------------------------------------------------------- */
 .site-footer {
-  display: grid;
-  gap: 56px;
-  padding-block: 56px 40px;
+  padding-block: 44px 38px;
 }
-
-.store-links { display: flex; flex-wrap: wrap; gap: 28px 44px; }
-
-.store-item {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 8px;
-  color: var(--echo-green);
-  text-decoration: none;
-}
-
-.store-item::before { content: ">"; color: var(--echo-purple); }
-.store-item[aria-disabled="true"] { color: var(--echo-muted); cursor: default; }
 
 .footer-meta {
   display: flex;
@@ -492,8 +534,7 @@ button:focus-visible {
 .footer-meta a:hover { color: var(--echo-white); }
 
 .landing-page .site-footer {
-  gap: clamp(60px, 9vw, 100px);
-  padding-top: 10px;
+  padding-top: 6px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -503,29 +544,8 @@ button:focus-visible {
 .legal-main {
   width: min(calc(100% - clamp(32px, 7vw, 120px)), 860px);
   margin-inline: auto;
-  padding-block: 30px 0;
+  padding-block: clamp(40px, 7vw, 76px) 0;
 }
-
-.legal-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-  margin-bottom: clamp(48px, 9vw, 96px);
-  color: var(--echo-muted);
-}
-
-.legal-nav a {
-  color: inherit;
-  text-decoration: none;
-  letter-spacing: 0.04em;
-}
-
-.legal-nav a:hover { color: var(--echo-white); }
-.legal-nav .legal-home { color: var(--echo-white); }
-.legal-nav [aria-current="page"] { color: var(--echo-green); }
-.legal-nav .legal-links { display: flex; flex-wrap: wrap; gap: 16px; }
 
 .legal-heading h1 {
   margin: 0;
@@ -582,14 +602,35 @@ button:focus-visible {
 .legal-footer a { color: inherit; text-decoration: none; }
 .legal-footer a:hover { color: var(--echo-white); }
 
-@media (max-width: 620px) {
-  .legal-nav { align-items: flex-start; flex-direction: column; gap: 14px; }
-  .legal-main { width: calc(100% - 36px); }
-}
-
 @keyframes blink { 50% { opacity: 0; } }
 
+/* Two-row pinned nav layout for tablet/narrow widths so nothing is clipped. */
+@media (max-width: 900px) {
+  .echo-nav {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "home links"
+      "stores stores";
+    column-gap: 20px;
+    row-gap: 10px;
+    align-items: start;
+  }
+
+  .echo-nav-home,
+  .echo-nav-brand { grid-area: home; }
+
+  .echo-nav-links {
+    grid-area: links;
+    margin-left: 0;
+    justify-self: end;
+  }
+
+  .echo-nav-stores { grid-area: stores; }
+}
+
 @media (max-width: 620px) {
+  .legal-main { width: calc(100% - 36px); }
   .site-header { grid-template-columns: minmax(0, 1fr) auto; }
   .terminal-info { min-height: 62px; }
   .terminal-icon { width: 32px; height: 32px; }
@@ -601,9 +642,8 @@ button:focus-visible {
   .landing-page .shell { width: calc(100% - 36px); }
   .landing-page .hero { padding-block: 56px 64px; }
   .landing-page .section-heading { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .landing-page .store-links { flex-direction: column; gap: 14px; }
 
-  .void-page .void-main { width: calc(100% - 36px); padding-top: 22px; }
+  .void-page .void-main { width: calc(100% - 36px); padding-top: 28px; }
   .feed-list { gap: 30px; }
 }
 

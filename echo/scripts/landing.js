@@ -2,8 +2,6 @@
   "use strict";
 
   const preview = document.querySelector("#echo-preview");
-  const stores = document.querySelector("#store-links");
-  window.EchoWeb.renderStoreLinks(stores);
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 

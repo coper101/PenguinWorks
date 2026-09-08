@@ -127,26 +127,5 @@
     return article;
   }
 
-  function renderStoreLinks(container) {
-    const stores = global.ECHO_WEB_CONFIG?.stores || {};
-    const items = [
-      [stores.appStoreUrl, "Available on the App Store"],
-      [stores.googlePlayUrl, "Get it on Google Play"],
-    ];
-    items.forEach(([url, label]) => {
-      const configured = typeof url === "string" && /^https:\/\//.test(url);
-      const item = document.createElement(configured ? "a" : "span");
-      item.className = "store-item";
-      item.textContent = label;
-      if (configured) {
-        item.href = url;
-        item.rel = "noopener noreferrer";
-      } else {
-        item.setAttribute("aria-disabled", "true");
-      }
-      container.append(item);
-    });
-  }
-
-  global.EchoWeb = Object.freeze({ createCard, getEcho, getPage, renderStoreLinks });
+  global.EchoWeb = Object.freeze({ createCard, getEcho, getPage });
 })(window);
