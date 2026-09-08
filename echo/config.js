@@ -14,9 +14,11 @@
         : "",
     }),
     stores: Object.freeze({
-      // Add only verified public store URLs. Empty values render inert labels.
-      appStoreUrl: "",
-      googlePlayUrl: "",
+      // Verified public store destinations. The footer renders these as links.
+      appStoreUrl:
+        "https://apps.apple.com/sg/app/echo-your-quote/id6754518887",
+      googlePlayUrl:
+        "https://play.google.com/store/apps/details?id=com.penguinworks.Echo&hl=en_SG",
     }),
   });
 })(window);
