@@ -143,6 +143,22 @@ body > header.echo-topbar {
 
 .echo-nav .echo-nav-arrow { color: var(--echo-muted); }
 
+/* Right-side legal page links (Terms / Privacy / Support only). */
+.echo-nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px 18px;
+  justify-self: end;
+  letter-spacing: 0.04em;
+}
+
+.echo-nav-links .echo-nav-current,
+.echo-nav-links a[aria-current="page"] {
+  color: var(--echo-green);
+}
+
 /* Store buttons shared by the hero and every top bar. Purple Echo outline,
    transparent background, terminal font, no arrows or badges. */
 .echo-store-button {
@@ -200,6 +216,22 @@ body > header.echo-topbar {
   }
 
   .echo-nav-home { align-self: flex-start; }
+
+  /* Legal pages keep ECHO + links on the first row and stores on the second. */
+  .echo-nav--legal {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "home links"
+      "stores stores";
+    column-gap: 18px;
+    row-gap: 10px;
+    width: 100%;
+  }
+
+  .echo-nav--legal .echo-nav-home { grid-area: home; }
+  .echo-nav--legal .echo-nav-stores { grid-area: stores; }
+  .echo-nav--legal .echo-nav-links { grid-area: links; justify-self: end; }
 }
 
 .shell {
