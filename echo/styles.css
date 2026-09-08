@@ -88,9 +88,9 @@ a { color: inherit; }
 main[tabindex="-1"]:focus { outline: none; }
 
 /* ---------------------------------------------------------------------------
-   Shared pinned top navigation. Sticky so the Echo back link, store links, and
-   the legal page links stay visible while scrolling. A translucent black bar
-   keeps the particle field visible behind it.
+   Shared pinned top navigation. A thin translucent Echo bar. Non-home pages
+   center the store buttons between the back link and the empty right side; the
+   home page uses its own revealed fixed bar (see the Landing section).
 --------------------------------------------------------------------------- */
 body > header.echo-topbar {
   position: sticky;
@@ -101,13 +101,25 @@ body > header.echo-topbar {
 }
 
 .echo-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px 24px;
+  column-gap: 24px;
   width: min(calc(100% - clamp(32px, 7vw, 120px)), 1180px);
   margin-inline: auto;
-  padding-block: 12px;
+  padding-block: 10px 12px;
+}
+
+.echo-nav-home {
+  justify-self: start;
+}
+
+/* Home sticky bar keeps ECHO left and the store buttons pushed to the right. */
+.landing-page .echo-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 10px;
 }
 
 .echo-nav a {
@@ -129,31 +141,66 @@ body > header.echo-topbar {
   opacity: 0.75;
 }
 
+.echo-nav .echo-nav-arrow { color: var(--echo-muted); }
+
+/* Store buttons shared by the hero and every top bar. Purple Echo outline,
+   transparent background, terminal font, no arrows or badges. */
+.echo-store-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--echo-purple);
+  border-radius: 0;
+  background: transparent;
+  color: var(--echo-purple);
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+}
+
+.echo-store-button:hover { opacity: 0.7; }
+
 .echo-nav-stores {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 6px 24px;
+  gap: 10px;
 }
 
-.echo-nav-store {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--echo-green);
+/* Compact store buttons used inside the top bars (home sticky + non-home). */
+.echo-nav .echo-store-button {
+  min-height: 32px;
+  padding: 7px 14px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--echo-purple);
 }
 
-.echo-nav-store::before { content: ">"; color: var(--echo-purple); }
-
-.echo-nav-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-  margin-left: auto;
+.echo-nav .echo-store-button:hover {
+  color: var(--echo-purple);
+  opacity: 0.7;
 }
 
-.echo-nav a[aria-current="page"] { color: var(--echo-green); }
+/* Larger store buttons used in the home hero. */
+.hero-store-button {
+  min-height: 46px;
+  padding: 12px 20px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 700px) {
+  .echo-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .echo-nav-home { align-self: flex-start; }
+}
 
 .shell {
   width: min(calc(100% - var(--screen-padding) * 2), var(--content-width));
@@ -643,31 +690,6 @@ button:focus-visible {
 .legal-footer a:hover { color: var(--echo-white); }
 
 @keyframes blink { 50% { opacity: 0; } }
-
-/* Two-row pinned nav layout for tablet/narrow widths so nothing is clipped. */
-@media (max-width: 900px) {
-  .echo-nav {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    grid-template-areas:
-      "home links"
-      "stores stores";
-    column-gap: 20px;
-    row-gap: 10px;
-    align-items: start;
-  }
-
-  .echo-nav-home,
-  .echo-nav-brand { grid-area: home; }
-
-  .echo-nav-links {
-    grid-area: links;
-    margin-left: 0;
-    justify-self: end;
-  }
-
-  .echo-nav-stores { grid-area: stores; }
-}
 
 @media (max-width: 620px) {
   .legal-main { width: calc(100% - 36px); }
