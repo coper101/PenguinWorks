@@ -6,11 +6,9 @@ code.
 
 ## Public data boundary
 
-`config.js` is the only website-to-API configuration boundary. During local
-development it points to the two HTTP functions in `echo-dev-4557a`; on any
-non-local hostname the endpoints intentionally remain unset until production
-values are approved. Store destinations become links only when verified HTTPS
-URLs are configured; otherwise the App Store and Google Play labels are inert.
+`config.js` is the only website-to-API configuration boundary. Local development
+points to the two HTTP functions in `echo-dev-4557a`; non-local hosts use the
+corresponding production functions in `echo-prod-e9c0d`.
 
 The visual layer recreates the mobile app rather than importing React Native.
 It uses the mobile palette and spacing, the bundled JetBrains Mono font, the
@@ -20,14 +18,15 @@ from `SpaceBackground.tsx` and `spaceField.ts`.
 The browser accepts only this exact record shape:
 
 ```text
-id, publicBeaconId, echoText, createdAt, pulseCount
+id, publicBeaconId, transmissionText, echoText, createdAt, pulseCount, signalCount
 ```
 
 The public functions query only `isInVoid == true` and
 `moderationStatus == "ok"`. They project responses field-by-field and never
-return the original transmission, owner UID, mobile Beacon ID, or archive
-metadata. Firestore remains private to clients; the public functions use Admin
-access on the server.
+return an owner UID, mobile Beacon ID, Signal contents, or archive metadata.
+The original transmission is public only after the app's Cast Into Void
+confirmation explicitly discloses website visibility. Firestore remains
+private to clients; the public functions use Admin access on the server.
 
 The feed is publicly cacheable for 30 seconds, so an uncast Echo can remain in
 a cached feed during that window. Single-Echo lookup is `no-store` and becomes

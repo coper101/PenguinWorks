@@ -8,10 +8,10 @@
     api: Object.freeze({
       feedUrl: isLocal
         ? "https://us-central1-echo-dev-4557a.cloudfunctions.net/publicVoidFeed"
-        : "",
+        : "https://us-central1-echo-prod-e9c0d.cloudfunctions.net/publicVoidFeed",
       singleUrl: isLocal
         ? "https://us-central1-echo-dev-4557a.cloudfunctions.net/publicVoidEcho"
-        : "",
+        : "https://us-central1-echo-prod-e9c0d.cloudfunctions.net/publicVoidEcho",
     }),
   });
 })(window);

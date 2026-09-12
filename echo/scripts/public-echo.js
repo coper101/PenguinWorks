@@ -10,6 +10,7 @@
     "id",
     "publicBeaconId",
     "pulseCount",
+    "signalCount",
     "transmissionText",
   ];
   const ID_PATTERN = /^[A-Za-z0-9]{20}$/;
@@ -32,7 +33,8 @@
       typeof value.transmissionText === "string" &&
       value.transmissionText.trim().length > 0 &&
       typeof value.createdAt === "string" && Number.isFinite(Date.parse(value.createdAt)) &&
-      Number.isSafeInteger(value.pulseCount) && value.pulseCount >= 0;
+      Number.isSafeInteger(value.pulseCount) && value.pulseCount >= 0 &&
+      Number.isSafeInteger(value.signalCount) && value.signalCount >= 0;
   }
 
   async function requestJson(url) {
