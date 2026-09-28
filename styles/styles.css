@@ -171,8 +171,11 @@ body {
 
 .card .screenshots img {
     flex: 0 0 auto;
-    width: 154px;
+    width: auto;
     height: auto;
+    max-width: min(360px, calc(100vw - 84px));
+    max-height: 440px;
+    object-fit: contain;
     border-radius: 18px;
     border: 0.5px solid rgba(0, 0, 0, 0.1); 
 }
@@ -397,6 +400,11 @@ body {
     .card .screenshots {
         padding-left: 26px;
         padding-right: 26px;
+    }
+
+    .card .screenshots img {
+        max-width: calc(100vw - 84px);
+        max-height: 360px;
     }
 
     .help-page .header-left {
