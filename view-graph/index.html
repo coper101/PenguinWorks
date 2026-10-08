@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0C12" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>ViewGraph — See the structure of your SwiftUI app</title>
+    <meta name="description" content="ViewGraph is a macOS app that maps your SwiftUI screens, components, navigation, previews and commit impact on one interactive canvas. A developer tool that complements Xcode." />
+    <link rel="canonical" href="https://penguinworksco.work/view-graph/" />
+    <link rel="icon" type="image/png" href="/view-graph/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/view-graph/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/view-graph/styles.css" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ViewGraph" />
+    <meta property="og:title" content="ViewGraph — See the structure of your SwiftUI app" />
+    <meta property="og:description" content="Map SwiftUI screens, components, previews and commit impact on one interactive canvas. Complements Xcode and AI assistants." />
+    <meta property="og:url" content="https://penguinworksco.work/view-graph/" />
+    <meta property="og:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-hero.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ViewGraph — See the structure of your SwiftUI app" />
+    <meta name="twitter:description" content="Map SwiftUI screens, components, previews and commit impact on one interactive canvas." />
+    <meta name="twitter:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-hero.jpg" />
+</head>
+<body class="vg">
+    <a class="vg-skip" href="#main">Skip to content</a>
+
+    <header class="vg-header">
+        <div class="vg-header-inner">
+            <a class="vg-brand" href="/view-graph/">
+                <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                ViewGraph <span class="vg-brand-sub">Developer</span>
+            </a>
+            <nav class="vg-nav" aria-label="Primary">
+                <a href="/view-graph/" aria-current="page">Home</a>
+                <a href="/view-graph/blog/">Blog</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="vg-main">
+        <section class="vg-hero vg-container">
+            <h1>Understand your SwiftUI app before you change it.</h1>
+            <p class="vg-lede">
+                ViewGraph is a macOS app that reads a SwiftUI project and draws the
+                view graph: which screens exist, which components they are built from,
+                how they connect, what their previews look like, and what a Git
+                commit actually touches.
+            </p>
+            <p class="vg-hero-note">
+                It is a comprehension tool that sits beside Xcode and your AI
+                assistant — not a replacement for either. It runs locally on your Mac.
+            </p>
+            <div class="vg-actions">
+                <a class="vg-btn vg-btn-primary" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download for macOS</a>
+                <a class="vg-btn vg-btn-secondary" href="/view-graph/blog/">Read the blog</a>
+                <a class="vg-btn vg-btn-secondary" href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+
+            <figure class="vg-shot vg-hero-shot">
+                <div class="vg-shot-frame">
+                    <img src="/view-graph/assets/viewgraph-hero.jpg" width="1800" height="1179"
+                         alt="The ViewGraph window showing a SwiftUI project's screens arranged left to right by navigation level, each screen card containing a rendered preview." />
+                </div>
+                <figcaption>
+                    A real ViewGraph session on a SwiftUI project. Screens are laid out
+                    by navigation level; previews are captured and cached per revision.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="vg-section vg-container" aria-labelledby="what-you-see">
+            <div class="vg-section-head">
+                <h2 id="what-you-see">Four questions ViewGraph answers</h2>
+                <p>Each one is a view onto the same analyzed graph.</p>
+            </div>
+
+            <div class="vg-features">
+                <article class="vg-feature">
+                    <span class="vg-tag">Screens &amp; navigation</span>
+                    <h3>How do I get from this screen to that one?</h3>
+                    <p>
+                        Screens and their navigation connections are laid out so you can
+                        follow the flow instead of guessing from call sites. Sheets,
+                        pushes and the app root show up as distinct connections.
+                    </p>
+                </article>
+
+                <article class="vg-feature">
+                    <span class="vg-tag vg-tag-purple">Components &amp; reuse</span>
+                    <h3>Which screens use this component?</h3>
+                    <p>
+                        Select a component to highlight every screen that reuses it, and
+                        select a screen to see the components that make it up. Reuse that
+                        is invisible in source becomes obvious on the canvas.
+                    </p>
+                </article>
+
+                <article class="vg-feature">
+                    <span class="vg-tag">SwiftUI previews</span>
+                    <h3>What does this screen actually render?</h3>
+                    <p>
+                        ViewGraph discovers the previews you already authored, prepares a
+                        host, renders them in the iOS Simulator, and attaches the images to
+                        the graph. They are cached per revision.
+                    </p>
+                </article>
+
+                <article class="vg-feature">
+                    <span class="vg-tag">Commit impact</span>
+                    <h3>What did this commit really change?</h3>
+                    <p>
+                        Compare the graph across two revisions and see which screens,
+                        components and files a commit affects before and after, without
+                        reading the whole diff.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="vg-section vg-container" aria-labelledby="honest">
+            <div class="vg-section-head">
+                <h2 id="honest">What it is, and what it is not</h2>
+                <p>ViewGraph is early, and it is deliberately honest about that.</p>
+            </div>
+            <div class="vg-prose">
+                <p>
+                    ViewGraph analyzes Swift source statically with <code>swift-syntax</code>.
+                    That means it can show structure the compiler understands, but it
+                    cannot know everything a running app does. Navigation built from data
+                    at runtime, or destinations chosen by a string, may not resolve into a
+                    connection. The canvas reports unresolved relationships rather than
+                    pretending they are complete.
+                </p>
+                <p>
+                    Previews are rendered through Xcode and the iOS Simulator, so preview
+                    workflows need a working Xcode installation. Without it, analysis,
+                    the canvas, bookmarks and Git history still work; previews report that
+                    the toolchain is unavailable. Some project structures and preview edge
+                    cases are unsupported in the current alpha.
+                </p>
+                <p>
+                    The production app has no telemetry and no application-managed
+                    networking. Xcode and Swift Package Manager may still download
+                    dependencies during preview workflows, and previewed project code can
+                    perform its own network requests.
+                </p>
+                <div class="vg-callout">
+                    <strong>New to the queue? Start with the writing.</strong>
+                    The three articles below walk through a real onboarding problem,
+                    the four ways SwiftUI apps tend to be structured, and exactly how
+                    previews get from source to canvas.
+                </div>
+            </div>
+        </section>
+
+        <section class="vg-section vg-container" aria-labelledby="writing">
+            <div class="vg-section-head">
+                <h2 id="writing">From the blog</h2>
+                <p>Real developer problems, written in the first person.</p>
+            </div>
+
+            <div class="vg-post-grid">
+                <article class="vg-post-card">
+                    <a class="vg-post-link" href="/view-graph/blog/joining-a-new-ios-team/">
+                        <div class="vg-post-thumb">
+                            <img src="/view-graph/assets/viewgraph-screens.jpg" width="1600" height="1048"
+                                 alt="ViewGraph showing screens and navigation connections for a SwiftUI project." loading="lazy" />
+                        </div>
+                        <div class="vg-post-body">
+                            <span class="vg-badge vg-badge-use">Use Cases</span>
+                            <h3>The most tedious part of joining an iOS team isn't writing code</h3>
+                            <p>Inheriting a large SwiftUI codebase is mostly a search problem. Here is the before/after workflow.</p>
+                            <span class="vg-post-meta">7 min read</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="vg-post-card">
+                    <a class="vg-post-link" href="/view-graph/blog/swiftui-apps-structured-differently/">
+                        <div class="vg-post-thumb">
+                            <img src="/view-graph/assets/viewgraph-components.jpg" width="1600" height="1048"
+                                 alt="ViewGraph showing a component graph grouped by feature sections." loading="lazy" />
+                        </div>
+                        <div class="vg-post-body">
+                            <span class="vg-badge vg-badge-arch">SwiftUI Architecture</span>
+                            <h3>Why every SwiftUI app is structured differently — and how to visualize it</h3>
+                            <p>NavigationStack, routers, feature modules and composition — and what static analysis can and cannot infer.</p>
+                            <span class="vg-post-meta">9 min read</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="vg-post-card">
+                    <a class="vg-post-link" href="/view-graph/blog/how-swiftui-previews-load/">
+                        <div class="vg-post-thumb">
+                            <img src="/view-graph/assets/viewgraph-previews.jpg" width="1600" height="1048"
+                                 alt="ViewGraph showing component previews attached to graph nodes." loading="lazy" />
+                        </div>
+                        <div class="vg-post-body">
+                            <span class="vg-badge vg-badge-behind">Behind ViewGraph</span>
+                            <h3>How ViewGraph uses SwiftUI previews to visualize an app</h3>
+                            <p>From source scanning to authored-preview discovery, host injection, capture, caching and fallbacks.</p>
+                            <span class="vg-post-meta">11 min read</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section class="vg-section vg-container">
+            <div class="vg-cta">
+                <h2>Try the alpha</h2>
+                <p>
+                    ViewGraph 0.1.0-alpha.2 is a signed, notarized universal build for
+                    macOS 15 or later. Previews need Xcode 16 or later.
+                </p>
+                <div class="vg-actions">
+                    <a class="vg-btn vg-btn-primary" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download the DMG</a>
+                    <a class="vg-btn vg-btn-secondary" href="https://github.com/coper101/ViewGraph-Releases/issues/new" target="_blank" rel="noopener">Report a bug</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="vg-footer">
+        <div class="vg-footer-inner">
+            <div>
+                <a class="vg-footer-brand" href="/view-graph/">
+                    <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                    ViewGraph
+                </a>
+                <p>A macOS tool for understanding SwiftUI apps. Built by PenguinWorks.</p>
+            </div>
+            <nav aria-label="Site">
+                <h2>Site</h2>
+                <ul>
+                    <li><a href="/view-graph/">Home</a></li>
+                    <li><a href="/view-graph/blog/">Blog</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Project">
+                <h2>Project</h2>
+                <ul>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/issues/new" target="_blank" rel="noopener">Feedback</a></li>
+                </ul>
+            </nav>
+            <p class="vg-footer-copy">© 2026 PenguinWorksCo · ViewGraph is pre-release software.</p>
+        </div>
+    </footer>
+</body>
+</html>

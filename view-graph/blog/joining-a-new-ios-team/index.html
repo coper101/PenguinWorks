@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0C12" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>The most tedious part of joining an iOS team isn't writing code — ViewGraph</title>
+    <meta name="description" content="Joining a large SwiftUI codebase is mostly a search problem. A first-person before/after look at inheriting an unfamiliar project and using ViewGraph to see its screens, components and reuse." />
+    <link rel="canonical" href="https://penguinworksco.work/view-graph/blog/joining-a-new-ios-team/" />
+    <link rel="icon" type="image/png" href="/view-graph/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/view-graph/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/view-graph/styles.css" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="ViewGraph" />
+    <meta property="og:title" content="The most tedious part of joining an iOS team isn't writing code" />
+    <meta property="og:description" content="Inheriting a large SwiftUI codebase is mostly a search problem. A before/after look at the first week." />
+    <meta property="og:url" content="https://penguinworksco.work/view-graph/blog/joining-a-new-ios-team/" />
+    <meta property="og:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-screens.jpg" />
+    <meta property="article:published_time" content="2026-10-08" />
+    <meta property="article:section" content="Use Cases" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The most tedious part of joining an iOS team isn't writing code" />
+    <meta name="twitter:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-screens.jpg" />
+</head>
+<body class="vg">
+    <a class="vg-skip" href="#main">Skip to content</a>
+
+    <header class="vg-header">
+        <div class="vg-header-inner">
+            <a class="vg-brand" href="/view-graph/">
+                <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                ViewGraph <span class="vg-brand-sub">Developer</span>
+            </a>
+            <nav class="vg-nav" aria-label="Primary">
+                <a href="/view-graph/">Home</a>
+                <a href="/view-graph/blog/">Blog</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="vg-main">
+        <div class="vg-prose-container">
+            <a class="vg-back" href="/view-graph/blog/">← All articles</a>
+            <header class="vg-article-head">
+                <span class="vg-badge vg-badge-use">Use Cases</span>
+                <h1>The most tedious part of joining an iOS team isn't writing code</h1>
+                <p class="vg-article-lede">
+                    It's building a mental model of an app nobody has drawn for you.
+                    For the first week I mostly search, jump, and click — and I kept
+                    wishing the codebase would just show me its shape.
+                </p>
+                <div class="vg-article-meta">
+                    <span>Published <time datetime="2026-10-08">8 October 2026</time></span>
+                    <span>7 min read</span>
+                    <span>Category: Use Cases</span>
+                </div>
+            </header>
+
+            <div class="vg-article-layout">
+                <nav class="vg-toc" aria-label="Table of contents">
+                    <h2>On this page</h2>
+                    <ol>
+                        <li><a href="#search-problem">The first week is a search problem</a></li>
+                        <li><a href="#old-workflow">The workflow I used</a></li>
+                        <li><a href="#graph-workflow">The workflow with a graph</a></li>
+                        <li><a href="#before-after">Before and after, concretely</a></li>
+                        <li><a href="#limits">Where this stops being useful</a></li>
+                        <li><a href="#next">What I'd write next</a></li>
+                    </ol>
+                </nav>
+
+                <article class="vg-article-body vg-prose">
+                    <h2 id="search-problem">The first week is a search problem</h2>
+                    <p>
+                        On my first day on a new iOS team I cloned the repo and did what
+                        everyone does: built it, ran it, and started tapping around. The
+                        app worked. I still had no idea how it was put together. Nobody
+                        hands you a map, and the README explains how to build the app, not
+                        how it is structured.
+                    </p>
+                    <p>
+                        What I actually needed to answer was small and specific. Which
+                        screens exist? Which ones can reach each other, and through what —
+                        a push, a sheet, a full-screen cover? Which view is the one heavy
+                        component on the settings screen, and where else is it used? If I
+                        change this component, what breaks visually?
+                    </p>
+                    <p>
+                        That's a graph of screens and components. I just couldn't see it.
+                    </p>
+
+                    <h2 id="old-workflow">The workflow I used</h2>
+                    <p>It goes roughly like this, and it's slow in a way that's hard to
+                        notice because each step is small:</p>
+                    <ol>
+                        <li>Search the file tree for names I don't know yet, guessing at prefixes and folders.</li>
+                        <li>Open a possible screen file and read until I find the <code>body</code>.</li>
+                        <li>Jump-to-definition on a subview, land in another file, jump again. Keep a stack in my head.</li>
+                        <li>Hunt for navigation: grep <code>NavigationLink</code>, <code>.sheet</code>, <code>navigationDestination</code> and hope the destination is literal.</li>
+                        <li>Write the graph on paper, then discover it's wrong when the app pushes somewhere I missed.</li>
+                        <li>Repeat the next day because I forgot half of it.</li>
+                    </ol>
+                    <p>
+                        The painful part isn't any single step. It's that the answers live
+                        in different tools — the file tree, the editor's jump history, the
+                        running app, and grep — and none of them gives me the whole shape.
+                        Reuse is especially invisible: a component used by eleven screens
+                        looks exactly like a component used by one.
+                    </p>
+
+                    <h2 id="graph-workflow">The workflow with a graph</h2>
+                    <p>
+                        Now I open the project in ViewGraph and let it analyze. I get one
+                        canvas with the screens laid out by navigation level: the app root
+                        on the left, the screens it reaches next, and so on. The connections
+                        between them are things like <em>direct</em>, <em>sheet</em> and
+                        <em>full-screen cover</em>, so the flow is visible without reading
+                        each call site.
+                    </p>
+                    <p>
+                        Then I stop reading and start selecting. Selecting a screen shows
+                        the components it is built from. Selecting a component highlights
+                        every screen that reuses it. Previews that already exist in the
+                        project are attached to the graph, so a screen I haven't run yet
+                        still has a face.
+                    </p>
+
+                    <figure class="vg-shot">
+                        <div class="vg-shot-frame">
+                            <img src="/view-graph/assets/viewgraph-screens.jpg" width="1600" height="1048"
+                                 alt="ViewGraph's Screens view: a sidebar tree of screens and a canvas with each screen shown as a card, connected left to right by navigation level." loading="lazy" />
+                        </div>
+                        <figcaption>
+                            Real ViewGraph output. Screens sit in a level-based layout; the
+                            selected screen is Inspector-managed on the right, including how
+                            many components it uses and where it is reused.
+                        </figcaption>
+                    </figure>
+
+                    <h2 id="before-after">Before and after, concretely</h2>
+                    <p>
+                        The clearest way to show the difference is to pick one question and
+                        answer it both ways. "Where is <code>DashboardBackgroundView</code>
+                        used?" was a real one for me.
+                    </p>
+                    <h3>Before</h3>
+                    <ul>
+                        <li>grep the type name across the repo.</li>
+                        <li>Filter out the declaration and the previews.</li>
+                        <li>Open each remaining hit, decide whether it's a real usage, and remember the screen it belongs to.</li>
+                        <li>Do it again later because the answer wasn't written down anywhere durable.</li>
+                    </ul>
+                    <h3>After</h3>
+                    <ul>
+                        <li>Switch the canvas to Components.</li>
+                        <li>Select <code>DashboardBackgroundView</code>.</li>
+                        <li>Read the screens it connects to; the graph shows reuse as edges, not a text list.</li>
+                    </ul>
+                    <p>
+                        The second version is faster, but the more important difference is
+                        that it's <em>complete for the same model</em>. The graph was built
+                        from the whole project, so I'm not relying on my grep terms or my
+                        memory of which folder I already searched.
+                    </p>
+
+                    <figure class="vg-shot">
+                        <div class="vg-shot-frame">
+                            <img src="/view-graph/assets/viewgraph-components.jpg" width="1600" height="1048"
+                                 alt="ViewGraph's Components view showing feature sections as groups with component counts, and a sidebar listing reused components." loading="lazy" />
+                        </div>
+                        <figcaption>
+                            The Components view groups components by section and makes reuse
+                            counts explicit. The sidebar in this capture lists reused
+                            components and how many times each appears.
+                        </figcaption>
+                    </figure>
+
+                    <h2 id="limits">Where this stops being useful</h2>
+                    <p>
+                        I want to be precise, because a map you over-trust is worse than no
+                        map. ViewGraph analyzes Swift source statically. It can see what the
+                        compiler can see, and it says so when it can't: my own sessions show
+                        a line like <em>"analysis complete — 19 unresolved relationships"</em>.
+                        Those are the connections it could not pin down, usually because the
+                        destination is computed at runtime.
+                    </p>
+                    <p>
+                        It also doesn't replace running the app. Some behaviour only exists
+                        at runtime — data-driven navigation, states that depend on a network
+                        response, anything behind a feature flag. ViewGraph narrows the
+                        surface I have to explore by hand; it doesn't remove the need to
+                        explore.
+                    </p>
+                    <p>
+                        Finally, previews need Xcode and the iOS Simulator. Without a
+                        working toolchain the graph and Git history still work, but the
+                        previews tell you the toolchain is unavailable instead of guessing.
+                    </p>
+
+                    <div class="vg-callout vg-callout-green">
+                        <strong>Complement, not replacement.</strong>
+                        I still open Xcode, read code, and ask an AI assistant to explain a
+                        function. ViewGraph answers the "what is the shape of this app"
+                        question those tools answer badly, and then I go back to them.
+                    </div>
+
+                    <h2 id="next">What I'd write next</h2>
+                    <p>
+                        This is the first piece in a Use Cases series. The same workflow
+                        applies to a few other situations I keep running into:
+                    </p>
+                    <ul>
+                        <li><strong>Returning to an old project.</strong> The map you built a year ago is gone; the graph isn't.</li>
+                        <li><strong>Adopting a purchased template.</strong> You inherit someone else's structure with no onboarding.</li>
+                        <li><strong>Reviewing changes.</strong> Understanding which screens a pull request touches before reading the diff.</li>
+                        <li><strong>Working with AI.</strong> Giving an assistant (and yourself) an accurate overview to reason against.</li>
+                    </ul>
+                    <p>
+                        If you're in the middle of an unfamiliar SwiftUI codebase right now,
+                        the part I'd try first is the component-reuse question. It's the one
+                        that source browsing answers worst.
+                    </p>
+
+                    <div class="vg-cta">
+                        <h2>See your own project as a graph</h2>
+                        <p>
+                            ViewGraph 0.1.0-alpha.2 is a pre-release alpha for macOS. Open a
+                            SwiftUI project and it draws the graph locally, with no
+                            telemetry.
+                        </p>
+                        <div class="vg-actions">
+                            <a class="vg-btn vg-btn-primary" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download for macOS</a>
+                            <a class="vg-btn vg-btn-secondary" href="/view-graph/blog/">More articles</a>
+                        </div>
+                    </div>
+
+                    <section class="vg-related" aria-labelledby="related-title">
+                        <h2 id="related-title">Related articles</h2>
+                        <div class="vg-related-list">
+                            <a class="vg-related-item" href="/view-graph/blog/swiftui-apps-structured-differently/">
+                                <strong>Why every SwiftUI app is structured differently</strong>
+                                <span>SwiftUI Architecture · 9 min read</span>
+                            </a>
+                            <a class="vg-related-item" href="/view-graph/blog/how-swiftui-previews-load/">
+                                <strong>How ViewGraph uses SwiftUI previews to visualize an app</strong>
+                                <span>Behind ViewGraph · 11 min read</span>
+                            </a>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="vg-footer">
+        <div class="vg-footer-inner">
+            <div>
+                <a class="vg-footer-brand" href="/view-graph/">
+                    <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                    ViewGraph
+                </a>
+                <p>A macOS tool for understanding SwiftUI apps. Built by PenguinWorks.</p>
+            </div>
+            <nav aria-label="Site">
+                <h2>Site</h2>
+                <ul>
+                    <li><a href="/view-graph/">Home</a></li>
+                    <li><a href="/view-graph/blog/">Blog</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Project">
+                <h2>Project</h2>
+                <ul>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/issues/new" target="_blank" rel="noopener">Feedback</a></li>
+                </ul>
+            </nav>
+            <p class="vg-footer-copy">© 2026 PenguinWorksCo · ViewGraph is pre-release software.</p>
+        </div>
+    </footer>
+</body>
+</html>

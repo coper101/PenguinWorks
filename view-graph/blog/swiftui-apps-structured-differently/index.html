@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0C12" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Why every SwiftUI app is structured differently — and how to visualize it — ViewGraph</title>
+    <meta name="description" content="SwiftUI imposes no structure, so every team invents one. A tour of NavigationStack, router/coordinator, feature-module and composition patterns — and exactly what static analysis can and cannot infer about them." />
+    <link rel="canonical" href="https://penguinworksco.work/view-graph/blog/swiftui-apps-structured-differently/" />
+    <link rel="icon" type="image/png" href="/view-graph/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/view-graph/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/view-graph/styles.css" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="ViewGraph" />
+    <meta property="og:title" content="Why every SwiftUI app is structured differently — and how to visualize it" />
+    <meta property="og:description" content="NavigationStack, routers, feature modules and composition — and the limits of static analysis." />
+    <meta property="og:url" content="https://penguinworksco.work/view-graph/blog/swiftui-apps-structured-differently/" />
+    <meta property="og:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-components.jpg" />
+    <meta property="article:published_time" content="2026-10-08" />
+    <meta property="article:section" content="SwiftUI Architecture" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why every SwiftUI app is structured differently" />
+    <meta name="twitter:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-components.jpg" />
+</head>
+<body class="vg">
+    <a class="vg-skip" href="#main">Skip to content</a>
+
+    <header class="vg-header">
+        <div class="vg-header-inner">
+            <a class="vg-brand" href="/view-graph/">
+                <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                ViewGraph <span class="vg-brand-sub">Developer</span>
+            </a>
+            <nav class="vg-nav" aria-label="Primary">
+                <a href="/view-graph/">Home</a>
+                <a href="/view-graph/blog/">Blog</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="vg-main">
+        <div class="vg-prose-container">
+            <a class="vg-back" href="/view-graph/blog/">← All articles</a>
+            <header class="vg-article-head">
+                <span class="vg-badge vg-badge-arch">SwiftUI Architecture</span>
+                <h1>Why every SwiftUI app is structured differently — and how to visualize it</h1>
+                <p class="vg-article-lede">
+                    In UIKit there was a shape you could almost assume. SwiftUI hands you
+                    composition and navigation primitives, then gets out of the way. The
+                    result is that every team invents its own architecture — which is
+                    exactly why a structural view is useful.
+                </p>
+                <div class="vg-article-meta">
+                    <span>Published <time datetime="2026-10-08">8 October 2026</time></span>
+                    <span>9 min read</span>
+                    <span>Category: SwiftUI Architecture</span>
+                </div>
+            </header>
+
+            <div class="vg-article-layout">
+                <nav class="vg-toc" aria-label="Table of contents">
+                    <h2>On this page</h2>
+                    <ol>
+                        <li><a href="#no-structure">SwiftUI ships primitives, not structure</a></li>
+                        <li><a href="#direct">Pattern 1 — Direct navigation</a></li>
+                        <li><a href="#router">Pattern 2 — Router / coordinator</a></li>
+                        <li><a href="#modules">Pattern 3 — Feature modules</a></li>
+                        <li><a href="#composition">Pattern 4 — Reusable composition</a></li>
+                        <li><a href="#graph">The shape underneath all four</a></li>
+                        <li><a href="#limits">Static analysis vs. runtime navigation</a></li>
+                    </ol>
+                </nav>
+
+                <article class="vg-article-body vg-prose">
+                    <h2 id="no-structure">SwiftUI ships primitives, not structure</h2>
+                    <p>
+                        Ask ten iOS teams to diagram their app and you'll get ten different
+                        diagrams. Some navigate directly from each screen. Some route
+                        everything through a coordinator object. Some organise by feature
+                        folder and never introduce a router at all. SwiftUI doesn't pick for
+                        you, and it doesn't record your choice in a way a new teammate can
+                        read.
+                    </p>
+                    <p>
+                        The four patterns below cover most SwiftUI apps I've opened. They
+                        aren't mutually exclusive — a real app often mixes two or three — but
+                        naming them makes the differences visible.
+                    </p>
+
+                    <h2 id="direct">Pattern 1 — Direct navigation</h2>
+                    <p>
+                        The screen owns its own destinations. It's the shortest path from
+                        "user taps" to "new screen appears," and it's where most projects
+                        start.
+                    </p>
+                    <pre><code>struct LibraryScreen: View {
+    @State private var selectedBook: Book?
+
+    var body: some View {
+        NavigationStack {
+            List(books) { book in
+                Button(book.title) { selectedBook = book }
+            }
+            .navigationTitle("Library")
+            .navigationDestination(item: $selectedBook) { book in
+                BookDetailScreen(book: book)
+            }
+        }
+    }
+}</code></pre>
+                    <p>
+                        The connection <em>LibraryScreen → BookDetailScreen</em> is written
+                        in the view, in code, with a literal destination. That's the easy
+                        case for a tool: it can be read statically.
+                    </p>
+
+                    <h2 id="router">Pattern 2 — Router / coordinator</h2>
+                    <p>
+                        Once more than a couple of screens need to trigger navigation, teams
+                        often move it behind an object. The screen no longer knows what comes
+                        next; it asks the router.
+                    </p>
+                    <pre><code>@Observable
+final class AppRouter {
+    var path = NavigationPath()
+    func show(_ route: Route) { path.append(route) }
+}
+
+struct RootView: View {
+    @State private var router = AppRouter()
+
+    var body: some View {
+        NavigationStack(path: $router.path) {
+            HomeScreen()
+                .navigationDestination(for: Route.self) { route in
+                    switch route {
+                    case .profile(let id): ProfileScreen(id: id)
+                    case .settings:        SettingsScreen()
+                    }
+                }
+        }
+        .environment(router)
+    }
+}</code></pre>
+                    <p>
+                        This is better engineering in many ways, and harder to read from the
+                        outside. The destination isn't next to the trigger; it lives in one
+                        <code>switch</code>, and the trigger is a call to
+                        <code>router.show(.settings)</code> somewhere else entirely. The
+                        structure exists, but it's spread across the router, the route enum,
+                        and every call site.
+                    </p>
+
+                    <h2 id="modules">Pattern 3 — Feature modules</h2>
+                    <p>
+                        As an app grows, the strongest signal is often the folder tree:
+                    </p>
+                    <pre><code>App/
+├── Features/
+│   ├── Library/
+│   │   ├── LibraryScreen.swift
+│   │   └── LibraryViewModel.swift
+│   ├── Reader/
+│   │   ├── ReaderScreen.swift
+│   │   └── ReaderToolbar.swift
+│   └── Settings/
+│       └── SettingsScreen.swift
+└── Shared/
+    ├── Components/
+    └── DesignSystem/</code></pre>
+                    <p>
+                        Folders communicate intent to humans, but they're invisible to the
+                        type system: a <code>LibraryScreen</code> and a
+                        <code>ReaderScreen</code> don't "know" they're in different
+                        features. Nothing stops <code>Reader</code> from importing
+                        <code>Library</code>'s internals — and over time, something will.
+                        When a component moves between sections, the folder tree updates but
+                        the reuse relationships don't.
+                    </p>
+
+                    <h2 id="composition">Pattern 4 — Reusable composition</h2>
+                    <p>
+                        Underneath navigation, every SwiftUI app is a composition tree. This
+                        is where the real structure of a screen lives:
+                    </p>
+                    <pre><code>struct DashboardScreen: View {
+    @State private var viewModel = DashboardViewModel()
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                HeaderView(title: viewModel.title)
+                MetricGrid(metrics: viewModel.metrics)
+                RecentActivityList(items: viewModel.recent)
+            }
+            .padding()
+        }
+        .task { await viewModel.load() }
+    }
+}</code></pre>
+                    <p>
+                        <code>HeaderView</code>, <code>MetricGrid</code> and
+                        <code>RecentActivityList</code> are the interesting parts of this
+                        screen. Replace one and you change every screen that uses it. Which
+                        is exactly the question source browsing is bad at answering:
+                        <em>where else is <code>HeaderView</code> used?</em>
+                    </p>
+
+                    <h2 id="graph">The shape underneath all four</h2>
+                    <p>
+                        Regardless of which pattern a project chose, there is always the same
+                        underlying shape: <strong>screens</strong> reachable from one
+                        another through navigation, and <strong>components</strong> composed
+                        inside screens, some of them reused across many screens.
+                        <strong>Widgets</strong> are their own entry points. ViewGraph draws
+                        that shape directly.
+                    </p>
+                    <p>
+                        It classifies nodes as screens, components or widgets; lays screens
+                        out by navigation level; draws connections for pushes, sheets and
+                        full-screen covers; and draws reuse edges between a component and the
+                        screens that use it. Sections are grouped so a feature folder still
+                        has a visible boundary even though the type system doesn't enforce
+                        one.
+                    </p>
+
+                    <figure class="vg-shot">
+                        <div class="vg-shot-frame">
+                            <img src="/view-graph/assets/viewgraph-components.jpg" width="1600" height="1048"
+                                 alt="ViewGraph's Overview showing feature sections such as Dashboard Screen, Editor and Widget Screen, each with a component count, plus a preview-coverage summary." loading="lazy" />
+                        </div>
+                        <figcaption>
+                            Real ViewGraph output for a project organised into feature
+                            sections. Each section shows its component count, and preview
+                            coverage is reported per category — including what is missing.
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        The useful part is that this view is the same whether the app used
+                        direct navigation, a router, or a mix. You stop needing to know the
+                        pattern before you can read the app.
+                    </p>
+
+                    <h2 id="limits">Static analysis vs. runtime navigation</h2>
+                    <p>
+                        This is the part I want to be scrupulous about, because it's where a
+                        structural tool can quietly mislead you. ViewGraph reads Swift source
+                        with <code>swift-syntax</code>. It sees what it can prove from the
+                        code, and it reports the rest as unresolved instead of inventing a
+                        connection.
+                    </p>
+
+                    <h3>What it can reliably infer</h3>
+                    <ul>
+                        <li>Literal navigation: a <code>NavigationLink</code>, a <code>.sheet</code> or <code>.fullScreenCover</code> whose content is a concrete view.</li>
+                        <li>Typed destinations: a <code>navigationDestination(for:)</code> with a route type whose cases resolve to concrete screens.</li>
+                        <li>Composition: a view's <code>body</code> referencing other view types, including across files.</li>
+                        <li>The app root and widget entry points, from the app and widget declarations.</li>
+                    </ul>
+
+                    <h3>What it cannot reliably infer</h3>
+                    <ul>
+                        <li><strong>Data-driven destinations.</strong> If the path is built from a decoded deep link or a server response, the destination isn't in the source to read.</li>
+                        <li><strong>String-based routing.</strong> A switch over a route string, or a registry keyed by name, hides the real destination from static analysis.</li>
+                        <li><strong>Abstractions that erase types.</strong> A coordinator that hands navigation to a protocol, or returns <code>AnyView</code> chosen at runtime, loses the concrete edge.</li>
+                        <li><strong>Navigation outside SwiftUI.</strong> A <code>UIHostingController</code> pushed by a UIKit navigation controller isn't part of the SwiftUI graph.</li>
+                        <li><strong>Conditional branches.</strong> Destinations behind a feature flag or a runtime check may resolve to several outputs, and the analyzer treats divergent branches conservatively.</li>
+                    </ul>
+
+                    <div class="vg-callout">
+                        <strong>Read the unresolved count.</strong>
+                        When the canvas says "analysis complete — N unresolved
+                        relationships," that N is the honest size of what it couldn't
+                        prove. Treat it as a to-do list for manual exploration, not an error.
+                    </div>
+
+                    <p>
+                        The practical consequence is a division of labour: ViewGraph gives
+                        you the parts of the structure that are written down, and you spend
+                        your runtime exploration on the parts that aren't. It doesn't claim
+                        to know how your app behaves — only how it's built.
+                    </p>
+
+                    <div class="vg-cta">
+                        <h2>Draw your own app</h2>
+                        <p>
+                            Point ViewGraph at a SwiftUI project and it classifies screens,
+                            components and widgets, then lays out the connections it can
+                            prove — locally, on your Mac.
+                        </p>
+                        <div class="vg-actions">
+                            <a class="vg-btn vg-btn-primary" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download for macOS</a>
+                            <a class="vg-btn vg-btn-secondary" href="/view-graph/blog/">More articles</a>
+                        </div>
+                    </div>
+
+                    <section class="vg-related" aria-labelledby="related-title">
+                        <h2 id="related-title">Related articles</h2>
+                        <div class="vg-related-list">
+                            <a class="vg-related-item" href="/view-graph/blog/joining-a-new-ios-team/">
+                                <strong>The most tedious part of joining an iOS team isn't writing code</strong>
+                                <span>Use Cases · 7 min read</span>
+                            </a>
+                            <a class="vg-related-item" href="/view-graph/blog/how-swiftui-previews-load/">
+                                <strong>How ViewGraph uses SwiftUI previews to visualize an app</strong>
+                                <span>Behind ViewGraph · 11 min read</span>
+                            </a>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="vg-footer">
+        <div class="vg-footer-inner">
+            <div>
+                <a class="vg-footer-brand" href="/view-graph/">
+                    <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                    ViewGraph
+                </a>
+                <p>A macOS tool for understanding SwiftUI apps. Built by PenguinWorks.</p>
+            </div>
+            <nav aria-label="Site">
+                <h2>Site</h2>
+                <ul>
+                    <li><a href="/view-graph/">Home</a></li>
+                    <li><a href="/view-graph/blog/">Blog</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Project">
+                <h2>Project</h2>
+                <ul>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/issues/new" target="_blank" rel="noopener">Feedback</a></li>
+                </ul>
+            </nav>
+            <p class="vg-footer-copy">© 2026 PenguinWorksCo · ViewGraph is pre-release software.</p>
+        </div>
+    </footer>
+</body>
+</html>

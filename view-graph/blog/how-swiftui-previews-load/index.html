@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0C12" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>How ViewGraph uses SwiftUI previews to visualize an app — ViewGraph</title>
+    <meta name="description" content="A technical walkthrough of ViewGraph's preview pipeline: source scanning, authored-preview discovery, host injection, simulator capture, caching, selected variants and fallbacks — including what is not yet verified." />
+    <link rel="canonical" href="https://penguinworksco.work/view-graph/blog/how-swiftui-previews-load/" />
+    <link rel="icon" type="image/png" href="/view-graph/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/view-graph/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/view-graph/styles.css" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="ViewGraph" />
+    <meta property="og:title" content="How ViewGraph uses SwiftUI previews to visualize an app" />
+    <meta property="og:description" content="Source scanning, host injection, simulator capture, caching and fallbacks — and the parts that are still rough." />
+    <meta property="og:url" content="https://penguinworksco.work/view-graph/blog/how-swiftui-previews-load/" />
+    <meta property="og:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-previews.jpg" />
+    <meta property="article:published_time" content="2026-10-08" />
+    <meta property="article:section" content="Behind ViewGraph" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How ViewGraph uses SwiftUI previews to visualize an app" />
+    <meta name="twitter:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-previews.jpg" />
+</head>
+<body class="vg">
+    <a class="vg-skip" href="#main">Skip to content</a>
+
+    <header class="vg-header">
+        <div class="vg-header-inner">
+            <a class="vg-brand" href="/view-graph/">
+                <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                ViewGraph <span class="vg-brand-sub">Developer</span>
+            </a>
+            <nav class="vg-nav" aria-label="Primary">
+                <a href="/view-graph/">Home</a>
+                <a href="/view-graph/blog/">Blog</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="vg-main">
+        <div class="vg-prose-container">
+            <a class="vg-back" href="/view-graph/blog/">← All articles</a>
+            <header class="vg-article-head">
+                <span class="vg-badge vg-badge-behind">Behind ViewGraph</span>
+                <h1>How ViewGraph uses SwiftUI previews to visualize an app</h1>
+                <p class="vg-article-lede">
+                    A preview in Xcode is a lightweight, on-demand thing. ViewGraph needs
+                    it to be durable, attached to a graph node, and cached per Git
+                    revision. This is how the pipeline gets from a <code>#Preview</code> in
+                    your source to an image on the canvas.
+                </p>
+                <div class="vg-article-meta">
+                    <span>Published <time datetime="2026-10-08">8 October 2026</time></span>
+                    <span>11 min read</span>
+                    <span>Category: Behind ViewGraph</span>
+                </div>
+            </header>
+
+            <div class="vg-article-layout">
+                <nav class="vg-toc" aria-label="Table of contents">
+                    <h2>On this page</h2>
+                    <ol>
+                        <li><a href="#discovery">Finding authored previews</a></li>
+                        <li><a href="#attach">Attaching a preview to a view</a></li>
+                        <li><a href="#host">Preparing a host without touching your project</a></li>
+                        <li><a href="#batch">Building and launching</a></li>
+                        <li><a href="#capture">Switching, rendering and capturing</a></li>
+                        <li><a href="#cache">Caching and hydration</a></li>
+                        <li><a href="#variants">Variants, fallbacks and states</a></li>
+                        <li><a href="#unverified">What is not verified</a></li>
+                    </ol>
+                </nav>
+
+                <article class="vg-article-body vg-prose">
+                    <p>
+                        Everything here reflects the current implementation, not an
+                        aspirational design. Where a path is only exercised by tests with
+                        fakes — or isn't verified at all — I've said so plainly at the end.
+                    </p>
+
+                    <h2 id="discovery">Finding authored previews</h2>
+                    <p>
+                        It starts with the project scan. ViewGraph discovers the Swift files
+                        and Xcode project metadata, then parses each file with
+                        <code>swift-syntax</code>. Two kinds of authored previews come out
+                        of that pass:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Modern <code>#Preview</code> macros.</strong> Each
+                            macro becomes one descriptor, with its display name, source file
+                            and line, and — when it can be resolved — the body source that
+                            will be rendered.
+                        </li>
+                        <li>
+                            <strong>Legacy <code>PreviewProvider</code> types.</strong> A
+                            provider can declare several variants. Where it's safe to do so,
+                            ViewGraph splits it into one descriptor per variant, so a static
+                            and a dark preview show up as two separate entries instead of one
+                            opaque provider.
+                        </li>
+                    </ul>
+                    <p>
+                        There's a third source called a <em>usage preview</em>: when a view
+                        has no authored preview but is used somewhere in the project, the
+                        tool can synthesize one from that usage. Descriptors record their
+                        origin — declared, legacy or usage — so the graph can be honest
+                        about where an image came from.
+                    </p>
+                    <p>
+                        Each descriptor is marked supported or not. An unsupported preview
+                        carries a reason, such as a body too complex to reproduce safely as a
+                        standalone adapter. Unsupported previews aren't dropped silently;
+                        they stay in the model with their reason attached.
+                    </p>
+
+                    <h2 id="attach">Attaching a preview to a view</h2>
+                    <p>
+                        A preview is only useful on the canvas if it belongs to something.
+                        The analyzer tries to resolve the preview's body to a known graph
+                        node, and stores that node's identifier on the descriptor. When it
+                        resolves, the image shows up on the screen or component card. When it
+                        doesn't, the descriptor still exists, but it isn't attached to a node
+                        — and the card shows no preview rather than borrowing an unrelated
+                        one.
+                    </p>
+                    <p>
+                        Previews are kept alongside the graph snapshot rather than on the
+                        nodes themselves, so attaching or replacing a preview never forces
+                        the graph layout to be recomputed. That separation is what makes
+                        preview hydration feel independent of analysis.
+                    </p>
+
+                    <h2 id="host">Preparing a host without touching your project</h2>
+                    <p>
+                        To render a preview, ViewGraph needs to build and run it. It does
+                        that against a <strong>mirror</strong> of your project — a copy under
+                        Application Support. Your real repository is never opened for
+                        writing, and the mirror is what gets mutated.
+                    </p>
+                    <p>The host generation has a few constraints worth knowing about:</p>
+                    <ul>
+                        <li>
+                            <strong>The host goes in the preview's own file.</strong> A generated
+                            <code>@main</code> entry point is injected into the same source
+                            file as the selected <code>#Preview</code>, so
+                            <code>private</code> and <code>fileprivate</code> helpers declared
+                            beside it stay in scope.
+                        </li>
+                        <li>
+                            <strong>Your app's entry point is disabled, not deleted.</strong>
+                            The mirror strips <code>@main</code> from the original
+                            declaration. Every declaration stays; only the entry attribute is
+                            removed, so the app still compiles as a library for the host.
+                        </li>
+                        <li>
+                            <strong>It's gated by a compilation condition.</strong> The
+                            generated code lives inside <code>#if VIEWGRAPH_PREVIEW_HOST</code>,
+                            so it can never leak into your normal build.
+                        </li>
+                        <li>
+                            <strong>Re-injection is idempotent.</strong> Any previously
+                            injected host block is removed before a new one is added, so
+                            repeated renders can't accumulate duplicate <code>@main</code>
+                            declarations.
+                        </li>
+                        <li>
+                            <strong>The preview body is resolved once.</strong> A small wrapper
+                            captures the authored body's value in its initializer instead of
+                            re-running it every time SwiftUI evaluates the view. Re-running an
+                            expensive body — a SwiftData container, for example — can create a
+                            render feedback loop that never settles.
+                        </li>
+                    </ul>
+                    <p>
+                        The generator also resolves which application target to build,
+                        detaching embedded app extensions and watch apps from the host build.
+                        A host overrides the bundle identifier and builds for one
+                        destination, so leaving an extension attached would fail install with
+                        a bundle-ID mismatch.
+                    </p>
+
+                    <h2 id="batch">Building and launching</h2>
+                    <p>
+                        Building a project is expensive, so the goal is <em>one build, one
+                        launch, many captures</em>. Before committing to a toolchain path,
+                        ViewGraph probes the environment: it typechecks a tiny
+                        <code>#Preview</code> adapter against the selected SDK, target and
+                        destination, and memoizes the result per environment key. If the
+                        toolchain can't compile a trivial preview, the batch doesn't start.
+                    </p>
+                    <p>
+                        When the environment supports it, a batch host is prepared once per
+                        revision and reused across captures. The intended lifecycle is one
+                        build manager and one running process that the renderer talks to over
+                        small command and status files: the renderer writes a command, waits
+                        for a ready or failed status, and reads the resulting image. A batch
+                        session can be ended explicitly, or all sessions can be torn down.
+                    </p>
+                    <p>
+                        Two revisions can coexist — the "before" and "after" sides of a
+                        commit comparison each get their own host — which is why the pool is
+                        keyed by revision rather than globally.
+                    </p>
+
+                    <h2 id="capture">Switching, rendering and capturing</h2>
+                    <p>
+                        Capture depends on what kind of node the preview belongs to, and
+                        there's a deliberate split:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Device capture</strong> for screens and widgets: the app
+                            is installed and launched in a booted iOS Simulator, and after a
+                            short settling delay the renderer takes a screenshot and validates
+                            the PNG.
+                        </li>
+                        <li>
+                            <strong>Content-fit capture</strong> for components: instead of
+                            screenshotting a device, the host renders the component offscreen
+                            and writes a fitted PNG — no status bar, no device chrome, no
+                            phone canvas — to the app's Documents directory, which the renderer
+                            polls for.
+                        </li>
+                    </ul>
+                    <p>
+                        Both paths check that the preview process is actually alive, and both
+                        clean up by terminating and uninstalling the host and removing the
+                        transient build root — on success and on error. If the host crashes,
+                        the renderer looks for the newest simulator crash report and retries a
+                        small number of times before giving up.
+                    </p>
+
+                    <figure class="vg-shot">
+                        <div class="vg-shot-frame">
+                            <img src="/view-graph/assets/viewgraph-previews.jpg" width="1600" height="1048"
+                                 alt="ViewGraph's Components view with rendered component previews attached to cards, and an inspector showing a selected preview, its variant and a Reload Preview control." loading="lazy" />
+                        </div>
+                        <figcaption>
+                            Real ViewGraph output. Component cards carry captured previews;
+                            the inspector shows the selected preview, its variant, appearance
+                            and a manual reload.
+                        </figcaption>
+                    </figure>
+
+                    <h2 id="cache">Caching and hydration</h2>
+                    <p>
+                        Previews are cached at two different levels, and it's worth keeping
+                        them straight:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>The renderer artifact cache.</strong> Stores the full PNG
+                            under a key made of the project, preview identity, content digests,
+                            configuration, toolchain, simulator, appearance and capture mode.
+                            The interesting part is the digests: they're what decide whether a
+                            cached image is still valid after a source change. Corrupt
+                            artifacts are quarantined rather than shown.
+                        </li>
+                        <li>
+                            <strong>The persisted preview cache.</strong> Stores the image
+                            next to a revision key, with working-tree and per-commit entries
+                            kept separate. This is what lets a "before/after" comparison show
+                            revision-correct previews instead of whichever render happened
+                            last.
+                        </li>
+                    </ul>
+                    <p>
+                        When you open a project, ViewGraph doesn't re-render everything. It
+                        hydrates what's already cached, in priority order: the selected node
+                        first, then visible nodes, then the active surface, then the rest. The
+                        decode work is batched off the main thread, so the UI stays responsive
+                        while images load. Preview identity is used for selection, but it is
+                        not the freshness authority — the content and project digests are.
+                    </p>
+
+                    <h2 id="variants">Variants, fallbacks and states</h2>
+                    <p>
+                        A preview can have more than one variant — light and dark, or a
+                        legacy provider's multiple entries. Each variant is its own
+                        descriptor, so they're selected and cached independently. The
+                        alternative variants aren't eagerly rendered; they're served on
+                        demand from the same host.
+                    </p>
+                    <p>
+                        Not every preview takes the batch path. Legacy
+                        <code>PreviewProvider</code> types, unsupported descriptors, and cases
+                        where the analyzer couldn't extract a renderable body all fall back to
+                        the single-preview pipeline: build, launch, capture, terminate. A
+                        failed batch isn't fatal; it degrades to a per-item build. A single
+                        failing item in a batch falls back to a dedicated host rather than
+                        failing the whole batch.
+                    </p>
+                    <p>
+                        Finally, what you see on a card is a small state vocabulary, and the
+                        distinctions matter:
+                    </p>
+                    <ul>
+                        <li><strong>No preview</strong> — no descriptor was authored or synthesized for that node.</li>
+                        <li><strong>Not loaded</strong> — a descriptor exists (and may be cached) but no thumbnail has been hydrated into the canvas yet.</li>
+                        <li><strong>Rendering</strong> — the preview is queued or building; the banner reports the stage.</li>
+                        <li><strong>Failed</strong> — a render was attempted and errored; the descriptor stays available to retry.</li>
+                        <li><strong>Unsupported</strong> — the descriptor is known to be unsupported, with the reason attached.</li>
+                    </ul>
+
+                    <h2 id="unverified">What is not verified</h2>
+                    <p>
+                        This is the part most tool posts skip, and I'd rather not. The
+                        pipeline above is covered by unit tests that use fakes for the
+                        process layer. What those tests do <em>not</em> exercise is a real
+                        <code>xcodebuild</code> and <code>simctl</code> run — no committed
+                        test builds an actual project end to end.
+                    </p>
+                    <p>
+                        More specifically, batch host reuse is implemented in the
+                        architecture but, in the current runtime, the simulator host appears
+                        to relaunch for individual components instead of being reused. It's
+                        diagnosed through a summary line that reports builds, launches and
+                        host reuses. Until that's proven at runtime, I won't claim batch
+                        rendering is fully working, and the app surfaces the same
+                        uncertainty in its diagnostics.
+                    </p>
+                    <p>
+                        One more boundary: without a working Xcode installation there is no
+                        preview pipeline. The app still analyzes source and shows the graph,
+                        bookmarks and Git history, but previews report that the toolchain is
+                        unavailable rather than pretending to render.
+                    </p>
+
+                    <div class="vg-callout">
+                        <strong>Why so much detail?</strong>
+                        If the graph is going to be part of how you reason about a project,
+                        you should know which parts are proven and which are best-effort.
+                        The diagnostics panel exists for exactly that.
+                    </div>
+
+                    <div class="vg-cta">
+                        <h2>Watch it on your own project</h2>
+                        <p>
+                            ViewGraph 0.1.0-alpha.2 renders previews locally and caches them
+                            per revision. Preview coverage and missing previews are reported
+                            in the Overview.
+                        </p>
+                        <div class="vg-actions">
+                            <a class="vg-btn vg-btn-primary" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download for macOS</a>
+                            <a class="vg-btn vg-btn-secondary" href="/view-graph/blog/">More articles</a>
+                        </div>
+                    </div>
+
+                    <section class="vg-related" aria-labelledby="related-title">
+                        <h2 id="related-title">Related articles</h2>
+                        <div class="vg-related-list">
+                            <a class="vg-related-item" href="/view-graph/blog/joining-a-new-ios-team/">
+                                <strong>The most tedious part of joining an iOS team isn't writing code</strong>
+                                <span>Use Cases · 7 min read</span>
+                            </a>
+                            <a class="vg-related-item" href="/view-graph/blog/swiftui-apps-structured-differently/">
+                                <strong>Why every SwiftUI app is structured differently</strong>
+                                <span>SwiftUI Architecture · 9 min read</span>
+                            </a>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="vg-footer">
+        <div class="vg-footer-inner">
+            <div>
+                <a class="vg-footer-brand" href="/view-graph/">
+                    <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                    ViewGraph
+                </a>
+                <p>A macOS tool for understanding SwiftUI apps. Built by PenguinWorks.</p>
+            </div>
+            <nav aria-label="Site">
+                <h2>Site</h2>
+                <ul>
+                    <li><a href="/view-graph/">Home</a></li>
+                    <li><a href="/view-graph/blog/">Blog</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Project">
+                <h2>Project</h2>
+                <ul>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/issues/new" target="_blank" rel="noopener">Feedback</a></li>
+                </ul>
+            </nav>
+            <p class="vg-footer-copy">© 2026 PenguinWorksCo · ViewGraph is pre-release software.</p>
+        </div>
+    </footer>
+</body>
+</html>

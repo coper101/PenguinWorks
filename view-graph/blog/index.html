@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0C12" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Blog — ViewGraph developer writing</title>
+    <meta name="description" content="Practical writing on SwiftUI architecture, iOS onboarding and how ViewGraph's graph and preview features actually work, from the ViewGraph developer." />
+    <link rel="canonical" href="https://penguinworksco.work/view-graph/blog/" />
+    <link rel="icon" type="image/png" href="/view-graph/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/view-graph/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/view-graph/styles.css" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ViewGraph" />
+    <meta property="og:title" content="Blog — ViewGraph developer writing" />
+    <meta property="og:description" content="Practical writing on SwiftUI architecture, iOS onboarding and how ViewGraph's graph and preview features work." />
+    <meta property="og:url" content="https://penguinworksco.work/view-graph/blog/" />
+    <meta property="og:image" content="https://penguinworksco.work/view-graph/assets/viewgraph-hero.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body class="vg">
+    <a class="vg-skip" href="#main">Skip to content</a>
+
+    <header class="vg-header">
+        <div class="vg-header-inner">
+            <a class="vg-brand" href="/view-graph/">
+                <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                ViewGraph <span class="vg-brand-sub">Developer</span>
+            </a>
+            <nav class="vg-nav" aria-label="Primary">
+                <a href="/view-graph/">Home</a>
+                <a href="/view-graph/blog/" aria-current="page">Blog</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="vg-main">
+        <div class="vg-container">
+            <div class="vg-page-head">
+                <h1>Writing</h1>
+                <p>
+                    Notes from building ViewGraph and using it on real SwiftUI projects.
+                    No launch announcements, no speed promises — just the tedious parts
+                    and what actually helped.
+                </p>
+            </div>
+
+            <div class="vg-filters" role="group" aria-label="Filter articles by category">
+                <button type="button" class="vg-filter" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" class="vg-filter" data-filter="use-cases" aria-pressed="false">Use Cases</button>
+                <button type="button" class="vg-filter" data-filter="swiftui-architecture" aria-pressed="false">SwiftUI Architecture</button>
+                <button type="button" class="vg-filter" data-filter="behind-viewgraph" aria-pressed="false">Behind ViewGraph</button>
+            </div>
+
+            <section class="vg-category-group" data-group="use-cases" id="use-cases" aria-labelledby="cat-use-cases">
+                <h2 id="cat-use-cases">Use Cases</h2>
+                <p>Concrete situations where a graph of the app beats a folder tree.</p>
+                <div class="vg-post-grid">
+                    <article class="vg-post-card" data-category="use-cases">
+                        <a class="vg-post-link" href="/view-graph/blog/joining-a-new-ios-team/">
+                            <div class="vg-post-thumb">
+                                <img src="/view-graph/assets/viewgraph-screens.jpg" width="1600" height="1048"
+                                     alt="ViewGraph showing screens and navigation connections for a SwiftUI project." loading="lazy" />
+                            </div>
+                            <div class="vg-post-body">
+                                <span class="vg-badge vg-badge-use">Use Cases</span>
+                                <h3>The most tedious part of joining an iOS team isn't writing code</h3>
+                                <p>Inheriting a large SwiftUI codebase is mostly a search problem. A before/after look at how ViewGraph changes the first week.</p>
+                                <span class="vg-post-meta">7 min read</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="vg-category-group" data-group="swiftui-architecture" id="swiftui-architecture" aria-labelledby="cat-architecture">
+                <h2 id="cat-architecture">SwiftUI Architecture</h2>
+                <p>How SwiftUI apps are actually organised — and how structure becomes visible.</p>
+                <div class="vg-post-grid">
+                    <article class="vg-post-card" data-category="swiftui-architecture">
+                        <a class="vg-post-link" href="/view-graph/blog/swiftui-apps-structured-differently/">
+                            <div class="vg-post-thumb">
+                                <img src="/view-graph/assets/viewgraph-components.jpg" width="1600" height="1048"
+                                     alt="ViewGraph showing a component graph grouped by feature sections." loading="lazy" />
+                            </div>
+                            <div class="vg-post-body">
+                                <span class="vg-badge vg-badge-arch">SwiftUI Architecture</span>
+                                <h3>Why every SwiftUI app is structured differently — and how to visualize it</h3>
+                                <p>NavigationStack, routers, feature modules and composition, with the limits of static analysis stated plainly.</p>
+                                <span class="vg-post-meta">9 min read</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="vg-category-group" data-group="behind-viewgraph" id="behind-viewgraph" aria-labelledby="cat-behind">
+                <h2 id="cat-behind">Behind ViewGraph</h2>
+                <p>How the tool works under the hood, including the parts that are still rough.</p>
+                <div class="vg-post-grid">
+                    <article class="vg-post-card" data-category="behind-viewgraph">
+                        <a class="vg-post-link" href="/view-graph/blog/how-swiftui-previews-load/">
+                            <div class="vg-post-thumb">
+                                <img src="/view-graph/assets/viewgraph-previews.jpg" width="1600" height="1048"
+                                     alt="ViewGraph showing component previews attached to graph nodes." loading="lazy" />
+                            </div>
+                            <div class="vg-post-body">
+                                <span class="vg-badge vg-badge-behind">Behind ViewGraph</span>
+                                <h3>How ViewGraph uses SwiftUI previews to visualize an app</h3>
+                                <p>Source scanning, authored-preview discovery, host injection, simulator capture, caching and fallbacks, step by step.</p>
+                                <span class="vg-post-meta">11 min read</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="vg-footer">
+        <div class="vg-footer-inner">
+            <div>
+                <a class="vg-footer-brand" href="/view-graph/">
+                    <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
+                    ViewGraph
+                </a>
+                <p>A macOS tool for understanding SwiftUI apps. Built by PenguinWorks.</p>
+            </div>
+            <nav aria-label="Site">
+                <h2>Site</h2>
+                <ul>
+                    <li><a href="/view-graph/">Home</a></li>
+                    <li><a href="/view-graph/blog/">Blog</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Project">
+                <h2>Project</h2>
+                <ul>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a></li>
+                    <li><a href="https://github.com/coper101/ViewGraph-Releases/issues/new" target="_blank" rel="noopener">Feedback</a></li>
+                </ul>
+            </nav>
+            <p class="vg-footer-copy">© 2026 PenguinWorksCo · ViewGraph is pre-release software.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var filters = Array.prototype.slice.call(document.querySelectorAll(".vg-filter"));
+            var cards = Array.prototype.slice.call(document.querySelectorAll(".vg-post-card"));
+            var groups = Array.prototype.slice.call(document.querySelectorAll(".vg-category-group"));
+            if (!filters.length) return;
+
+            function apply(value) {
+                cards.forEach(function (card) {
+                    var match = value === "all" || card.getAttribute("data-category") === value;
+                    card.hidden = !match;
+                });
+                groups.forEach(function (group) {
+                    var any = group.querySelector(".vg-post-card:not([hidden])");
+                    group.hidden = !any;
+                });
+                filters.forEach(function (button) {
+                    button.setAttribute("aria-pressed", button.getAttribute("data-filter") === value ? "true" : "false");
+                });
+            }
+
+            filters.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    apply(button.getAttribute("data-filter"));
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
