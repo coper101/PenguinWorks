@@ -1,64 +1,123 @@
 /* ==========================================================================
-   ViewGraph developer site
-   A self-contained design system for the /view-graph section.
-   Brand palette mirrors the ViewGraph app: indigo navigation, purple
-   components, green widgets. Opt in with <body class="vg">.
+   ViewGraph developer site — design system
+   A self-contained design system for the /view-graph section. Opt in with
+   <body class="vg">.
+
+   Brand palette is sampled from the ViewGraph app icon:
+     pink  #FD4FA6  changed / attention
+     blue  #0E99FC  structure
+     green #14F76C  connections / loaded
+   The signature theme is a deep charcoal/navy foundation with restrained
+   accent glows and graph-grid textures. A light theme is provided too.
    ========================================================================== */
 
 :root {
-    color-scheme: light dark;
+    color-scheme: dark;
 
-    /* Brand */
-    --vg-indigo: #4C46DA;
-    --vg-indigo-hover: #3A34C4;
-    --vg-purple: #7C4DFF;
-    --vg-green: #1E8E45;
-    --vg-green-bg: rgba(30, 142, 69, 0.12);
+    /* Brand — raw icon colors (decorative) */
+    --vg-icon-pink: #FD4FA6;
+    --vg-icon-blue: #0E99FC;
+    --vg-icon-green: #14F76C;
+
+    /* Brand — text-safe accents (dark theme) */
+    --vg-blue: #4CA8FF;
+    --vg-blue-hover: #7FC2FF;
+    --vg-cyan: #3ED2E0;
+    --vg-green: #2CE884;
+    --vg-pink: #FF5FAE;
+
+    --vg-blue-soft: rgba(14, 153, 252, 0.16);
+    --vg-cyan-soft: rgba(62, 210, 224, 0.14);
+    --vg-green-soft: rgba(20, 247, 108, 0.14);
+    --vg-pink-soft: rgba(253, 79, 166, 0.16);
 
     /* Surfaces */
-    --vg-bg: #FFFFFF;
-    --vg-bg-top: #F4F5FC;
-    --vg-surface: #FFFFFF;
-    --vg-header-bg: rgba(255, 255, 255, 0.78);
-    --vg-footer-bg: rgba(18, 20, 45, 0.03);
-    --vg-code-bg: rgba(18, 20, 45, 0.05);
-    --vg-border: rgba(18, 20, 45, 0.10);
-    --vg-divider: rgba(18, 20, 45, 0.12);
+    --vg-bg: #080B14;
+    --vg-bg-2: #0C1120;
+    --vg-surface: #101627;
+    --vg-surface-2: #151C30;
+    --vg-header-bg: rgba(8, 11, 20, 0.74);
+    --vg-footer-bg: rgba(255, 255, 255, 0.02);
+    --vg-code-bg: rgba(255, 255, 255, 0.06);
+
+    --vg-border: rgba(255, 255, 255, 0.09);
+    --vg-border-strong: rgba(255, 255, 255, 0.20);
+    --vg-divider: rgba(255, 255, 255, 0.12);
+    --vg-grid-line: rgba(255, 255, 255, 0.045);
+
+    --vg-glow-blue: rgba(14, 153, 252, 0.16);
+    --vg-glow-pink: rgba(253, 79, 166, 0.14);
+    --vg-glow-green: rgba(20, 247, 108, 0.10);
 
     /* Text */
-    --vg-text: #16171C;
-    --vg-text-secondary: #5C5F6B;
+    --vg-text: #ECF0FA;
+    --vg-text-secondary: #9AA4BE;
+    --vg-text-tertiary: #6E7893;
+
+    /* Primary CTA — solid vivid fill with a high-contrast dark foreground.
+       Verified: #18040F on the pink gradient stays >= 6:1 contrast. */
+    --vg-btn-primary-text: #18040F;
+    --vg-btn-primary-bg: linear-gradient(135deg, #FF7DBE 0%, #FF3F97 58%, #F54FA0 100%);
+    --vg-btn-primary-bg-hover: linear-gradient(135deg, #FF93CA 0%, #FF54A4 58%, #FF67AD 100%);
+    --vg-btn-primary-shadow: 0 8px 24px rgba(255, 63, 151, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+    --vg-focus: #9CCEFF;
 
     --vg-radius: 16px;
-    --vg-radius-sm: 10px;
-    --vg-shadow: 0 10px 30px rgba(18, 20, 45, 0.08);
-    --vg-shadow-sm: 0 2px 10px rgba(18, 20, 45, 0.06);
+    --vg-radius-sm: 11px;
+    --vg-radius-lg: 22px;
+    --vg-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
+    --vg-shadow-sm: 0 3px 14px rgba(0, 0, 0, 0.35);
     --vg-content-width: 760px;
-    --vg-wide-width: 1040px;
+    --vg-wide-width: 1080px;
+
+    --vg-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --vg-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
-        --vg-indigo: #9C97FF;
-        --vg-indigo-hover: #B6B2FF;
-        --vg-purple: #B79BFF;
-        --vg-green: #74D18E;
-        --vg-green-bg: rgba(116, 209, 142, 0.16);
+        color-scheme: light;
 
-        --vg-bg: #0B0C12;
-        --vg-bg-top: #12141F;
-        --vg-surface: #14161F;
-        --vg-header-bg: rgba(11, 12, 18, 0.76);
-        --vg-footer-bg: rgba(255, 255, 255, 0.03);
-        --vg-code-bg: rgba(255, 255, 255, 0.06);
-        --vg-border: rgba(255, 255, 255, 0.10);
-        --vg-divider: rgba(255, 255, 255, 0.14);
+        --vg-blue: #0A6FD0;
+        --vg-blue-hover: #0857A6;
+        --vg-cyan: #0C7C93;
+        --vg-green: #0E8A3E;
+        --vg-pink: #CE2A79;
 
-        --vg-text: #F4F4F7;
-        --vg-text-secondary: #A2A4B0;
+        --vg-blue-soft: rgba(10, 111, 208, 0.10);
+        --vg-cyan-soft: rgba(12, 124, 147, 0.10);
+        --vg-green-soft: rgba(14, 138, 62, 0.10);
+        --vg-pink-soft: rgba(206, 42, 121, 0.10);
 
-        --vg-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
-        --vg-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+        --vg-bg: #F5F7FC;
+        --vg-bg-2: #FFFFFF;
+        --vg-surface: #FFFFFF;
+        --vg-surface-2: #F1F4FB;
+        --vg-header-bg: rgba(255, 255, 255, 0.80);
+        --vg-footer-bg: rgba(15, 23, 42, 0.03);
+        --vg-code-bg: rgba(15, 23, 42, 0.05);
+
+        --vg-border: rgba(15, 23, 42, 0.10);
+        --vg-border-strong: rgba(15, 23, 42, 0.22);
+        --vg-divider: rgba(15, 23, 42, 0.12);
+        --vg-grid-line: rgba(15, 23, 42, 0.045);
+
+        --vg-glow-blue: rgba(10, 111, 208, 0.10);
+        --vg-glow-pink: rgba(206, 42, 121, 0.09);
+        --vg-glow-green: rgba(14, 138, 62, 0.08);
+
+        --vg-text: #0F1524;
+        --vg-text-secondary: #4E586F;
+        --vg-text-tertiary: #79839A;
+
+        --vg-btn-primary-text: #1B0411;
+        --vg-btn-primary-shadow: 0 8px 22px rgba(255, 63, 151, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+        --vg-focus: #0A6FD0;
+
+        --vg-shadow: 0 18px 46px rgba(15, 23, 42, 0.12);
+        --vg-shadow-sm: 0 3px 14px rgba(15, 23, 42, 0.08);
     }
 }
 
@@ -76,12 +135,15 @@ body.vg {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    font-family: var(--vg-font);
     font-size: 17px;
     line-height: 1.65;
     color: var(--vg-text);
-    background: var(--vg-bg);
-    background-image: linear-gradient(180deg, var(--vg-bg-top) 0%, var(--vg-bg) 420px);
+    background-color: var(--vg-bg);
+    background-image:
+        radial-gradient(1000px 560px at 82% -12%, var(--vg-glow-blue), transparent 62%),
+        radial-gradient(820px 480px at 4% 2%, var(--vg-glow-pink), transparent 60%),
+        linear-gradient(180deg, var(--vg-bg-2) 0%, var(--vg-bg) 640px);
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -94,21 +156,26 @@ body.vg img {
 }
 
 body.vg a {
-    color: var(--vg-indigo);
+    color: var(--vg-blue);
     text-decoration: none;
     transition: color 0.18s ease;
 }
 
 body.vg a:hover {
-    color: var(--vg-indigo-hover);
+    color: var(--vg-blue-hover);
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-body.vg a:focus-visible,
-body.vg button:focus-visible {
-    outline: 2px solid var(--vg-indigo);
+body.vg :focus-visible {
+    outline: 2px solid var(--vg-focus);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 8px;
+}
+
+::selection {
+    background: var(--vg-pink-soft);
+    color: var(--vg-text);
 }
 
 /* Skip link -------------------------------------------------------------- */
@@ -122,7 +189,7 @@ body.vg button:focus-visible {
     background: var(--vg-text);
     color: var(--vg-bg);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 650;
     border-radius: 0 0 10px 0;
 }
 
@@ -137,8 +204,8 @@ body.vg button:focus-visible {
     top: 0;
     z-index: 100;
     background: var(--vg-header-bg);
-    -webkit-backdrop-filter: blur(20px) saturate(1.8);
-    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.7);
+    backdrop-filter: blur(20px) saturate(1.7);
     border-bottom: 1px solid var(--vg-divider);
 }
 
@@ -152,32 +219,39 @@ body.vg button:focus-visible {
     gap: 18px;
 }
 
-.vg-brand {
+body.vg a.vg-brand {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     color: var(--vg-text);
     font-size: 16px;
-    font-weight: 650;
+    font-weight: 680;
     letter-spacing: -0.01em;
     white-space: nowrap;
 }
 
-.vg-brand:hover {
+body.vg a.vg-brand:hover {
     color: var(--vg-text);
     text-decoration: none;
 }
 
 .vg-brand img {
-    width: 26px;
-    height: 26px;
-    border-radius: 7px;
+    width: 27px;
+    height: 27px;
+    border-radius: 8px;
     display: block;
 }
 
-.vg-brand-sub {
+.vg-version {
+    margin-left: 2px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--vg-border-strong);
+    font-size: 11px;
+    font-weight: 680;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--vg-text-secondary);
-    font-weight: 500;
 }
 
 .vg-nav {
@@ -186,19 +260,35 @@ body.vg button:focus-visible {
     gap: 22px;
 }
 
-.vg-nav a {
+body.vg .vg-nav a {
     font-size: 14px;
-    font-weight: 550;
+    font-weight: 560;
     color: var(--vg-text-secondary);
 }
 
-.vg-nav a:hover {
-    color: var(--vg-indigo);
+body.vg .vg-nav a:hover {
+    color: var(--vg-text);
     text-decoration: none;
 }
 
-.vg-nav a[aria-current="page"] {
+body.vg .vg-nav a[aria-current="page"] {
     color: var(--vg-text);
+}
+
+body.vg .vg-nav a.vg-nav-cta {
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: var(--vg-btn-primary-text);
+    background: var(--vg-btn-primary-bg);
+    font-weight: 680;
+    box-shadow: 0 4px 14px rgba(255, 63, 151, 0.26);
+}
+
+body.vg .vg-nav a.vg-nav-cta:hover,
+body.vg .vg-nav a.vg-nav-cta:focus-visible {
+    color: var(--vg-btn-primary-text);
+    background: var(--vg-btn-primary-bg-hover);
+    text-decoration: none;
 }
 
 /* Layout ----------------------------------------------------------------- */
@@ -220,7 +310,7 @@ body.vg button:focus-visible {
 }
 
 .vg-section {
-    padding: 64px 0;
+    padding: 72px 0;
 }
 
 .vg-section + .vg-section {
@@ -228,16 +318,26 @@ body.vg button:focus-visible {
 }
 
 .vg-section-head {
-    max-width: 680px;
+    max-width: 700px;
     margin: 0 0 34px;
+}
+
+.vg-eyebrow {
+    display: inline-block;
+    margin: 0 0 16px;
+    font-size: 12.5px;
+    font-weight: 680;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--vg-text-tertiary);
 }
 
 .vg-section-head h2 {
     margin: 0 0 10px;
-    font-size: clamp(24px, 3vw, 30px);
-    font-weight: 700;
+    font-size: clamp(24px, 3vw, 31px);
+    font-weight: 720;
     letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 1.18;
 }
 
 .vg-section-head p {
@@ -249,24 +349,51 @@ body.vg button:focus-visible {
 /* Hero ------------------------------------------------------------------- */
 
 .vg-hero {
-    padding: 76px 0 56px;
+    position: relative;
+    padding: 78px 0 56px;
+    isolation: isolate;
+}
+
+.vg-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(var(--vg-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--vg-grid-line) 1px, transparent 1px);
+    background-size: 38px 38px;
+    -webkit-mask-image: radial-gradient(120% 78% at 50% -4%, #000 0%, transparent 70%);
+    mask-image: radial-gradient(120% 78% at 50% -4%, #000 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.vg-hero-graph {
+    position: absolute;
+    top: 30px;
+    right: max(0px, calc((100% - var(--vg-wide-width)) / 2 - 30px));
+    width: 420px;
+    height: 340px;
+    z-index: -1;
+    opacity: 0.55;
+    pointer-events: none;
 }
 
 .vg-hero h1 {
-    margin: 0 0 20px;
+    margin: 0 0 22px;
     max-width: 900px;
-    font-size: clamp(36px, 5.4vw, 56px);
-    font-weight: 760;
-    letter-spacing: -0.035em;
-    line-height: 1.06;
+    font-size: clamp(36px, 5.4vw, 58px);
+    font-weight: 780;
+    letter-spacing: -0.036em;
+    line-height: 1.05;
     text-wrap: balance;
 }
 
 .vg-hero .vg-lede {
-    margin: 0 0 18px;
-    max-width: 720px;
+    margin: 0 0 16px;
+    max-width: 760px;
     font-size: clamp(18px, 2vw, 21px);
-    line-height: 1.5;
+    line-height: 1.52;
     color: var(--vg-text-secondary);
 }
 
@@ -274,7 +401,114 @@ body.vg button:focus-visible {
     margin: 0 0 30px;
     max-width: 720px;
     font-size: 15px;
+    color: var(--vg-text-tertiary);
+}
+
+/* Inline brand emphasis */
+.vg-em-blue { color: var(--vg-blue); font-weight: 620; }
+.vg-em-green { color: var(--vg-green); font-weight: 620; }
+.vg-em-pink { color: var(--vg-pink); font-weight: 620; }
+
+/* Buttons ---------------------------------------------------------------- */
+
+body.vg a.vg-btn,
+body.vg button.vg-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 13px 22px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15.5px;
+    font-weight: 640;
+    line-height: 1.15;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+}
+
+.vg-btn svg {
+    flex: none;
+}
+
+/* Primary CTA.
+   Scoped under body.vg and with :visited/:hover/:active so the generic
+   `body.vg a` and `body.vg a:hover` rules can never override the foreground
+   text (this was the invisible "Download" bug). */
+body.vg a.vg-btn-primary,
+body.vg a.vg-btn-primary:visited,
+body.vg button.vg-btn-primary {
+    color: var(--vg-btn-primary-text);
+    background: var(--vg-btn-primary-bg);
+    border-color: transparent;
+    box-shadow: var(--vg-btn-primary-shadow);
+}
+
+body.vg a.vg-btn-primary:hover,
+body.vg a.vg-btn-primary:focus-visible,
+body.vg button.vg-btn-primary:hover,
+body.vg button.vg-btn-primary:focus-visible {
+    color: var(--vg-btn-primary-text);
+    background: var(--vg-btn-primary-bg-hover);
+    text-decoration: none;
+}
+
+body.vg a.vg-btn-primary:active,
+body.vg button.vg-btn-primary:active {
+    color: var(--vg-btn-primary-text);
+    transform: translateY(1px);
+    box-shadow: 0 4px 14px rgba(255, 63, 151, 0.30);
+}
+
+body.vg a.vg-btn-primary:focus-visible,
+body.vg button.vg-btn-primary:focus-visible,
+body.vg a.vg-btn-secondary:focus-visible,
+body.vg button.vg-btn-secondary:focus-visible {
+    outline: 3px solid var(--vg-focus);
+    outline-offset: 3px;
+}
+
+/* Secondary CTA */
+body.vg a.vg-btn-secondary,
+body.vg a.vg-btn-secondary:visited,
+body.vg button.vg-btn-secondary {
+    color: var(--vg-text);
+    background: var(--vg-surface);
+    border-color: var(--vg-border-strong);
+}
+
+body.vg a.vg-btn-secondary:hover,
+body.vg a.vg-btn-secondary:focus-visible {
+    color: var(--vg-text);
+    background: var(--vg-surface-2);
+    border-color: var(--vg-blue);
+    text-decoration: none;
+}
+
+/* Tertiary CTA */
+body.vg a.vg-btn-ghost,
+body.vg a.vg-btn-ghost:visited {
     color: var(--vg-text-secondary);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    padding-inline: 8px;
+}
+
+body.vg a.vg-btn-ghost:hover,
+body.vg a.vg-btn-ghost:focus-visible {
+    color: var(--vg-text);
+    text-decoration: none;
+}
+
+body.vg a.vg-btn-ghost .vg-btn-arrow {
+    transition: transform 0.18s ease;
+}
+
+body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
+    transform: translateX(3px);
 }
 
 .vg-actions {
@@ -284,60 +518,69 @@ body.vg button:focus-visible {
     align-items: center;
 }
 
-.vg-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-size: 15.5px;
-    font-weight: 600;
-    line-height: 1.2;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-
-.vg-btn-primary {
-    background: var(--vg-indigo);
-    color: #fff;
-    box-shadow: var(--vg-shadow-sm);
-}
-
-.vg-btn-primary:hover {
-    background: var(--vg-indigo-hover);
-    color: #fff;
-    text-decoration: none;
-}
-
-.vg-btn-secondary {
-    background: var(--vg-surface);
-    color: var(--vg-text);
-    border-color: var(--vg-border);
-}
-
-.vg-btn-secondary:hover {
-    color: var(--vg-text);
-    border-color: var(--vg-text-secondary);
-    text-decoration: none;
-}
+/* Product screenshot ----------------------------------------------------- */
 
 .vg-hero-shot {
-    margin: 44px 0 0;
+    margin: 46px 0 0;
 }
-
-/* Screenshot figure ------------------------------------------------------ */
 
 .vg-shot {
     margin: 0;
 }
 
-.vg-shot-frame {
+/* macOS-style window frame */
+.vg-window {
     border: 1px solid var(--vg-border);
-    border-radius: var(--vg-radius);
+    border-radius: 14px;
     overflow: hidden;
     background: var(--vg-surface);
-    box-shadow: var(--vg-shadow);
+    box-shadow: var(--vg-shadow), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
 }
+
+.vg-window-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 15px;
+    background: var(--vg-surface-2);
+    border-bottom: 1px solid var(--vg-border);
+}
+
+.vg-window-dots {
+    display: flex;
+    gap: 7px;
+    flex: none;
+}
+
+.vg-window-dots span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: block;
+}
+
+.vg-window-dots span:nth-child(1) { background: #FF5F57; }
+.vg-window-dots span:nth-child(2) { background: #FEBC2E; }
+.vg-window-dots span:nth-child(3) { background: #28C840; }
+
+.vg-window-title {
+    font-size: 12.5px;
+    font-weight: 560;
+    color: var(--vg-text-tertiary);
+    margin: 0 auto;
+    padding-right: 46px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vg-window img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Legacy frame (used by a few article figures) */
 
 .vg-shot img {
     display: block;
@@ -352,84 +595,277 @@ body.vg button:focus-visible {
     color: var(--vg-text-secondary);
 }
 
-/* Feature grid ----------------------------------------------------------- */
-
-.vg-features {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+/* Annotated callouts beneath the hero capture */
+.vg-shot-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 16px;
 }
 
-.vg-feature {
-    padding: 26px;
-    border: 1px solid var(--vg-border);
-    border-radius: var(--vg-radius);
-    background: var(--vg-surface);
-    box-shadow: var(--vg-shadow-sm);
-}
-
-.vg-feature h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
-    font-weight: 650;
-    letter-spacing: -0.01em;
-}
-
-.vg-feature p {
-    margin: 0;
-    font-size: 16px;
+.vg-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14px;
+    font-weight: 560;
     color: var(--vg-text-secondary);
 }
 
-.vg-feature .vg-tag {
+.vg-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.vg-dot-blue { background: var(--vg-icon-blue); box-shadow: 0 0 0 3px var(--vg-blue-soft); }
+.vg-dot-cyan { background: var(--vg-cyan); box-shadow: 0 0 0 3px var(--vg-cyan-soft); }
+.vg-dot-green { background: var(--vg-icon-green); box-shadow: 0 0 0 3px var(--vg-green-soft); }
+.vg-dot-pink { background: var(--vg-icon-pink); box-shadow: 0 0 0 3px var(--vg-pink-soft); }
+
+/* Problem section -------------------------------------------------------- */
+
+.vg-problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.vg-problem {
+    padding: 24px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius);
+    background: var(--vg-surface);
+}
+
+.vg-problem .vg-problem-num {
     display: inline-block;
-    margin-bottom: 12px;
-    padding: 3px 10px;
-    border-radius: 999px;
+    margin-bottom: 14px;
     font-size: 12px;
-    font-weight: 650;
-    letter-spacing: 0.02em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--vg-text-tertiary);
+}
+
+.vg-problem h3 {
+    margin: 0 0 8px;
+    font-size: 17.5px;
+    font-weight: 680;
+    letter-spacing: -0.01em;
+}
+
+.vg-problem p {
+    margin: 0;
+    font-size: 15.5px;
+    color: var(--vg-text-secondary);
+}
+
+/* What ViewGraph maps ---------------------------------------------------- */
+
+.vg-map-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.vg-map-card {
+    position: relative;
+    padding: 26px 24px 24px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius);
+    background: var(--vg-surface);
+    overflow: hidden;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.vg-map-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--vg-accent), transparent 92%);
+    opacity: 0.9;
+}
+
+.vg-map-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--vg-border-strong);
+    box-shadow: var(--vg-shadow-sm);
+}
+
+.vg-accent-blue { --vg-accent: var(--vg-blue); --vg-accent-soft: var(--vg-blue-soft); }
+.vg-accent-cyan { --vg-accent: var(--vg-cyan); --vg-accent-soft: var(--vg-cyan-soft); }
+.vg-accent-green { --vg-accent: var(--vg-green); --vg-accent-soft: var(--vg-green-soft); }
+.vg-accent-pink { --vg-accent: var(--vg-pink); --vg-accent-soft: var(--vg-pink-soft); }
+
+.vg-map-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    color: var(--vg-accent);
+    background: var(--vg-accent-soft);
+    border: 1px solid var(--vg-border);
+}
+
+.vg-map-card h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 680;
+    letter-spacing: -0.01em;
+}
+
+.vg-map-card p {
+    margin: 0;
+    font-size: 15.5px;
+    color: var(--vg-text-secondary);
+}
+
+.vg-map-card .vg-map-kicker {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
-    background: rgba(76, 70, 218, 0.12);
-    color: var(--vg-indigo);
+    color: var(--vg-accent);
 }
 
-.vg-tag-purple {
-    background: rgba(124, 77, 255, 0.14) !important;
-    color: var(--vg-purple) !important;
-}
-
-.vg-tag-green {
-    background: var(--vg-green-bg) !important;
-    color: var(--vg-green) !important;
-}
-
-/* Category badges -------------------------------------------------------- */
+/* Tags + badges ---------------------------------------------------------- */
 
 .vg-badge {
     display: inline-block;
     padding: 4px 11px;
     border-radius: 999px;
     font-size: 12.5px;
-    font-weight: 650;
+    font-weight: 680;
     letter-spacing: 0.01em;
-    background: rgba(76, 70, 218, 0.12);
-    color: var(--vg-indigo);
+    background: var(--vg-blue-soft);
+    color: var(--vg-blue);
 }
 
-.vg-badge-use {
-    background: rgba(76, 70, 218, 0.12);
-    color: var(--vg-indigo);
+.vg-badge-use { background: var(--vg-blue-soft); color: var(--vg-blue); }
+.vg-badge-arch { background: var(--vg-pink-soft); color: var(--vg-pink); }
+.vg-badge-behind { background: var(--vg-green-soft); color: var(--vg-green); }
+
+/* Use cases -------------------------------------------------------------- */
+
+.vg-usecase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
 }
 
-.vg-badge-arch {
-    background: rgba(124, 77, 255, 0.14);
-    color: var(--vg-purple);
+.vg-usecase {
+    display: block;
+    padding: 22px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius);
+    background: var(--vg-surface);
+    color: var(--vg-text);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.vg-badge-behind {
-    background: var(--vg-green-bg);
-    color: var(--vg-green);
+body.vg a.vg-usecase:hover {
+    color: var(--vg-text);
+    text-decoration: none;
+    transform: translateY(-2px);
+    border-color: var(--vg-accent, var(--vg-blue));
+    box-shadow: var(--vg-shadow-sm);
+}
+
+.vg-usecase .vg-usecase-icon {
+    display: inline-flex;
+    color: var(--vg-accent, var(--vg-blue));
+    margin-bottom: 12px;
+}
+
+.vg-usecase h3 {
+    margin: 0 0 6px;
+    font-size: 16.5px;
+    font-weight: 680;
+    letter-spacing: -0.01em;
+}
+
+.vg-usecase p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--vg-text-secondary);
+}
+
+.vg-usecase .vg-usecase-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 13.5px;
+    font-weight: 640;
+    color: var(--vg-accent, var(--vg-blue));
+}
+
+.vg-usecase-more svg {
+    transition: transform 0.18s ease;
+}
+
+body.vg a.vg-usecase:hover .vg-usecase-more svg {
+    transform: translateX(3px);
+}
+
+/* How it fits beside Xcode ----------------------------------------------- */
+
+.vg-fit {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.vg-fit-node {
+    position: relative;
+    padding: 22px;
+    border: 1px solid var(--vg-border);
+    border-radius: var(--vg-radius);
+    background: var(--vg-surface);
+}
+
+.vg-fit-node .vg-fit-role {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--vg-accent, var(--vg-blue));
+}
+
+.vg-fit-node h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 680;
+    letter-spacing: -0.01em;
+}
+
+.vg-fit-node p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--vg-text-secondary);
+}
+
+.vg-fit-node.vg-fit-viewgraph {
+    border-color: var(--vg-pink);
+    background: linear-gradient(180deg, var(--vg-pink-soft), var(--vg-surface));
+    box-shadow: var(--vg-shadow-sm);
+}
+
+.vg-fit-caption {
+    margin: 0;
+    max-width: 760px;
+    font-size: 16px;
+    color: var(--vg-text-secondary);
 }
 
 /* Blog index ------------------------------------------------------------- */
@@ -443,7 +879,7 @@ body.vg button:focus-visible {
 .vg-page-head h1 {
     margin: 0 0 14px;
     font-size: clamp(32px, 4.4vw, 44px);
-    font-weight: 750;
+    font-weight: 760;
     letter-spacing: -0.03em;
     line-height: 1.1;
 }
@@ -470,12 +906,13 @@ body.vg button:focus-visible {
     color: var(--vg-text-secondary);
     font: inherit;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 620;
     cursor: pointer;
+    transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
 }
 
 .vg-filter:hover {
-    border-color: var(--vg-text-secondary);
+    border-color: var(--vg-border-strong);
     color: var(--vg-text);
 }
 
@@ -498,7 +935,7 @@ body.vg button:focus-visible {
 .vg-category-group h2 {
     margin: 0 0 6px;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 720;
     letter-spacing: -0.015em;
 }
 
@@ -528,24 +965,24 @@ body.vg button:focus-visible {
 .vg-post-card:hover {
     transform: translateY(-2px);
     box-shadow: var(--vg-shadow);
-    border-color: var(--vg-text-secondary);
+    border-color: var(--vg-border-strong);
 }
 
-.vg-post-card a.vg-post-link {
+body.vg .vg-post-card a.vg-post-link {
     display: flex;
     flex-direction: column;
     height: 100%;
     color: inherit;
 }
 
-.vg-post-card a.vg-post-link:hover {
+body.vg .vg-post-card a.vg-post-link:hover {
     text-decoration: none;
     color: inherit;
 }
 
 .vg-post-card .vg-post-thumb {
     border-bottom: 1px solid var(--vg-border);
-    background: var(--vg-bg-top);
+    background: var(--vg-bg-2);
 }
 
 .vg-post-card .vg-post-thumb img {
@@ -559,6 +996,7 @@ body.vg button:focus-visible {
 .vg-post-body {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     padding: 20px 22px 22px;
     flex: 1;
@@ -567,7 +1005,7 @@ body.vg button:focus-visible {
 .vg-post-body h3 {
     margin: 0;
     font-size: 19px;
-    font-weight: 680;
+    font-weight: 700;
     letter-spacing: -0.015em;
     line-height: 1.28;
 }
@@ -581,7 +1019,7 @@ body.vg button:focus-visible {
 
 .vg-post-meta {
     font-size: 13.5px;
-    color: var(--vg-text-secondary);
+    color: var(--vg-text-tertiary);
 }
 
 /* Article ---------------------------------------------------------------- */
@@ -594,7 +1032,7 @@ body.vg button:focus-visible {
 .vg-article-head h1 {
     margin: 16px 0 16px;
     font-size: clamp(30px, 4.2vw, 42px);
-    font-weight: 750;
+    font-weight: 760;
     letter-spacing: -0.03em;
     line-height: 1.12;
     text-wrap: balance;
@@ -612,7 +1050,7 @@ body.vg button:focus-visible {
     flex-wrap: wrap;
     gap: 8px 16px;
     font-size: 14px;
-    color: var(--vg-text-secondary);
+    color: var(--vg-text-tertiary);
 }
 
 .vg-article-layout {
@@ -637,7 +1075,7 @@ body.vg button:focus-visible {
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--vg-text-secondary);
+    color: var(--vg-text-tertiary);
 }
 
 .vg-toc ol {
@@ -650,12 +1088,12 @@ body.vg button:focus-visible {
     margin-bottom: 7px;
 }
 
-.vg-toc a {
+body.vg .vg-toc a {
     color: var(--vg-text-secondary);
 }
 
-.vg-toc a:hover {
-    color: var(--vg-indigo);
+body.vg .vg-toc a:hover {
+    color: var(--vg-blue);
 }
 
 .vg-article-body {
@@ -677,7 +1115,7 @@ body.vg button:focus-visible {
     margin-top: 46px;
     margin-bottom: 0;
     font-size: 26px;
-    font-weight: 700;
+    font-weight: 720;
     letter-spacing: -0.02em;
     line-height: 1.25;
     scroll-margin-top: 84px;
@@ -687,7 +1125,7 @@ body.vg button:focus-visible {
     margin-top: 32px;
     margin-bottom: 0;
     font-size: 20px;
-    font-weight: 680;
+    font-weight: 700;
     letter-spacing: -0.015em;
     line-height: 1.3;
     scroll-margin-top: 84px;
@@ -713,13 +1151,13 @@ body.vg button:focus-visible {
 }
 
 .vg-prose strong {
-    font-weight: 680;
+    font-weight: 700;
 }
 
 .vg-prose blockquote {
     margin: 24px 0 0;
     padding: 4px 0 4px 20px;
-    border-left: 3px solid var(--vg-indigo);
+    border-left: 3px solid var(--vg-blue);
     color: var(--vg-text-secondary);
     font-style: normal;
 }
@@ -728,7 +1166,7 @@ body.vg button:focus-visible {
     padding: 2px 6px;
     border-radius: 6px;
     background: var(--vg-code-bg);
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-family: var(--vg-mono);
     font-size: 0.9em;
 }
 
@@ -763,9 +1201,9 @@ body.vg button:focus-visible {
     margin-top: 26px;
     padding: 18px 20px;
     border: 1px solid var(--vg-border);
-    border-left: 3px solid var(--vg-indigo);
+    border-left: 3px solid var(--vg-blue);
     border-radius: var(--vg-radius-sm);
-    background: rgba(76, 70, 218, 0.05);
+    background: var(--vg-blue-soft);
     font-size: 16px;
     line-height: 1.6;
 }
@@ -777,7 +1215,7 @@ body.vg button:focus-visible {
 
 .vg-callout-green {
     border-left-color: var(--vg-green);
-    background: var(--vg-green-bg);
+    background: var(--vg-green-soft);
 }
 
 /* Related + CTA ---------------------------------------------------------- */
@@ -791,7 +1229,7 @@ body.vg button:focus-visible {
 .vg-related h2 {
     margin: 0 0 20px;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 720;
     letter-spacing: -0.015em;
 }
 
@@ -800,7 +1238,7 @@ body.vg button:focus-visible {
     gap: 16px;
 }
 
-.vg-related-item {
+body.vg a.vg-related-item {
     display: block;
     padding: 18px 20px;
     border: 1px solid var(--vg-border);
@@ -809,8 +1247,8 @@ body.vg button:focus-visible {
     color: var(--vg-text);
 }
 
-.vg-related-item:hover {
-    border-color: var(--vg-text-secondary);
+body.vg a.vg-related-item:hover {
+    border-color: var(--vg-blue);
     text-decoration: none;
     color: var(--vg-text);
 }
@@ -819,7 +1257,7 @@ body.vg button:focus-visible {
     display: block;
     margin-bottom: 4px;
     font-size: 16.5px;
-    font-weight: 650;
+    font-weight: 680;
 }
 
 .vg-related-item span {
@@ -827,19 +1265,42 @@ body.vg button:focus-visible {
     color: var(--vg-text-secondary);
 }
 
+/* CTA block */
 .vg-cta {
+    position: relative;
     margin: 48px 0 0;
-    padding: 30px;
-    border-radius: var(--vg-radius);
+    padding: 34px;
+    border-radius: var(--vg-radius-lg);
     border: 1px solid var(--vg-border);
-    background: var(--vg-surface);
+    background:
+        radial-gradient(680px 240px at 12% -30%, var(--vg-glow-pink), transparent 60%),
+        radial-gradient(620px 240px at 92% 140%, var(--vg-glow-blue), transparent 62%),
+        var(--vg-surface);
     box-shadow: var(--vg-shadow-sm);
+    overflow: hidden;
+}
+
+.vg-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--vg-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--vg-grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    -webkit-mask-image: radial-gradient(100% 100% at 100% 0%, #000, transparent 70%);
+    mask-image: radial-gradient(100% 100% at 100% 0%, #000, transparent 70%);
+    pointer-events: none;
+}
+
+.vg-cta > * {
+    position: relative;
 }
 
 .vg-cta h2 {
     margin: 0 0 8px;
-    font-size: 21px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 720;
     letter-spacing: -0.015em;
 }
 
@@ -847,13 +1308,14 @@ body.vg button:focus-visible {
     margin: 0 0 18px;
     color: var(--vg-text-secondary);
     font-size: 16px;
+    max-width: 620px;
 }
 
 .vg-back {
     display: inline-block;
     margin-bottom: 8px;
     font-size: 14.5px;
-    font-weight: 600;
+    font-weight: 620;
 }
 
 /* Footer ----------------------------------------------------------------- */
@@ -867,22 +1329,22 @@ body.vg button:focus-visible {
 .vg-footer-inner {
     max-width: var(--vg-wide-width);
     margin: 0 auto;
-    padding: 44px 24px;
+    padding: 46px 24px;
     display: grid;
     grid-template-columns: 1.4fr 1fr 1fr;
     gap: 32px;
 }
 
-.vg-footer-brand {
+body.vg a.vg-footer-brand {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     font-size: 16px;
-    font-weight: 650;
+    font-weight: 680;
     color: var(--vg-text);
 }
 
-.vg-footer-brand:hover {
+body.vg a.vg-footer-brand:hover {
     color: var(--vg-text);
     text-decoration: none;
 }
@@ -890,7 +1352,7 @@ body.vg button:focus-visible {
 .vg-footer-brand img {
     width: 26px;
     height: 26px;
-    border-radius: 7px;
+    border-radius: 8px;
 }
 
 .vg-footer p {
@@ -906,7 +1368,7 @@ body.vg button:focus-visible {
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--vg-text-secondary);
+    color: var(--vg-text-tertiary);
 }
 
 .vg-footer nav ul {
@@ -919,13 +1381,13 @@ body.vg button:focus-visible {
     margin-top: 8px;
 }
 
-.vg-footer nav a {
+body.vg .vg-footer nav a {
     font-size: 14.5px;
     color: var(--vg-text-secondary);
 }
 
-.vg-footer nav a:hover {
-    color: var(--vg-indigo);
+body.vg .vg-footer nav a:hover {
+    color: var(--vg-text);
 }
 
 .vg-footer-copy {
@@ -934,10 +1396,22 @@ body.vg button:focus-visible {
     padding-top: 22px;
     border-top: 1px solid var(--vg-divider);
     font-size: 13px;
-    color: var(--vg-text-secondary);
+    color: var(--vg-text-tertiary);
 }
 
 /* Responsive ------------------------------------------------------------- */
+
+@media (max-width: 960px) {
+    .vg-map-grid,
+    .vg-problem-grid,
+    .vg-fit {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vg-hero-graph {
+        display: none;
+    }
+}
 
 @media (max-width: 900px) {
     .vg-article-layout {
@@ -965,19 +1439,26 @@ body.vg button:focus-visible {
 
     .vg-header-inner {
         padding: 10px 16px;
-        gap: 10px;
+        flex-wrap: wrap;
+        gap: 8px 12px;
     }
 
-    .vg-brand-sub {
+    .vg-version {
         display: none;
     }
 
     .vg-nav {
-        gap: 15px;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        row-gap: 8px;
     }
 
-    .vg-nav a {
-        font-size: 13px;
+    body.vg .vg-nav a {
+        font-size: 13.5px;
+    }
+
+    body.vg .vg-nav a.vg-nav-cta {
+        padding: 6px 12px;
     }
 
     .vg-container,
@@ -993,7 +1474,9 @@ body.vg button:focus-visible {
         padding: 48px 0;
     }
 
-    .vg-features,
+    .vg-map-grid,
+    .vg-problem-grid,
+    .vg-fit,
     .vg-post-grid {
         grid-template-columns: 1fr;
     }
@@ -1015,7 +1498,7 @@ body.vg button:focus-visible {
     }
 
     .vg-cta {
-        padding: 24px 20px;
+        padding: 26px 20px;
     }
 
     .vg-footer-inner {

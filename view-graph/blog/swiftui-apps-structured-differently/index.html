@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0B0C12" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#080B14" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <title>Why every SwiftUI app is structured differently — and how to visualize it — ViewGraph</title>
     <meta name="description" content="SwiftUI imposes no structure, so every team invents one. A tour of NavigationStack, router/coordinator, feature-module and composition patterns — and exactly what static analysis can and cannot infer about them." />
@@ -31,14 +31,15 @@
     <header class="vg-header">
         <div class="vg-header-inner">
             <a class="vg-brand" href="/view-graph/">
-                <img src="/view-graph/assets/favicon.png" alt="" width="26" height="26" />
-                ViewGraph <span class="vg-brand-sub">Developer</span>
+                <img src="/view-graph/assets/favicon.png" alt="" width="27" height="27" />
+                ViewGraph <span class="vg-version">Alpha</span>
             </a>
             <nav class="vg-nav" aria-label="Primary">
                 <a href="/view-graph/">Home</a>
                 <a href="/view-graph/blog/">Blog</a>
+                <a href="/view-graph/#use-cases">Use Cases</a>
                 <a href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
+                <a class="vg-nav-cta" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">Download</a>
             </nav>
         </div>
     </header>
@@ -230,7 +231,11 @@ struct RootView: View {
                     </p>
 
                     <figure class="vg-shot">
-                        <div class="vg-shot-frame">
+                        <div class="vg-window">
+                            <div class="vg-window-bar">
+                                <span class="vg-window-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                                <span class="vg-window-title">ViewGraph — Overview</span>
+                            </div>
                             <img src="/view-graph/assets/viewgraph-components.jpg" width="1600" height="1048"
                                  alt="ViewGraph's Overview showing feature sections such as Dashboard Screen, Editor and Widget Screen, each with a component count, plus a preview-coverage summary." loading="lazy" />
                         </div>
@@ -332,6 +337,7 @@ struct RootView: View {
                 <ul>
                     <li><a href="/view-graph/">Home</a></li>
                     <li><a href="/view-graph/blog/">Blog</a></li>
+                    <li><a href="/view-graph/#use-cases">Use Cases</a></li>
                 </ul>
             </nav>
             <nav aria-label="Project">
