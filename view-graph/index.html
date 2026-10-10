@@ -46,39 +46,27 @@
     <main id="main" class="vg-main">
         <section class="vg-hero vg-container">
             <svg class="vg-hero-graph" viewBox="0 0 420 340" fill="none" aria-hidden="true" focusable="false">
-                <g stroke-width="2.5" stroke-linecap="round">
-                    <path d="M120 96 V160" stroke="url(#vg-edge-1)" />
-                    <path d="M120 160 H300 V235" stroke="url(#vg-edge-2)" />
-                    <path d="M120 160 V235" stroke="#14F76C" opacity="0.75" />
-                    <path d="M315 202 V235" stroke="#0E99FC" opacity="0.75" />
+                <g class="vg-graph-edges" stroke-width="2.5" stroke-linecap="round">
+                    <path d="M120 96 V160" />
+                    <path d="M120 160 H300 V235" />
+                    <path d="M120 160 V235" opacity="0.7" />
+                    <path d="M315 202 V235" opacity="0.7" />
                 </g>
-                <g>
-                    <rect x="60" y="44" width="120" height="52" rx="13" stroke="#FD4FA6" stroke-width="3" />
-                    <rect x="255" y="150" width="120" height="52" rx="13" stroke="#0E99FC" stroke-width="3" />
-                    <rect x="60" y="235" width="120" height="52" rx="13" stroke="#14F76C" stroke-width="3" />
-                    <rect x="240" y="235" width="120" height="52" rx="13" stroke="#0E99FC" stroke-width="3" opacity="0.85" />
+                <g class="vg-graph-nodes" stroke-width="3">
+                    <rect x="60" y="44" width="120" height="52" rx="13" opacity="0.95" />
+                    <rect x="255" y="150" width="120" height="52" rx="13" opacity="0.7" />
+                    <rect x="60" y="235" width="120" height="52" rx="13" opacity="0.55" />
+                    <rect x="240" y="235" width="120" height="52" rx="13" opacity="0.4" />
                 </g>
-                <defs>
-                    <linearGradient id="vg-edge-1" x1="120" y1="96" x2="120" y2="160" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#FD4FA6" />
-                        <stop offset="1" stop-color="#0E99FC" />
-                    </linearGradient>
-                    <linearGradient id="vg-edge-2" x1="120" y1="160" x2="300" y2="235" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#0E99FC" />
-                        <stop offset="1" stop-color="#14F76C" />
-                    </linearGradient>
-                </defs>
             </svg>
 
             <span class="vg-eyebrow">macOS · SwiftUI · runs locally</span>
             <h1>Understand your SwiftUI app before you change it.</h1>
             <p class="vg-lede">
                 ViewGraph reads a SwiftUI project and draws the view graph: the
-                <span class="vg-em-blue">screens</span> that exist, the
-                <span class="vg-em-green">components</span> they are built from,
-                how they <span class="vg-em-blue">connect</span>, what their
-                <span class="vg-em-green">previews</span> render, and what a
-                commit <span class="vg-em-pink">actually changes</span>.
+                screens that exist, the components they are built from, how they
+                connect, what their previews render, and what a commit
+                <span class="vg-em-accent">actually changes</span>.
             </p>
             <p class="vg-hero-note">
                 A comprehension tool that sits beside Xcode and your AI
@@ -87,7 +75,7 @@
             </p>
             <div class="vg-actions">
                 <a class="vg-btn vg-btn-primary" href="https://github.com/coper101/ViewGraph-Releases/releases/tag/v0.1.0-alpha.2" target="_blank" rel="noopener">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.365 1.43c0 1.14-.42 2.2-1.12 3.02-.84.98-2.2 1.74-3.32 1.65-.14-1.1.42-2.26 1.1-3.02.78-.87 2.2-1.55 3.34-1.65zM20.9 17.2c-.62 1.42-.92 2.05-1.72 3.3-1.12 1.75-2.7 3.93-4.65 3.95-1.74.02-2.19-1.14-4.55-1.13-2.36.01-2.86 1.16-4.6 1.14-1.96-.02-3.46-1.98-4.58-3.72C-2.02 16.2.55 10.3 3.9 10.3c1.5 0 2.55.83 3.44.83.86 0 1.48-.83 3.2-.83 1.18 0 3.1.83 3.62 1.9-3.18 1.74-2.66 6.2.74 7.4z" /></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" /></svg>
                     Download for macOS
                 </a>
                 <a class="vg-btn vg-btn-secondary" href="https://github.com/coper101/ViewGraph-Releases" target="_blank" rel="noopener">
@@ -109,11 +97,11 @@
                     <img src="/view-graph/assets/viewgraph-hero.jpg" width="1800" height="1179"
                          alt="The ViewGraph window showing a SwiftUI project's screens arranged left to right by navigation level, each screen card containing a rendered preview." />
                 </div>
-                <div class="vg-shot-legend">
-                    <span class="vg-legend-item"><span class="vg-dot vg-dot-blue" aria-hidden="true"></span>Screens</span>
-                    <span class="vg-legend-item"><span class="vg-dot vg-dot-green" aria-hidden="true"></span>Components</span>
-                    <span class="vg-legend-item"><span class="vg-dot vg-dot-cyan" aria-hidden="true"></span>Previews</span>
-                    <span class="vg-legend-item"><span class="vg-dot vg-dot-pink" aria-hidden="true"></span>Commit impact</span>
+                <div class="vg-shot-legend" aria-label="Structure the canvas can show">
+                    <span class="vg-legend-item">Screens</span>
+                    <span class="vg-legend-item">Components</span>
+                    <span class="vg-legend-item">Previews</span>
+                    <span class="vg-legend-item">Commit impact</span>
                 </div>
                 <figcaption>
                     A real ViewGraph session on a SwiftUI project. Screens are laid out
@@ -168,7 +156,7 @@
             </div>
 
             <div class="vg-map-grid">
-                <article class="vg-map-card vg-accent-blue">
+                <article class="vg-map-card">
                     <span class="vg-map-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2" /><rect x="3" y="14" width="18" height="7" rx="2" /></svg>
                     </span>
@@ -177,7 +165,7 @@
                     <p>Every screen and the path between them. Sheets, pushes, covers and the app root are drawn as distinct connections.</p>
                 </article>
 
-                <article class="vg-map-card vg-accent-green">
+                <article class="vg-map-card">
                     <span class="vg-map-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6" /><rect x="14" y="3" width="7" height="7" rx="1.6" /><rect x="3" y="14" width="7" height="7" rx="1.6" /><rect x="14" y="14" width="7" height="7" rx="1.6" /></svg>
                     </span>
@@ -186,7 +174,7 @@
                     <p>Select a component to highlight every screen that uses it; select a screen to see the components it is built from.</p>
                 </article>
 
-                <article class="vg-map-card vg-accent-cyan">
+                <article class="vg-map-card">
                     <span class="vg-map-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.7" /><circle cx="18" cy="18" r="2.7" /><path d="M7.9 7.9 16.1 16.1" /></svg>
                     </span>
@@ -195,7 +183,7 @@
                     <p>Edges for literal navigation, typed destinations, composition and reuse — with unresolved relationships reported, not hidden.</p>
                 </article>
 
-                <article class="vg-map-card vg-accent-green">
+                <article class="vg-map-card">
                     <span class="vg-map-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.6" /><path d="M10.6 9.4v5.2l4.2-2.6z" fill="currentColor" stroke="none" /></svg>
                     </span>
@@ -204,7 +192,7 @@
                     <p>Authored previews are discovered, rendered through the Simulator and attached to the graph, cached per revision.</p>
                 </article>
 
-                <article class="vg-map-card vg-accent-pink">
+                <article class="vg-map-card">
                     <span class="vg-map-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4" /><circle cx="18" cy="6" r="2.4" /><path d="M6 8.4v6.6a2.4 2.4 0 0 0 2.4 2.4H18" /><path d="M18 8.4v3" /><path d="M15.6 9.4 18 11.8l2.4-2.4" /></svg>
                     </span>
@@ -213,7 +201,7 @@
                     <p>Compare two revisions to see which screens, components and files a commit touches — before and after, without reading the whole diff.</p>
                 </article>
 
-                <article class="vg-map-card vg-accent-pink">
+                <article class="vg-map-card">
                     <span class="vg-map-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5" /><path d="M4 12h9" /><path d="M4 19h14" /><circle cx="16" cy="7" r="2.4" /><circle cx="9" cy="12" r="2.4" /></svg>
                     </span>
@@ -231,7 +219,7 @@
             </div>
 
             <div class="vg-usecase-grid">
-                <a class="vg-usecase vg-accent-blue" href="/view-graph/blog/joining-a-new-ios-team/">
+                <a class="vg-usecase" href="/view-graph/blog/joining-a-new-ios-team/">
                     <span class="vg-usecase-icon" aria-hidden="true">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0" /><path d="M16 6.5a3 3 0 0 1 0 5.4" /><path d="M17.5 20a5.5 5.5 0 0 0-3-4.9" /></svg>
                     </span>
@@ -242,7 +230,7 @@
                     </span>
                 </a>
 
-                <div class="vg-usecase vg-accent-cyan">
+                <div class="vg-usecase">
                     <span class="vg-usecase-icon" aria-hidden="true">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v5l3.5 2" /><circle cx="12" cy="12" r="8.5" /></svg>
                     </span>
@@ -250,7 +238,7 @@
                     <p>The mental map you built a year ago is gone. Open the project and the structure is drawn again in seconds.</p>
                 </div>
 
-                <div class="vg-usecase vg-accent-green">
+                <div class="vg-usecase">
                     <span class="vg-usecase-icon" aria-hidden="true">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5 12 4l8 3.5-8 3.5z" /><path d="M4 7.5V16l8 4 8-4V7.5" /><path d="M12 11v9" /></svg>
                     </span>
@@ -258,7 +246,7 @@
                     <p>A purchased template or vendor drop gives you no onboarding. ViewGraph classifies screens, components and widgets for you.</p>
                 </div>
 
-                <div class="vg-usecase vg-accent-pink">
+                <div class="vg-usecase">
                     <span class="vg-usecase-icon" aria-hidden="true">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4" /><circle cx="6" cy="18" r="2.4" /><circle cx="18" cy="12" r="2.4" /><path d="M6 8.4v7.2" /><path d="M8.4 6H14a2 2 0 0 1 2 2v1.8" /><path d="M8.4 18H14a2 2 0 0 0 2-2v-1.8" /></svg>
                     </span>
@@ -266,7 +254,7 @@
                     <p>See which screens and previews a change reaches before you read the diff — so review starts with impact, not line count.</p>
                 </div>
 
-                <div class="vg-usecase vg-accent-blue">
+                <div class="vg-usecase">
                     <span class="vg-usecase-icon" aria-hidden="true">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4" /><rect x="5" y="7" width="14" height="10" rx="3" /><path d="M9 20h6" /><path d="M12 17v3" /></svg>
                     </span>
@@ -283,17 +271,17 @@
             </div>
 
             <div class="vg-fit">
-                <div class="vg-fit-node vg-accent-blue">
+                <div class="vg-fit-node">
                     <span class="vg-fit-role">Build &amp; run</span>
                     <h3>Xcode</h3>
                     <p>Compiles, runs and debugs the app. The source of truth for behaviour.</p>
                 </div>
-                <div class="vg-fit-node vg-fit-viewgraph vg-accent-pink">
+                <div class="vg-fit-node vg-fit-viewgraph">
                     <span class="vg-fit-role">Structure &amp; impact</span>
                     <h3>ViewGraph</h3>
                     <p>Draws the screen graph, component reuse, previews and commit impact from your source.</p>
                 </div>
-                <div class="vg-fit-node vg-accent-green">
+                <div class="vg-fit-node">
                     <span class="vg-fit-role">Explain &amp; edit</span>
                     <h3>AI assistant</h3>
                     <p>Explains functions and proposes changes — better when it has an accurate map to reason against.</p>

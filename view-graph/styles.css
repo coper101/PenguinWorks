@@ -3,33 +3,23 @@
    A self-contained design system for the /view-graph section. Opt in with
    <body class="vg">.
 
-   Brand palette is sampled from the ViewGraph app icon:
-     pink  #FD4FA6  changed / attention
-     blue  #0E99FC  structure
-     green #14F76C  connections / loaded
-   The signature theme is a deep charcoal/navy foundation with restrained
-   accent glows and graph-grid textures. A light theme is provided too.
+   The site uses a single primary accent — the ViewGraph app icon's pink/red —
+   on a deep charcoal/navy foundation with neutral surfaces, borders and text.
+   The multi-color graph palette lives only inside real product screenshots.
+   A light theme is provided too.
    ========================================================================== */
 
 :root {
     color-scheme: dark;
 
-    /* Brand — raw icon colors (decorative) */
-    --vg-icon-pink: #FD4FA6;
-    --vg-icon-blue: #0E99FC;
-    --vg-icon-green: #14F76C;
-
-    /* Brand — text-safe accents (dark theme) */
-    --vg-blue: #4CA8FF;
-    --vg-blue-hover: #7FC2FF;
-    --vg-cyan: #3ED2E0;
-    --vg-green: #2CE884;
-    --vg-pink: #FF5FAE;
-
-    --vg-blue-soft: rgba(14, 153, 252, 0.16);
-    --vg-cyan-soft: rgba(62, 210, 224, 0.14);
-    --vg-green-soft: rgba(20, 247, 108, 0.14);
-    --vg-pink-soft: rgba(253, 79, 166, 0.16);
+    /* Website UI accent — one primary pink/red sampled from the ViewGraph
+       app icon. Every interactive or highlighted UI element uses this single
+       hue; neutral surfaces, borders and text carry everything else. The
+       product's own graph colors appear only inside real screenshots. */
+    --vg-accent: #FF5FAE;
+    --vg-accent-hover: #FF86C3;
+    --vg-accent-press: #F0499E;
+    --vg-accent-soft: rgba(253, 79, 166, 0.16);
 
     /* Surfaces */
     --vg-bg: #080B14;
@@ -45,9 +35,7 @@
     --vg-divider: rgba(255, 255, 255, 0.12);
     --vg-grid-line: rgba(255, 255, 255, 0.045);
 
-    --vg-glow-blue: rgba(14, 153, 252, 0.16);
-    --vg-glow-pink: rgba(253, 79, 166, 0.14);
-    --vg-glow-green: rgba(20, 247, 108, 0.10);
+    --vg-glow-accent: rgba(253, 79, 166, 0.16);
 
     /* Text */
     --vg-text: #ECF0FA;
@@ -61,7 +49,7 @@
     --vg-btn-primary-bg-hover: linear-gradient(135deg, #FF93CA 0%, #FF54A4 58%, #FF67AD 100%);
     --vg-btn-primary-shadow: 0 8px 24px rgba(255, 63, 151, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 
-    --vg-focus: #9CCEFF;
+    --vg-focus: #FF86C3;
 
     --vg-radius: 16px;
     --vg-radius-sm: 11px;
@@ -79,16 +67,10 @@
     :root {
         color-scheme: light;
 
-        --vg-blue: #0A6FD0;
-        --vg-blue-hover: #0857A6;
-        --vg-cyan: #0C7C93;
-        --vg-green: #0E8A3E;
-        --vg-pink: #CE2A79;
-
-        --vg-blue-soft: rgba(10, 111, 208, 0.10);
-        --vg-cyan-soft: rgba(12, 124, 147, 0.10);
-        --vg-green-soft: rgba(14, 138, 62, 0.10);
-        --vg-pink-soft: rgba(206, 42, 121, 0.10);
+        --vg-accent: #CE2A79;
+        --vg-accent-hover: #B01F66;
+        --vg-accent-press: #97194F;
+        --vg-accent-soft: rgba(206, 42, 121, 0.10);
 
         --vg-bg: #F5F7FC;
         --vg-bg-2: #FFFFFF;
@@ -103,9 +85,7 @@
         --vg-divider: rgba(15, 23, 42, 0.12);
         --vg-grid-line: rgba(15, 23, 42, 0.045);
 
-        --vg-glow-blue: rgba(10, 111, 208, 0.10);
-        --vg-glow-pink: rgba(206, 42, 121, 0.09);
-        --vg-glow-green: rgba(14, 138, 62, 0.08);
+        --vg-glow-accent: rgba(206, 42, 121, 0.09);
 
         --vg-text: #0F1524;
         --vg-text-secondary: #4E586F;
@@ -114,7 +94,7 @@
         --vg-btn-primary-text: #1B0411;
         --vg-btn-primary-shadow: 0 8px 22px rgba(255, 63, 151, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 
-        --vg-focus: #0A6FD0;
+        --vg-focus: #CE2A79;
 
         --vg-shadow: 0 18px 46px rgba(15, 23, 42, 0.12);
         --vg-shadow-sm: 0 3px 14px rgba(15, 23, 42, 0.08);
@@ -141,8 +121,7 @@ body.vg {
     color: var(--vg-text);
     background-color: var(--vg-bg);
     background-image:
-        radial-gradient(1000px 560px at 82% -12%, var(--vg-glow-blue), transparent 62%),
-        radial-gradient(820px 480px at 4% 2%, var(--vg-glow-pink), transparent 60%),
+        radial-gradient(900px 520px at 84% -14%, var(--vg-glow-accent), transparent 62%),
         linear-gradient(180deg, var(--vg-bg-2) 0%, var(--vg-bg) 640px);
     background-repeat: no-repeat;
     -webkit-font-smoothing: antialiased;
@@ -156,13 +135,13 @@ body.vg img {
 }
 
 body.vg a {
-    color: var(--vg-blue);
+    color: var(--vg-accent);
     text-decoration: none;
     transition: color 0.18s ease;
 }
 
 body.vg a:hover {
-    color: var(--vg-blue-hover);
+    color: var(--vg-accent-hover);
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -174,7 +153,7 @@ body.vg :focus-visible {
 }
 
 ::selection {
-    background: var(--vg-pink-soft);
+    background: var(--vg-accent-soft);
     color: var(--vg-text);
 }
 
@@ -379,6 +358,11 @@ body.vg .vg-nav a.vg-nav-cta:focus-visible {
     pointer-events: none;
 }
 
+/* Decorative hero graph uses the single UI accent plus neutral edges. It is
+   an abstraction, not a claim about the product's own graph colors. */
+.vg-hero-graph .vg-graph-nodes { stroke: var(--vg-accent); }
+.vg-hero-graph .vg-graph-edges { stroke: var(--vg-text-tertiary); }
+
 .vg-hero h1 {
     margin: 0 0 22px;
     max-width: 900px;
@@ -405,9 +389,7 @@ body.vg .vg-nav a.vg-nav-cta:focus-visible {
 }
 
 /* Inline brand emphasis */
-.vg-em-blue { color: var(--vg-blue); font-weight: 620; }
-.vg-em-green { color: var(--vg-green); font-weight: 620; }
-.vg-em-pink { color: var(--vg-pink); font-weight: 620; }
+.vg-em-accent { color: var(--vg-accent); font-weight: 620; }
 
 /* Buttons ---------------------------------------------------------------- */
 
@@ -458,6 +440,7 @@ body.vg button.vg-btn-primary:focus-visible {
 body.vg a.vg-btn-primary:active,
 body.vg button.vg-btn-primary:active {
     color: var(--vg-btn-primary-text);
+    background: var(--vg-accent-press);
     transform: translateY(1px);
     box-shadow: 0 4px 14px rgba(255, 63, 151, 0.30);
 }
@@ -483,7 +466,7 @@ body.vg a.vg-btn-secondary:hover,
 body.vg a.vg-btn-secondary:focus-visible {
     color: var(--vg-text);
     background: var(--vg-surface-2);
-    border-color: var(--vg-blue);
+    border-color: var(--vg-accent);
     text-decoration: none;
 }
 
@@ -520,8 +503,8 @@ body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
 
 /* Product screenshot ----------------------------------------------------- */
 
-.vg-hero-shot {
-    margin: 46px 0 0;
+.vg-hero .vg-hero-shot {
+    margin: 84px 0 0;
 }
 
 .vg-shot {
@@ -612,17 +595,14 @@ body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
     color: var(--vg-text-secondary);
 }
 
-.vg-dot {
-    width: 9px;
-    height: 9px;
+.vg-legend-item::before {
+    content: "";
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     flex: none;
+    background: var(--vg-text-tertiary);
 }
-
-.vg-dot-blue { background: var(--vg-icon-blue); box-shadow: 0 0 0 3px var(--vg-blue-soft); }
-.vg-dot-cyan { background: var(--vg-cyan); box-shadow: 0 0 0 3px var(--vg-cyan-soft); }
-.vg-dot-green { background: var(--vg-icon-green); box-shadow: 0 0 0 3px var(--vg-green-soft); }
-.vg-dot-pink { background: var(--vg-icon-pink); box-shadow: 0 0 0 3px var(--vg-pink-soft); }
 
 /* Problem section -------------------------------------------------------- */
 
@@ -694,11 +674,6 @@ body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
     box-shadow: var(--vg-shadow-sm);
 }
 
-.vg-accent-blue { --vg-accent: var(--vg-blue); --vg-accent-soft: var(--vg-blue-soft); }
-.vg-accent-cyan { --vg-accent: var(--vg-cyan); --vg-accent-soft: var(--vg-cyan-soft); }
-.vg-accent-green { --vg-accent: var(--vg-green); --vg-accent-soft: var(--vg-green-soft); }
-.vg-accent-pink { --vg-accent: var(--vg-pink); --vg-accent-soft: var(--vg-pink-soft); }
-
 .vg-map-icon {
     display: inline-flex;
     align-items: center;
@@ -732,7 +707,7 @@ body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--vg-accent);
+    color: var(--vg-text-tertiary);
 }
 
 /* Tags + badges ---------------------------------------------------------- */
@@ -744,13 +719,11 @@ body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
     font-size: 12.5px;
     font-weight: 680;
     letter-spacing: 0.01em;
-    background: var(--vg-blue-soft);
-    color: var(--vg-blue);
+    background: var(--vg-accent-soft);
+    color: var(--vg-accent);
 }
 
-.vg-badge-use { background: var(--vg-blue-soft); color: var(--vg-blue); }
-.vg-badge-arch { background: var(--vg-pink-soft); color: var(--vg-pink); }
-.vg-badge-behind { background: var(--vg-green-soft); color: var(--vg-green); }
+/* Category badges share the single accent — the label carries the meaning. */
 
 /* Use cases -------------------------------------------------------------- */
 
@@ -770,18 +743,27 @@ body.vg a.vg-btn-ghost:hover .vg-btn-arrow {
     transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
+body.vg a.vg-usecase {
+    color: var(--vg-text);
+}
+
 body.vg a.vg-usecase:hover {
     color: var(--vg-text);
     text-decoration: none;
     transform: translateY(-2px);
-    border-color: var(--vg-accent, var(--vg-blue));
+    border-color: var(--vg-accent);
     box-shadow: var(--vg-shadow-sm);
 }
 
 .vg-usecase .vg-usecase-icon {
     display: inline-flex;
-    color: var(--vg-accent, var(--vg-blue));
+    color: var(--vg-text-secondary);
     margin-bottom: 12px;
+    transition: color 0.18s ease;
+}
+
+body.vg a.vg-usecase:hover .vg-usecase-icon {
+    color: var(--vg-accent);
 }
 
 .vg-usecase h3 {
@@ -804,7 +786,7 @@ body.vg a.vg-usecase:hover {
     margin-top: 12px;
     font-size: 13.5px;
     font-weight: 640;
-    color: var(--vg-accent, var(--vg-blue));
+    color: var(--vg-accent);
 }
 
 .vg-usecase-more svg {
@@ -839,7 +821,7 @@ body.vg a.vg-usecase:hover .vg-usecase-more svg {
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--vg-accent, var(--vg-blue));
+    color: var(--vg-text-tertiary);
 }
 
 .vg-fit-node h3 {
@@ -855,10 +837,16 @@ body.vg a.vg-usecase:hover .vg-usecase-more svg {
     color: var(--vg-text-secondary);
 }
 
+/* ViewGraph is the emphasised middle card; Xcode and the AI assistant stay
+   neutral. */
 .vg-fit-node.vg-fit-viewgraph {
-    border-color: var(--vg-pink);
-    background: linear-gradient(180deg, var(--vg-pink-soft), var(--vg-surface));
+    border-color: var(--vg-accent);
+    background: linear-gradient(180deg, var(--vg-accent-soft), var(--vg-surface));
     box-shadow: var(--vg-shadow-sm);
+}
+
+.vg-fit-node.vg-fit-viewgraph .vg-fit-role {
+    color: var(--vg-accent);
 }
 
 .vg-fit-caption {
@@ -1093,7 +1081,7 @@ body.vg .vg-toc a {
 }
 
 body.vg .vg-toc a:hover {
-    color: var(--vg-blue);
+    color: var(--vg-accent);
 }
 
 .vg-article-body {
@@ -1157,7 +1145,7 @@ body.vg .vg-toc a:hover {
 .vg-prose blockquote {
     margin: 24px 0 0;
     padding: 4px 0 4px 20px;
-    border-left: 3px solid var(--vg-blue);
+    border-left: 3px solid var(--vg-accent);
     color: var(--vg-text-secondary);
     font-style: normal;
 }
@@ -1201,9 +1189,9 @@ body.vg .vg-toc a:hover {
     margin-top: 26px;
     padding: 18px 20px;
     border: 1px solid var(--vg-border);
-    border-left: 3px solid var(--vg-blue);
+    border-left: 3px solid var(--vg-accent);
     border-radius: var(--vg-radius-sm);
-    background: var(--vg-blue-soft);
+    background: var(--vg-accent-soft);
     font-size: 16px;
     line-height: 1.6;
 }
@@ -1211,11 +1199,6 @@ body.vg .vg-toc a:hover {
 .vg-callout strong {
     display: block;
     margin-bottom: 4px;
-}
-
-.vg-callout-green {
-    border-left-color: var(--vg-green);
-    background: var(--vg-green-soft);
 }
 
 /* Related + CTA ---------------------------------------------------------- */
@@ -1248,7 +1231,7 @@ body.vg a.vg-related-item {
 }
 
 body.vg a.vg-related-item:hover {
-    border-color: var(--vg-blue);
+    border-color: var(--vg-accent);
     text-decoration: none;
     color: var(--vg-text);
 }
@@ -1273,8 +1256,7 @@ body.vg a.vg-related-item:hover {
     border-radius: var(--vg-radius-lg);
     border: 1px solid var(--vg-border);
     background:
-        radial-gradient(680px 240px at 12% -30%, var(--vg-glow-pink), transparent 60%),
-        radial-gradient(620px 240px at 92% 140%, var(--vg-glow-blue), transparent 62%),
+        radial-gradient(680px 240px at 12% -30%, var(--vg-glow-accent), transparent 60%),
         var(--vg-surface);
     box-shadow: var(--vg-shadow-sm);
     overflow: hidden;
