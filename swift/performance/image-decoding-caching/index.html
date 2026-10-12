@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Image Decoding and Caching — Swift Developer Hub</title>
+    <meta name="description" content="Decode images off the main thread, downsample to display size, and cache decoded results." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/performance/image-decoding-caching/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Image Decoding and Caching — Swift Developer Hub" />
+    <meta property="og:description" content="Decode images off the main thread, downsample to display size, and cache decoded results." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/performance/image-decoding-caching/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Image Decoding and Caching — Swift Developer Hub" />
+    <meta name="twitter:description" content="Decode images off the main thread, downsample to display size, and cache decoded results." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Image Decoding and Caching","description":"Decode images off the main thread, downsample to display size, and cache decoded results.","about":["performance","images","caching","downsample"],"datePublished":"2026-01-15","dateModified":"2026-09-30","inLanguage":"en","publisher":{"@type":"Organization","name":"PenguinWorks"},"keywords":"performance, images, caching, downsample"}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar" data-sidebar aria-label="Documentation">
+            <nav class="sidebar-nav">
+                <p class="sidebar-label">Documentation</p>
+            <details class="nav-group">
+                <summary><span>Swift Fundamentals</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/language/variables-constants-types/">Variables, Constants and Types</a></li>
+                    <li><a href="/swift/language/optionals/">Optionals and Optional Binding</a></li>
+                    <li><a href="/swift/language/structs-vs-classes/">Structs vs Classes</a></li>
+                    <li><a href="/swift/language/value-vs-reference/">Value vs Reference Semantics</a></li>
+                    <li><a href="/swift/language/enums-associated-values/">Enums and Associated Values</a></li>
+                    <li><a href="/swift/language/protocols-extensions/">Protocols and Extensions</a></li>
+                    <li><a href="/swift/language/generics/">Generics</a></li>
+                    <li><a href="/swift/language/closures-capture-lists/">Closures and Capture Lists</a></li>
+                    <li><a href="/swift/language/error-handling/">Error Handling</a></li>
+                    <li><a href="/swift/language/access-control/">Access Control</a></li>
+                    <li><a href="/swift/language/property-wrappers/">Property Wrappers</a></li>
+                    <li><a href="/swift/language/memory-management-arc/">Memory Management and ARC</a></li>
+                    <li><a href="/swift/language/copy-on-write/">Copy-on-Write</a></li>
+                    <li><a href="/swift/language/existentials-opaque-types/">Existentials and Opaque Types</a></li>
+                    <li><a href="/swift/language/advanced-type-system/">Advanced Type System Concepts</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/language/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>SwiftUI</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/swiftui/view-lifecycle-identity/">View Lifecycle and Identity</a></li>
+                    <li><a href="/swift/swiftui/state-management/">State Management</a></li>
+                    <li><a href="/swift/swiftui/state-binding-observable-environment/">@State, @Binding, @Observable and @Environment</a></li>
+                    <li><a href="/swift/swiftui/layout-system-geometryreader/">Layout System and GeometryReader</a></li>
+                    <li><a href="/swift/swiftui/navigationstack-navigationpath/">NavigationStack and NavigationPath</a></li>
+                    <li><a href="/swift/swiftui/animations-transitions/">Animations and Transitions</a></li>
+                    <li><a href="/swift/swiftui/custom-layouts-modifiers/">Custom Layouts and Modifiers</a></li>
+                    <li><a href="/swift/swiftui/lists-grids-lazy-containers/">Lists, Grids and Lazy Containers</a></li>
+                    <li><a href="/swift/swiftui/view-performance-invalidation/">View Performance and Invalidation</a></li>
+                    <li><a href="/swift/swiftui/accessibility/">Accessibility</a></li>
+                    <li><a href="/swift/swiftui/widgets-app-intents/">Widgets and App Intents</a></li>
+                    <li><a href="/swift/swiftui/uikit-interoperability/">UIKit Interoperability</a></li>
+                    <li><a href="/swift/swiftui/common-swiftui-mistakes/">Common SwiftUI Mistakes</a></li>
+                    <li><a href="/swift/swiftui/modern-swiftui-patterns/">Modern SwiftUI Patterns</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/swiftui/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Concurrency</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/concurrency/async-await/">async/await</a></li>
+                    <li><a href="/swift/concurrency/task-taskgroup/">Task and TaskGroup</a></li>
+                    <li><a href="/swift/concurrency/actors-isolation/">Actors and Isolation</a></li>
+                    <li><a href="/swift/concurrency/mainactor/">MainActor</a></li>
+                    <li><a href="/swift/concurrency/sendable/">Sendable</a></li>
+                    <li><a href="/swift/concurrency/structured-concurrency/">Structured Concurrency</a></li>
+                    <li><a href="/swift/concurrency/cancellation/">Cancellation</a></li>
+                    <li><a href="/swift/concurrency/continuations/">Continuations</a></li>
+                    <li><a href="/swift/concurrency/asyncsequence/">AsyncSequence</a></li>
+                    <li><a href="/swift/concurrency/data-races/">Data Races</a></li>
+                    <li><a href="/swift/concurrency/swift6-concurrency/">Swift 6 Concurrency Checking</a></li>
+                    <li><a href="/swift/concurrency/concurrency-interview-questions/">Common Concurrency Interview Questions</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/concurrency/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Architecture</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/architecture/mvc-mvvm-mvp-viper-clean/">MVC, MVVM, MVP, VIPER and Clean Architecture</a></li>
+                    <li><a href="/swift/architecture/dependency-injection/">Dependency Injection</a></li>
+                    <li><a href="/swift/architecture/repository-pattern/">Repository Pattern</a></li>
+                    <li><a href="/swift/architecture/coordinator-pattern/">Coordinator Pattern</a></li>
+                    <li><a href="/swift/architecture/modular-architecture/">Modular Architecture</a></li>
+                    <li><a href="/swift/architecture/feature-based-organization/">Feature-Based Organization</a></li>
+                    <li><a href="/swift/architecture/solid-principles/">SOLID Principles</a></li>
+                    <li><a href="/swift/architecture/protocol-oriented-programming/">Protocol-Oriented Programming</a></li>
+                    <li><a href="/swift/architecture/testable-design/">Testable Application Design</a></li>
+                    <li><a href="/swift/architecture/architecture-tradeoffs/">Architecture Trade-offs</a></li>
+                    <li><a href="/swift/architecture/real-world-project-structures/">Real-World Project Structures</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/architecture/">Section overview</a>
+            </details>
+            <details class="nav-group" open>
+                <summary><span>Performance</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/performance/instruments-overview/">Instruments Overview</a></li>
+                    <li><a href="/swift/performance/time-profiler/">Time Profiler</a></li>
+                    <li><a href="/swift/performance/memory-leaks-retain-cycles/">Memory Leaks and Retain Cycles</a></li>
+                    <li><a href="/swift/performance/allocations/">Allocations</a></li>
+                    <li><a href="/swift/performance/cpu-optimization/">CPU Optimization</a></li>
+                    <li><a href="/swift/performance/swiftui-rendering-performance/">SwiftUI Rendering Performance</a></li>
+                    <li><a href="/swift/performance/view-body-recomputation/">View Body Recomputation</a></li>
+                    <li><a href="/swift/performance/scrolling-performance/">Scrolling Performance</a></li>
+                    <li><a href="/swift/performance/image-decoding-caching/" class="active" aria-current="page">Image Decoding and Caching</a></li>
+                    <li><a href="/swift/performance/app-startup-optimization/">App Startup Optimization</a></li>
+                    <li><a href="/swift/performance/networking-performance/">Networking Performance</a></li>
+                    <li><a href="/swift/performance/battery-energy/">Battery and Energy Usage</a></li>
+                    <li><a href="/swift/performance/background-execution/">Background Execution</a></li>
+                    <li><a href="/swift/performance/concurrency-bottlenecks/">Concurrency Bottlenecks</a></li>
+                    <li><a href="/swift/performance/debugging-freezes-hangs/">Debugging Freezes and Hangs</a></li>
+                    <li><a href="/swift/performance/profiling-walkthroughs/">Performance Profiling Walkthroughs</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/performance/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Debugging</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/debugging/lldb-commands/">LLDB Commands</a></li>
+                    <li><a href="/swift/debugging/breakpoints/">Breakpoints</a></li>
+                    <li><a href="/swift/debugging/memory-graph-debugger/">Memory Graph Debugger</a></li>
+                    <li><a href="/swift/debugging/thread-sanitizer/">Thread Sanitizer</a></li>
+                    <li><a href="/swift/debugging/address-sanitizer/">Address Sanitizer</a></li>
+                    <li><a href="/swift/debugging/console-logging/">Console Logging</a></li>
+                    <li><a href="/swift/debugging/oslog/">OSLog</a></li>
+                    <li><a href="/swift/debugging/crash-log-interpretation/">Crash Log Interpretation</a></li>
+                    <li><a href="/swift/debugging/xcode-debugging-techniques/">Xcode Debugging Techniques</a></li>
+                    <li><a href="/swift/debugging/network-debugging/">Network Debugging</a></li>
+                    <li><a href="/swift/debugging/diagnosing-swiftui-problems/">Diagnosing SwiftUI Problems</a></li>
+                    <li><a href="/swift/debugging/common-production-issues/">Common Production Issues</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/debugging/">Section overview</a>
+            </details>
+                <p class="sidebar-label">Practice</p>
+                <ul class="nav-flat">
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/mock-interview/">Mock interview</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                    <li><a href="/swift/tags/">Browse by tag</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="content-shell">
+            <div class="content">
+                <main id="main">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li><a href="/swift/performance/">Performance</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">Image Decoding and Caching</li></ol></nav>
+                    <article class="article" data-article data-reading>
+                        <header class="article-head">
+                            <p class="article-kicker">Performance</p>
+                            <h1>Image Decoding and Caching</h1>
+                            <p class="article-lede">Decode images off the main thread, downsample to display size, and cache decoded results.</p>
+                            <div class="article-meta">
+                                <span class="chip chip-difficulty" data-difficulty="Advanced">Advanced</span>
+                    <span class="chip chip-time">10 min read</span>
+                    <span class="chip chip-version">iOS 17+</span>
+                    <span class="chip chip-reviewed">Reviewed 2026-09-30</span>
+                            </div>
+                            <div class="article-tags">
+                                <a class="tag" href="/swift/tags/#performance">#performance</a> <a class="tag" href="/swift/tags/#images">#images</a> <a class="tag" href="/swift/tags/#caching">#caching</a> <a class="tag" href="/swift/tags/#downsample">#downsample</a>
+                            </div>
+                        </header>
+<section class="article-section article-prereq" aria-labelledby="prereq">
+                            <h2 id="prereq">Prerequisites</h2>
+                            <ul class="prereq-list"><li>performance/scrolling-performance</li></ul>
+                        </section>
+                        <div class="article-body">
+<h2 id="overview">Overview</h2>
+<p>Images are the most common cause of memory spikes and scroll jank. The cost is not download — it is <strong>decode</strong> and <strong>storage</strong>. A 4000×3000 JPEG decodes to roughly 48 MB of uncompressed pixels; decoding that for a 100-point thumbnail is wasteful and fatal to smooth scrolling.</p>
+<h2 id="downsampling">Downsampling</h2>
+<p>Load and downsample in one step using ImageIO, on a background thread:</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">func downsample(data: Data, to pointSize: CGSize, scale: CGFloat) -&gt; UIImage? {
+    let options: [CFString: Any] = [
+        kCGImageSourceShouldCache: false
+    ]
+    guard let source = CGImageSourceCreateWithData(data as CFData, options as CFDictionary) else { return nil }
+    let maxDimension = max(pointSize.width, pointSize.height) * scale
+    let downsampleOptions: [CFString: Any] = [
+        kCGImageSourceCreateThumbnailFromImageAlways: true,
+        kCGImageSourceShouldCacheImmediately: true,
+        kCGImageSourceCreateThumbnailWithTransform: true,
+        kCGImageSourceThumbnailMaxPixelSize: maxDimension
+    ]
+    guard let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, downsampleOptions as CFDictionary) else { return nil }
+    return UIImage(cgImage: cgImage)
+}</code></pre></div>
+<p>Run this in a <code>nonisolated</code> context or a background task and apply the result on the main actor.</p>
+<h2 id="caching">Caching</h2>
+<ul><li><strong>Memory cache</strong> (<code>NSCache</code>) for decoded images, keyed by URL + size.</li><li><strong>Disk cache</strong> for encoded data.</li><li><strong>HTTP cache</strong> via <code>URLCache</code> for the transport layer.</li></ul>
+<p>Use <code>NSCache</code> because it evicts under memory pressure automatically.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">final class ImageCache {
+    private let cache = NSCache&lt;NSString, UIImage&gt;()
+    func image(for key: String) -&gt; UIImage? { cache.object(forKey: key as NSString) }
+    func insert(_ image: UIImage, for key: String) { cache.setObject(image, forKey: key as NSString) }
+}</code></pre></div>
+<h2 id="asyncimage-and-its-limits">AsyncImage and its limits</h2>
+<p>SwiftUI's <code>AsyncImage</code> is convenient but decodes at full size and offers little control. For performance-sensitive lists, use a custom loader with downsampling and caching.</p>
+<h2 id="real-world-use-cases">Real-world use cases</h2>
+<ul><li>Feed thumbnails at multiple sizes.</li><li>A photo gallery with fast fling.</li><li>Avatar loading with placeholders.</li></ul>
+<h2 id="common-pitfalls">Common pitfalls</h2>
+<ul><li>Decoding on the main thread.</li><li>Caching full-resolution images when only thumbnails are shown.</li><li>Letting <code>NSCache</code> grow unbounded by ignoring memory warnings (it handles them, but decoded data is expensive).</li><li>Re-downloading because the cache key ignores size.</li></ul>
+<h2 id="best-practices">Best practices</h2>
+<ul><li>Downsample to the display size × screen scale.</li><li>Decode off the main thread; apply on the main actor.</li><li>Cache decoded images in <code>NSCache</code>, keyed by URL and size.</li><li>Prefetch ahead of visibility.</li></ul>
+<h2 id="interview-questions">Interview questions</h2>
+<ol><li>Why is decoding, not downloading, the main image cost?</li><li>What is downsampling and how does ImageIO do it?</li><li>Why use <code>NSCache</code> over a dictionary?</li></ol>
+<p><strong>Follow-up:</strong> Why does an image cache need the display size in the key? The same URL can be shown at different sizes, and each needs a differently downsampled bitmap.</p>
+                        </div>
+<section class="article-section related" aria-labelledby="related">
+                            <h2 id="related">Related articles</h2>
+                            <div class="related-grid">
+                                <a class="related-card" href="/swift/performance/allocations/">
+                                    <span class="related-section">Performance</span>
+                                    <span class="related-title">Allocations</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                                </a>
+                                <a class="related-card" href="/swift/performance/scrolling-performance/">
+                                    <span class="related-section">Performance</span>
+                                    <span class="related-title">Scrolling Performance</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                                </a>
+                            </div>
+                        </section>
+                    </article>
+            <nav class="pager" aria-label="Article navigation">
+                <a class="pager-link pager-prev" href="/swift/performance/scrolling-performance/">
+                    <span class="pager-dir"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H4M7.5 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Previous</span>
+                    <span class="pager-title">Scrolling Performance</span>
+                </a>
+                <a class="pager-link pager-next" href="/swift/performance/app-startup-optimization/">
+                    <span class="pager-dir"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Next</span>
+                    <span class="pager-title">App Startup Optimization</span>
+                </a>
+            </nav>
+                </main>
+            </div>
+        <aside class="toc" data-toc aria-label="On this page">
+            <div class="toc-inner">
+                <p class="toc-label">On this page</p>
+                <ul>
+                    <li class="toc-l2"><a href="#overview">Overview</a></li>
+                    <li class="toc-l2"><a href="#downsampling">Downsampling</a></li>
+                    <li class="toc-l2"><a href="#caching">Caching</a></li>
+                    <li class="toc-l2"><a href="#asyncimage-and-its-limits">AsyncImage and its limits</a></li>
+                    <li class="toc-l2"><a href="#real-world-use-cases">Real-world use cases</a></li>
+                    <li class="toc-l2"><a href="#common-pitfalls">Common pitfalls</a></li>
+                    <li class="toc-l2"><a href="#best-practices">Best practices</a></li>
+                    <li class="toc-l2"><a href="#interview-questions">Interview questions</a></li>
+                </ul>
+                <div class="toc-actions">
+                    <button class="toc-bookmark" type="button" data-bookmark aria-pressed="false" title="Bookmark this article">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                        <span data-bookmark-label>Bookmark</span>
+                    </button>
+                    <div class="progress-mini" aria-hidden="true"><span data-progress-bar></span></div>
+                </div>
+            </div>
+        </aside>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</body>
+</html>

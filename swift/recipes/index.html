@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Code Recipes — Swift Developer Hub</title>
+    <meta name="description" content="Copy-ready solutions for the tasks every iOS app needs — networking, persistence, pagination, authentication, caching and more." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/recipes/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Code Recipes — Swift Developer Hub" />
+    <meta property="og:description" content="Copy-ready solutions for the tasks every iOS app needs — networking, persistence, pagination, authentication, caching and more." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/recipes/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Code Recipes — Swift Developer Hub" />
+    <meta name="twitter:description" content="Copy-ready solutions for the tasks every iOS app needs — networking, persistence, pagination, authentication, caching and more." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/" aria-current="page">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <main id="main" class="page">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">Code Recipes</li></ol></nav>
+            <article class="article" data-reading>
+                <header class="article-head">
+                    <p class="article-kicker">Practice</p>
+                    <h1>Code Recipes</h1>
+                    <p class="article-lede">Copy-ready solutions for the tasks every iOS app needs — networking, persistence, pagination, authentication, caching and more.</p>
+                    <div class="article-meta">
+                        <span class="chip chip-time">15 recipes</span>
+                        <span class="chip">Swift 5.9+ · iOS 17</span>
+                    </div>
+                </header>
+                <nav class="toc-chips" aria-label="Recipe categories" data-filter-group>
+                <a class="toc-chip" data-category="Networking" href="#networking-with-urlsession">Networking with URLSession</a>
+                <a class="toc-chip" data-category="Networking" href="#codable-and-json-parsing">Codable and JSON parsing</a>
+                <a class="toc-chip" data-category="Security" href="#authentication">Authentication</a>
+                <a class="toc-chip" data-category="Data" href="#persistence">Persistence</a>
+                <a class="toc-chip" data-category="Data" href="#swiftdata">SwiftData</a>
+                <a class="toc-chip" data-category="Data" href="#file-management">File management</a>
+                <a class="toc-chip" data-category="Performance" href="#image-caching">Image caching</a>
+                <a class="toc-chip" data-category="Networking" href="#pagination">Pagination</a>
+                <a class="toc-chip" data-category="UI" href="#search-and-filtering">Search and filtering</a>
+                <a class="toc-chip" data-category="Platform" href="#push-notifications">Push notifications</a>
+                <a class="toc-chip" data-category="Platform" href="#deep-linking">Deep linking</a>
+                <a class="toc-chip" data-category="Platform" href="#background-tasks">Background tasks</a>
+                <a class="toc-chip" data-category="Monetization" href="#app-store-subscriptions">App Store subscriptions</a>
+                <a class="toc-chip" data-category="Testing" href="#testing-and-mocking">Testing and mocking</a>
+                <a class="toc-chip" data-category="Language" href="#error-handling-patterns">Error handling patterns</a>
+                </nav>
+                <div class="article-body" data-filter-body>
+<p>These recipes are the tasks you implement in almost every app. Each one is production-shaped: it shows the idiomatic modern API, the edge cases that bite, and the surrounding structure. They complement the deeper explanations in the documentation sections — use the recipes when you need the shape of a solution quickly.</p>
+<p>All examples assume Swift 5.9+ and iOS 17 unless noted.</p>
+<h2 id="networking-with-urlsession">Networking with URLSession</h2>
+<p>Use <code>URLSession</code>'s async APIs and decode with <code>Codable</code>. Keep a single shared session so connections are reused.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">struct APIClient {
+    let session: URLSession
+    let baseURL: URL
+    let decoder = JSONDecoder()
+
+    func get&lt;T: Decodable&gt;(_ path: String) async throws -&gt; T {
+        var request = URLRequest(url: baseURL.appending(path: path))
+        request.setValue(&quot;application/json&quot;, forHTTPHeaderField: &quot;Accept&quot;)
+        let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse, (200..&lt;300).contains(http.statusCode) else {
+            throw APIError.badStatus((response as? HTTPURLResponse)?.statusCode ?? -1)
+        }
+        return try decoder.decode(T.self, from: data)
+    }
+}
+
+enum APIError: Error { case badStatus(Int) }</code></pre></div>
+<p><strong>Pitfalls:</strong> Creating a session per request; forgetting to check the status code; decoding on the main actor.</p>
+<h2 id="codable-and-json-parsing">Codable and JSON parsing</h2>
+<p>Map snake_case, dates and optionals explicitly.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">struct User: Decodable {
+    let id: UUID
+    let displayName: String
+    let createdAt: Date
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case displayName = &quot;display_name&quot;
+        case createdAt = &quot;created_at&quot;
+    }
+}
+
+let decoder = JSONDecoder()
+decoder.keyDecodingStrategy = .convertFromSnakeCase
+decoder.dateDecodingStrategy = .iso8601</code></pre></div>
+<p>For resilient decoding of one bad field, decode <code>Lossy</code> arrays or provide a default in a custom <code>init(from:)</code>.</p>
+<h2 id="authentication">Authentication</h2>
+<p>Store tokens in the Keychain, refresh transparently, and never log secrets.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">actor TokenStore {
+    private var access: String?
+    private var refresh: String?
+
+    func current() -&gt; String? { access }
+    func update(access: String, refresh: String) { self.access = access; self.refresh = refresh }
+}</code></pre></div>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">func authorizedRequest(_ request: URLRequest) async throws -&gt; (Data, URLResponse) {
+    var request = request
+    if let token = await tokens.current() {
+        request.setValue(&quot;Bearer \(token)&quot;, forHTTPHeaderField: &quot;Authorization&quot;)
+    }
+    let (data, response) = try await session.data(for: request)
+    if (response as? HTTPURLResponse)?.statusCode == 401 {
+        try await refreshToken()
+        return try await authorizedRequest(request)   // retry once
+    }
+    return (data, response)
+}</code></pre></div>
+<p><strong>Pitfalls:</strong> Storing tokens in <code>UserDefaults</code>; retrying in an infinite loop; racing refreshes (serialise them in an actor).</p>
+<h2 id="persistence">Persistence</h2>
+<p>For simple keyed data use <code>UserDefaults</code>; for small structured data use a file with <code>Codable</code>; for a full object graph use SwiftData or Core Data.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">struct FileStore&lt;T: Codable&gt; {
+    let url: URL
+    func save(_ value: T) throws {
+        let data = try JSONEncoder().encode(value)
+        try data.write(to: url, options: .atomic)
+    }
+    func load() throws -&gt; T? {
+        guard FileManager.default.fileExists(atPath: url.path) else { return nil }
+        return try JSONDecoder().decode(T.self, from: Data(contentsOf: url))
+    }
+}</code></pre></div>
+<h2 id="swiftdata">SwiftData</h2>
+<p>Model classes with <code>@Model</code>; query in views with <code>@Query</code>.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">@Model
+final class Task {
+    var title: String
+    var isDone: Bool
+    var createdAt: Date
+
+    init(title: String, isDone: Bool = false, createdAt: Date = .now) {
+        self.title = title
+        self.isDone = isDone
+        self.createdAt = createdAt
+    }
+}
+
+struct TaskListView: View {
+    @Environment(\.modelContext) private var context
+    @Query(sort: \Task.createdAt, order: .reverse) private var tasks: [Task]
+
+    var body: some View {
+        List(tasks) { task in Text(task.title) }
+    }
+}</code></pre></div>
+<p>Configure the container at the app root with <code>.modelContainer(for: Task.self)</code>.</p>
+<h2 id="file-management">File management</h2>
+<p>Work inside the appropriate directory and handle errors.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">let documents = try FileManager.default.url(
+    for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true
+)
+let fileURL = documents.appendingPathComponent(&quot;export.json&quot;)
+try data.write(to: fileURL, options: [.atomic, .completeFileProtection])</code></pre></div>
+<p>Use <code>.cachesDirectory</code> for regenerable data, and exclude large caches from backup.</p>
+<h2 id="image-caching">Image caching</h2>
+<p>Downsample and cache decoded images.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">final class ImageCache {
+    private let cache = NSCache&lt;NSString, UIImage&gt;()
+    func image(for url: URL, size: CGSize) -&gt; UIImage? { cache.object(forKey: key(url, size)) }
+    func insert(_ image: UIImage, for url: URL, size: CGSize) { cache.setObject(image, forKey: key(url, size)) }
+    private func key(_ url: URL, _ size: CGSize) -&gt; NSString { &quot;\(url.absoluteString)-\(Int(size.width))&quot; as NSString }
+}</code></pre></div>
+<p>See <a href="/swift/performance/image-decoding-caching/">Image Decoding and Caching</a> for downsampling.</p>
+<h2 id="pagination">Pagination</h2>
+<p>Keep a cursor or page index and stop when the server says there is no more.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">@Observable
+final class Feed {
+    private(set) var items: [Item] = []
+    private var page = 0
+    private(set) var isFinished = false
+
+    func loadNext() async throws {
+        guard !isFinished else { return }
+        let page = try await api.items(page: page)
+        items += page.items
+        isFinished = page.next == nil
+        self.page += 1
+    }
+}</code></pre></div>
+<p>Trigger <code>loadNext()</code> from the last row's <code>.task</code> or <code>.onAppear</code>.</p>
+<h2 id="search-and-filtering">Search and filtering</h2>
+<p>Debounce input and filter on a derived value, not by rebuilding the model.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">@State private var query = &quot;&quot;
+@State private var results: [Item] = []
+
+.task(id: query) {
+    try? await Task.sleep(for: .milliseconds(250))
+    guard !Task.isCancelled else { return }
+    results = try await search(query)
+}</code></pre></div>
+<p><code>.task(id:)</code> cancels the previous search when the query changes.</p>
+<h2 id="push-notifications">Push notifications</h2>
+<p>Request authorisation, register, and handle the token.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">let center = UNUserNotificationCenter.current()
+let granted = try await center.requestAuthorization(options: [.alert, .badge, .sound])
+if granted { await UIApplication.shared.registerForRemoteNotifications() }
+
+func application(_ app: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    let token = deviceToken.map { String(format: &quot;%02x&quot;, $0) }.joined()
+    Task { await api.register(deviceToken: token) }
+}</code></pre></div>
+<p>Handle taps through <code>UNUserNotificationCenterDelegate</code> and route into the app.</p>
+<h2 id="deep-linking">Deep linking</h2>
+<p>Parse a URL into a typed route and drive navigation.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">enum Route: Hashable { case detail(Item.ID); case settings }
+
+func route(from url: URL) -&gt; Route? {
+    guard url.scheme == &quot;myapp&quot; else { return nil }
+    switch url.host {
+    case &quot;detail&quot;: return .detail(UUID(uuidString: url.lastPathComponent) ?? UUID())
+    case &quot;settings&quot;: return .settings
+    default: return nil
+    }
+}</code></pre></div>
+<p>Then <code>path.append(route)</code> on the router.</p>
+<h2 id="background-tasks">Background tasks</h2>
+<p>Schedule deferred maintenance with <code>BGTaskScheduler</code>; finish transfers with a background <code>URLSession</code>.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">let request = BGProcessingTaskRequest(identifier: &quot;com.app.maintenance&quot;)
+request.requiresNetworkConnectivity = true
+request.requiresExternalPower = true
+try BGTaskScheduler.shared.submit(request)</code></pre></div>
+<p>Always reschedule and honour the expiration handler.</p>
+<h2 id="app-store-subscriptions">App Store subscriptions</h2>
+<p>Load products, purchase with StoreKit 2, and verify transactions.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">for await result in Transaction.updates {
+    if case .verified(let transaction) = result {
+        await grant(transaction.productID)
+        await transaction.finish()
+    }
+}
+
+let products = try await Product.products(for: [&quot;pro.monthly&quot;])
+if let product = products.first {
+    let result = try await product.purchase()
+    if case .success(.verified(let transaction)) = result {
+        await transaction.finish()
+    }
+}</code></pre></div>
+<p>Always verify signatures; never trust the client for entitlements.</p>
+<h2 id="testing-and-mocking">Testing and mocking</h2>
+<p>Inject protocols and use fakes.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">protocol UserRepository { func current() async throws -&gt; User }
+
+struct FakeUserRepository: UserRepository {
+    var user: User
+    func current() async throws -&gt; User { user }
+}
+
+@Test func loadsUser() async throws {
+    let model = ProfileModel(repository: FakeUserRepository(user: .fixture))
+    await model.load()
+    #expect(model.user?.name == &quot;Ada&quot;)
+}</code></pre></div>
+<h2 id="error-handling-patterns">Error handling patterns</h2>
+<p>Type your errors, map them at the UI boundary, and never swallow them silently.</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">enum AppError: LocalizedError {
+    case offline
+    case server(Int)
+
+    var errorDescription: String? {
+        switch self {
+        case .offline: return &quot;You appear to be offline.&quot;
+        case .server(let code): return &quot;Server error (\(code)).&quot;
+        }
+    }
+}</code></pre></div>
+<p>Show <code>error.errorDescription</code> to the user and log the full error with OSLog.</p>
+                </div>
+            </article>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</body>
+</html>

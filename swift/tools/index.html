@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Developer Tools — Swift Developer Hub</title>
+    <meta name="description" content="Browser-based Swift and iOS developer tools: JSON formatter, JSON to Codable generator, regex tester, date formatter, color converter, URL and Base64 encoders, UUID generator, mock JSON and version comparison." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/tools/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Developer Tools — Swift Developer Hub" />
+    <meta property="og:description" content="Browser-based Swift and iOS developer tools: JSON formatter, JSON to Codable generator, regex tester, date formatter, color converter, URL and Base64 encoders, UUID generator, mock JSON and version comparison." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/tools/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Developer Tools — Swift Developer Hub" />
+    <meta name="twitter:description" content="Browser-based Swift and iOS developer tools: JSON formatter, JSON to Codable generator, regex tester, date formatter, color converter, URL and Base64 encoders, UUID generator, mock JSON and version comparison." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift app-shell">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/" aria-current="page">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <main id="main" class="page page-wide">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">Developer Tools</li></ol></nav>
+            <div class="page-hero">
+                <h1>Developer Tools</h1>
+                <p>Eleven browser-based utilities for everyday Apple development. Everything runs client-side in your browser — nothing is uploaded.</p>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Developer tools">
+                <button class="tab active" type="button" role="tab" id="tab-json" aria-controls="panel-json" aria-selected="true" data-tool-tab="json">JSON</button>
+                <button class="tab" type="button" role="tab" id="tab-codable" aria-controls="panel-codable" aria-selected="false" data-tool-tab="codable">JSON</button>
+                <button class="tab" type="button" role="tab" id="tab-formatter" aria-controls="panel-formatter" aria-selected="false" data-tool-tab="formatter">Swift</button>
+                <button class="tab" type="button" role="tab" id="tab-regex" aria-controls="panel-regex" aria-selected="false" data-tool-tab="regex">Regex</button>
+                <button class="tab" type="button" role="tab" id="tab-date" aria-controls="panel-date" aria-selected="false" data-tool-tab="date">Date</button>
+                <button class="tab" type="button" role="tab" id="tab-color" aria-controls="panel-color" aria-selected="false" data-tool-tab="color">Color</button>
+                <button class="tab" type="button" role="tab" id="tab-url" aria-controls="panel-url" aria-selected="false" data-tool-tab="url">URL</button>
+                <button class="tab" type="button" role="tab" id="tab-base64" aria-controls="panel-base64" aria-selected="false" data-tool-tab="base64">Base64</button>
+                <button class="tab" type="button" role="tab" id="tab-uuid" aria-controls="panel-uuid" aria-selected="false" data-tool-tab="uuid">UUID</button>
+                <button class="tab" type="button" role="tab" id="tab-mockjson" aria-controls="panel-mockjson" aria-selected="false" data-tool-tab="mockjson">Mock</button>
+                <button class="tab" type="button" role="tab" id="tab-version" aria-controls="panel-version" aria-selected="false" data-tool-tab="version">Version</button>
+            </div>
+            <div class="tool-panels">
+            <section class="tool-panel active" role="tabpanel" id="panel-json" aria-labelledby="tab-json" data-tool-panel="json">
+                <header class="tool-head">
+                    <h2>JSON Formatter and Validator</h2>
+                    <p>Format, validate and minify JSON with error positions.</p>
+                </header>
+                <div class="tool-body" data-tool-body="json"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-codable" aria-labelledby="tab-codable" data-tool-panel="codable" hidden>
+                <header class="tool-head">
+                    <h2>JSON to Codable</h2>
+                    <p>Generate Swift Codable structs from a JSON sample.</p>
+                </header>
+                <div class="tool-body" data-tool-body="codable"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-formatter" aria-labelledby="tab-formatter" data-tool-panel="formatter" hidden>
+                <header class="tool-head">
+                    <h2>Swift Snippet Formatter</h2>
+                    <p>Lightweight indentation and whitespace cleanup for Swift snippets.</p>
+                </header>
+                <div class="tool-body" data-tool-body="formatter"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-regex" aria-labelledby="tab-regex" data-tool-panel="regex" hidden>
+                <header class="tool-head">
+                    <h2>Regex Tester</h2>
+                    <p>Test regular expressions against sample text with match highlighting.</p>
+                </header>
+                <div class="tool-body" data-tool-body="regex"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-date" aria-labelledby="tab-date" data-tool-panel="date" hidden>
+                <header class="tool-head">
+                    <h2>Date Formatter Playground</h2>
+                    <p>Explore DateFormatter patterns and see formatted output live.</p>
+                </header>
+                <div class="tool-body" data-tool-body="date"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-color" aria-labelledby="tab-color" data-tool-panel="color" hidden>
+                <header class="tool-head">
+                    <h2>Color Converter</h2>
+                    <p>Convert between hex, RGB and HSL, and preview the result.</p>
+                </header>
+                <div class="tool-body" data-tool-body="color"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-url" aria-labelledby="tab-url" data-tool-panel="url" hidden>
+                <header class="tool-head">
+                    <h2>URL Encoder / Decoder</h2>
+                    <p>Percent-encode and decode URL components.</p>
+                </header>
+                <div class="tool-body" data-tool-body="url"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-base64" aria-labelledby="tab-base64" data-tool-panel="base64" hidden>
+                <header class="tool-head">
+                    <h2>Base64 Encoder / Decoder</h2>
+                    <p>Encode and decode UTF-8 text to and from Base64.</p>
+                </header>
+                <div class="tool-body" data-tool-body="base64"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-uuid" aria-labelledby="tab-uuid" data-tool-panel="uuid" hidden>
+                <header class="tool-head">
+                    <h2>UUID Generator</h2>
+                    <p>Generate v4 UUIDs individually or in batches.</p>
+                </header>
+                <div class="tool-body" data-tool-body="uuid"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-mockjson" aria-labelledby="tab-mockjson" data-tool-panel="mockjson" hidden>
+                <header class="tool-head">
+                    <h2>Mock JSON Generator</h2>
+                    <p>Generate mock JSON arrays from a small schema description.</p>
+                </header>
+                <div class="tool-body" data-tool-body="mockjson"></div>
+            </section>
+            <section class="tool-panel" role="tabpanel" id="panel-version" aria-labelledby="tab-version" data-tool-panel="version" hidden>
+                <header class="tool-head">
+                    <h2>Version Comparison</h2>
+                    <p>Compare semantic app versions and build numbers.</p>
+                </header>
+                <div class="tool-body" data-tool-body="version"></div>
+            </section>
+            </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <script defer src="/swift/tools.js"></script>
+</body>
+</html>

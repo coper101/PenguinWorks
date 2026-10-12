@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>AsyncSequence — Swift Developer Hub</title>
+    <meta name="description" content="Consume values over time with `for await`, and produce them from callbacks with AsyncStream." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/concurrency/asyncsequence/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="AsyncSequence — Swift Developer Hub" />
+    <meta property="og:description" content="Consume values over time with `for await`, and produce them from callbacks with AsyncStream." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/concurrency/asyncsequence/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AsyncSequence — Swift Developer Hub" />
+    <meta name="twitter:description" content="Consume values over time with `for await`, and produce them from callbacks with AsyncStream." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AsyncSequence","description":"Consume values over time with `for await`, and produce them from callbacks with AsyncStream.","about":["concurrency","asyncsequence","asyncstream","for-await"],"datePublished":"2026-01-15","dateModified":"2026-09-30","inLanguage":"en","publisher":{"@type":"Organization","name":"PenguinWorks"},"keywords":"concurrency, asyncsequence, asyncstream, for-await"}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar" data-sidebar aria-label="Documentation">
+            <nav class="sidebar-nav">
+                <p class="sidebar-label">Documentation</p>
+            <details class="nav-group">
+                <summary><span>Swift Fundamentals</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/language/variables-constants-types/">Variables, Constants and Types</a></li>
+                    <li><a href="/swift/language/optionals/">Optionals and Optional Binding</a></li>
+                    <li><a href="/swift/language/structs-vs-classes/">Structs vs Classes</a></li>
+                    <li><a href="/swift/language/value-vs-reference/">Value vs Reference Semantics</a></li>
+                    <li><a href="/swift/language/enums-associated-values/">Enums and Associated Values</a></li>
+                    <li><a href="/swift/language/protocols-extensions/">Protocols and Extensions</a></li>
+                    <li><a href="/swift/language/generics/">Generics</a></li>
+                    <li><a href="/swift/language/closures-capture-lists/">Closures and Capture Lists</a></li>
+                    <li><a href="/swift/language/error-handling/">Error Handling</a></li>
+                    <li><a href="/swift/language/access-control/">Access Control</a></li>
+                    <li><a href="/swift/language/property-wrappers/">Property Wrappers</a></li>
+                    <li><a href="/swift/language/memory-management-arc/">Memory Management and ARC</a></li>
+                    <li><a href="/swift/language/copy-on-write/">Copy-on-Write</a></li>
+                    <li><a href="/swift/language/existentials-opaque-types/">Existentials and Opaque Types</a></li>
+                    <li><a href="/swift/language/advanced-type-system/">Advanced Type System Concepts</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/language/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>SwiftUI</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/swiftui/view-lifecycle-identity/">View Lifecycle and Identity</a></li>
+                    <li><a href="/swift/swiftui/state-management/">State Management</a></li>
+                    <li><a href="/swift/swiftui/state-binding-observable-environment/">@State, @Binding, @Observable and @Environment</a></li>
+                    <li><a href="/swift/swiftui/layout-system-geometryreader/">Layout System and GeometryReader</a></li>
+                    <li><a href="/swift/swiftui/navigationstack-navigationpath/">NavigationStack and NavigationPath</a></li>
+                    <li><a href="/swift/swiftui/animations-transitions/">Animations and Transitions</a></li>
+                    <li><a href="/swift/swiftui/custom-layouts-modifiers/">Custom Layouts and Modifiers</a></li>
+                    <li><a href="/swift/swiftui/lists-grids-lazy-containers/">Lists, Grids and Lazy Containers</a></li>
+                    <li><a href="/swift/swiftui/view-performance-invalidation/">View Performance and Invalidation</a></li>
+                    <li><a href="/swift/swiftui/accessibility/">Accessibility</a></li>
+                    <li><a href="/swift/swiftui/widgets-app-intents/">Widgets and App Intents</a></li>
+                    <li><a href="/swift/swiftui/uikit-interoperability/">UIKit Interoperability</a></li>
+                    <li><a href="/swift/swiftui/common-swiftui-mistakes/">Common SwiftUI Mistakes</a></li>
+                    <li><a href="/swift/swiftui/modern-swiftui-patterns/">Modern SwiftUI Patterns</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/swiftui/">Section overview</a>
+            </details>
+            <details class="nav-group" open>
+                <summary><span>Concurrency</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/concurrency/async-await/">async/await</a></li>
+                    <li><a href="/swift/concurrency/task-taskgroup/">Task and TaskGroup</a></li>
+                    <li><a href="/swift/concurrency/actors-isolation/">Actors and Isolation</a></li>
+                    <li><a href="/swift/concurrency/mainactor/">MainActor</a></li>
+                    <li><a href="/swift/concurrency/sendable/">Sendable</a></li>
+                    <li><a href="/swift/concurrency/structured-concurrency/">Structured Concurrency</a></li>
+                    <li><a href="/swift/concurrency/cancellation/">Cancellation</a></li>
+                    <li><a href="/swift/concurrency/continuations/">Continuations</a></li>
+                    <li><a href="/swift/concurrency/asyncsequence/" class="active" aria-current="page">AsyncSequence</a></li>
+                    <li><a href="/swift/concurrency/data-races/">Data Races</a></li>
+                    <li><a href="/swift/concurrency/swift6-concurrency/">Swift 6 Concurrency Checking</a></li>
+                    <li><a href="/swift/concurrency/concurrency-interview-questions/">Common Concurrency Interview Questions</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/concurrency/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Architecture</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/architecture/mvc-mvvm-mvp-viper-clean/">MVC, MVVM, MVP, VIPER and Clean Architecture</a></li>
+                    <li><a href="/swift/architecture/dependency-injection/">Dependency Injection</a></li>
+                    <li><a href="/swift/architecture/repository-pattern/">Repository Pattern</a></li>
+                    <li><a href="/swift/architecture/coordinator-pattern/">Coordinator Pattern</a></li>
+                    <li><a href="/swift/architecture/modular-architecture/">Modular Architecture</a></li>
+                    <li><a href="/swift/architecture/feature-based-organization/">Feature-Based Organization</a></li>
+                    <li><a href="/swift/architecture/solid-principles/">SOLID Principles</a></li>
+                    <li><a href="/swift/architecture/protocol-oriented-programming/">Protocol-Oriented Programming</a></li>
+                    <li><a href="/swift/architecture/testable-design/">Testable Application Design</a></li>
+                    <li><a href="/swift/architecture/architecture-tradeoffs/">Architecture Trade-offs</a></li>
+                    <li><a href="/swift/architecture/real-world-project-structures/">Real-World Project Structures</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/architecture/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Performance</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/performance/instruments-overview/">Instruments Overview</a></li>
+                    <li><a href="/swift/performance/time-profiler/">Time Profiler</a></li>
+                    <li><a href="/swift/performance/memory-leaks-retain-cycles/">Memory Leaks and Retain Cycles</a></li>
+                    <li><a href="/swift/performance/allocations/">Allocations</a></li>
+                    <li><a href="/swift/performance/cpu-optimization/">CPU Optimization</a></li>
+                    <li><a href="/swift/performance/swiftui-rendering-performance/">SwiftUI Rendering Performance</a></li>
+                    <li><a href="/swift/performance/view-body-recomputation/">View Body Recomputation</a></li>
+                    <li><a href="/swift/performance/scrolling-performance/">Scrolling Performance</a></li>
+                    <li><a href="/swift/performance/image-decoding-caching/">Image Decoding and Caching</a></li>
+                    <li><a href="/swift/performance/app-startup-optimization/">App Startup Optimization</a></li>
+                    <li><a href="/swift/performance/networking-performance/">Networking Performance</a></li>
+                    <li><a href="/swift/performance/battery-energy/">Battery and Energy Usage</a></li>
+                    <li><a href="/swift/performance/background-execution/">Background Execution</a></li>
+                    <li><a href="/swift/performance/concurrency-bottlenecks/">Concurrency Bottlenecks</a></li>
+                    <li><a href="/swift/performance/debugging-freezes-hangs/">Debugging Freezes and Hangs</a></li>
+                    <li><a href="/swift/performance/profiling-walkthroughs/">Performance Profiling Walkthroughs</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/performance/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Debugging</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/debugging/lldb-commands/">LLDB Commands</a></li>
+                    <li><a href="/swift/debugging/breakpoints/">Breakpoints</a></li>
+                    <li><a href="/swift/debugging/memory-graph-debugger/">Memory Graph Debugger</a></li>
+                    <li><a href="/swift/debugging/thread-sanitizer/">Thread Sanitizer</a></li>
+                    <li><a href="/swift/debugging/address-sanitizer/">Address Sanitizer</a></li>
+                    <li><a href="/swift/debugging/console-logging/">Console Logging</a></li>
+                    <li><a href="/swift/debugging/oslog/">OSLog</a></li>
+                    <li><a href="/swift/debugging/crash-log-interpretation/">Crash Log Interpretation</a></li>
+                    <li><a href="/swift/debugging/xcode-debugging-techniques/">Xcode Debugging Techniques</a></li>
+                    <li><a href="/swift/debugging/network-debugging/">Network Debugging</a></li>
+                    <li><a href="/swift/debugging/diagnosing-swiftui-problems/">Diagnosing SwiftUI Problems</a></li>
+                    <li><a href="/swift/debugging/common-production-issues/">Common Production Issues</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/debugging/">Section overview</a>
+            </details>
+                <p class="sidebar-label">Practice</p>
+                <ul class="nav-flat">
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/mock-interview/">Mock interview</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                    <li><a href="/swift/tags/">Browse by tag</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="content-shell">
+            <div class="content">
+                <main id="main">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li><a href="/swift/concurrency/">Concurrency</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">AsyncSequence</li></ol></nav>
+                    <article class="article" data-article data-reading>
+                        <header class="article-head">
+                            <p class="article-kicker">Concurrency</p>
+                            <h1>AsyncSequence</h1>
+                            <p class="article-lede">Consume values over time with <code>for await</code>, and produce them from callbacks with AsyncStream.</p>
+                            <div class="article-meta">
+                                <span class="chip chip-difficulty" data-difficulty="Advanced">Advanced</span>
+                    <span class="chip chip-time">9 min read</span>
+                    <span class="chip chip-version">Swift 5.5+</span>
+                    <span class="chip chip-reviewed">Reviewed 2026-09-30</span>
+                            </div>
+                            <div class="article-tags">
+                                <a class="tag" href="/swift/tags/#concurrency">#concurrency</a> <a class="tag" href="/swift/tags/#asyncsequence">#asyncsequence</a> <a class="tag" href="/swift/tags/#asyncstream">#asyncstream</a> <a class="tag" href="/swift/tags/#for-await">#for-await</a>
+                            </div>
+                        </header>
+<section class="article-section article-prereq" aria-labelledby="prereq">
+                            <h2 id="prereq">Prerequisites</h2>
+                            <ul class="prereq-list"><li>concurrency/async-await</li></ul>
+                        </section>
+                        <div class="article-body">
+<h2 id="overview">Overview</h2>
+<p><code>AsyncSequence</code> is the asynchronous analogue of <code>Sequence</code>: you iterate with <code>for await</code>, and each element may take time to arrive. Standard library and system APIs (file lines, URLSession bytes, notifications) return async sequences.</p>
+<h2 id="consuming">Consuming</h2>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">let lines = URL(fileURLWithPath: &quot;log.txt&quot;).lines
+for try await line in lines {
+    print(line)
+}</code></pre></div>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">let (bytes, _) = try await URLSession.shared.bytes(from: url)
+for try await byte in bytes { /* stream bytes */ }</code></pre></div>
+<h2 id="operators">Operators</h2>
+<p><code>map</code>, <code>filter</code>, <code>prefix</code>, <code>reduce</code> and friends are async-aware:</p>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">let names = url.lines
+    .map { $0.trimmingCharacters(in: .whitespaces) }
+    .filter { !$0.isEmpty }
+    .prefix(10)
+
+for try await name in names { print(name) }</code></pre></div>
+<h2 id="asyncstream-for-callback-sources">AsyncStream for callback sources</h2>
+<div class="code-block" data-lang="swift"><div class="code-head"><span class="code-lang">swift</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-swift">func notifications() -&gt; AsyncStream&lt;Notification&gt; {
+    AsyncStream { continuation in
+        let token = NotificationCenter.default.addObserver(
+            forName: .didUpdate, object: nil, queue: nil
+        ) { note in
+            continuation.yield(note)
+        }
+        continuation.onTermination = { _ in
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
+}</code></pre></div>
+<p><code>yield</code> produces an element; <code>finish</code> ends the sequence. <code>onTermination</code> runs when the consumer stops, which is where you tear down resources and honour cancellation.</p>
+<h2 id="backpressure">Backpressure</h2>
+<p><code>AsyncStream</code> has a buffering policy (<code>.unbounded</code>, <code>.bufferingNewest(n)</code>, <code>.bufferingOldest(n)</code>). For slow consumers, choose a bounded policy to avoid unbounded memory growth.</p>
+<h2 id="real-world-use-cases">Real-world use cases</h2>
+<ul><li>Streaming model output from a server.</li><li>Reacting to CoreLocation or NotificationCenter events.</li><li>Paginated fetching exposed as one sequence.</li></ul>
+<h2 id="common-pitfalls">Common pitfalls</h2>
+<ul><li>Unbounded buffering for a fast producer and slow consumer.</li><li>Forgetting <code>onTermination</code>, leaking observers.</li><li>Assuming iteration order across concurrent producers is deterministic.</li><li>Not handling <code>try await</code> errors from a throwing sequence.</li></ul>
+<h2 id="best-practices">Best practices</h2>
+<ul><li>Choose a buffering policy based on producer/consumer speed.</li><li>Always clean up in <code>onTermination</code>.</li><li>Prefer built-in sequences (<code>.lines</code>, <code>.bytes</code>) before writing your own.</li><li>Cancel the consuming task when the sequence is no longer needed.</li></ul>
+<h2 id="interview-questions">Interview questions</h2>
+<ol><li>How does <code>AsyncSequence</code> differ from <code>Sequence</code>?</li><li>What does <code>onTermination</code> let you do?</li><li>Why does buffering policy matter?</li></ol>
+<p><strong>Follow-up:</strong> How do you stop consuming an <code>AsyncSequence</code>? Cancel the task that is iterating it; termination then runs cleanup.</p>
+                        </div>
+<section class="article-section related" aria-labelledby="related">
+                            <h2 id="related">Related articles</h2>
+                            <div class="related-grid">
+                                <a class="related-card" href="/swift/concurrency/cancellation/">
+                                    <span class="related-section">Concurrency</span>
+                                    <span class="related-title">Cancellation</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Intermediate">Intermediate</span>
+                                </a>
+                                <a class="related-card" href="/swift/concurrency/continuations/">
+                                    <span class="related-section">Concurrency</span>
+                                    <span class="related-title">Continuations</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                                </a>
+                            </div>
+                        </section>
+                    </article>
+            <nav class="pager" aria-label="Article navigation">
+                <a class="pager-link pager-prev" href="/swift/concurrency/continuations/">
+                    <span class="pager-dir"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H4M7.5 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Previous</span>
+                    <span class="pager-title">Continuations</span>
+                </a>
+                <a class="pager-link pager-next" href="/swift/concurrency/data-races/">
+                    <span class="pager-dir"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Next</span>
+                    <span class="pager-title">Data Races</span>
+                </a>
+            </nav>
+                </main>
+            </div>
+        <aside class="toc" data-toc aria-label="On this page">
+            <div class="toc-inner">
+                <p class="toc-label">On this page</p>
+                <ul>
+                    <li class="toc-l2"><a href="#overview">Overview</a></li>
+                    <li class="toc-l2"><a href="#consuming">Consuming</a></li>
+                    <li class="toc-l2"><a href="#operators">Operators</a></li>
+                    <li class="toc-l2"><a href="#asyncstream-for-callback-sources">AsyncStream for callback sources</a></li>
+                    <li class="toc-l2"><a href="#backpressure">Backpressure</a></li>
+                    <li class="toc-l2"><a href="#real-world-use-cases">Real-world use cases</a></li>
+                    <li class="toc-l2"><a href="#common-pitfalls">Common pitfalls</a></li>
+                    <li class="toc-l2"><a href="#best-practices">Best practices</a></li>
+                    <li class="toc-l2"><a href="#interview-questions">Interview questions</a></li>
+                </ul>
+                <div class="toc-actions">
+                    <button class="toc-bookmark" type="button" data-bookmark aria-pressed="false" title="Bookmark this article">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                        <span data-bookmark-label>Bookmark</span>
+                    </button>
+                    <div class="progress-mini" aria-hidden="true"><span data-progress-bar></span></div>
+                </div>
+            </div>
+        </aside>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</body>
+</html>

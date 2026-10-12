@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Developer Notes — Swift Developer Hub</title>
+    <meta name="description" content="Short, practical notes — Swift tips, gotchas, best practices, platform updates, Xcode productivity and resources." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/notes/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Developer Notes — Swift Developer Hub" />
+    <meta property="og:description" content="Short, practical notes — Swift tips, gotchas, best practices, platform updates, Xcode productivity and resources." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/notes/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Developer Notes — Swift Developer Hub" />
+    <meta name="twitter:description" content="Short, practical notes — Swift tips, gotchas, best practices, platform updates, Xcode productivity and resources." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/" aria-current="page">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <main id="main" class="page">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">Developer Notes</li></ol></nav>
+            <article class="article" data-reading>
+                <header class="article-head">
+                    <p class="article-kicker">Practice</p>
+                    <h1>Developer Notes</h1>
+                    <p class="article-lede">Short, practical notes — Swift tips, gotchas, best practices, platform updates, Xcode productivity and resources.</p>
+                </header>
+                <div class="article-body">
+<p>A running notebook of things worth remembering. Short, opinionated and practical.</p>
+<h2 id="swift-tips">Swift tips</h2>
+<ul><li>Prefer <code>let</code> everywhere; let the compiler tell you when <code>var</code> is required.</li><li>Use <code>guard let</code> for early exit and <code>if let</code> for conditional work.</li><li><code>defer</code> is the cleanest way to guarantee cleanup on every exit path, including <code>throw</code>.</li><li><code>withUnsafeBufferPointer</code> avoids copying when you only need to read.</li><li><code>isKnownUniquelyReferenced</code> is the key to writing your own copy-on-write containers.</li><li>Prefer <code>some P</code> over <code>any P</code> in hot paths to avoid boxing.</li><li>Use <code>@Observable</code> instead of <code>ObservableObject</code> on iOS 17+.</li><li><code>Swift.print</code> is debug-only; use OSLog for anything that ships.</li></ul>
+<h2 id="common-gotchas">Common gotchas</h2>
+<ul><li><code>Array</code> indices are not always zero-based after slicing; use <code>startIndex</code>.</li><li>Modifying a collection while iterating it invalidates indices.</li><li>A <code>struct</code> containing a class still shares that class.</li><li><code>String</code> is a collection of <code>Character</code>, not bytes; use <code>unicodeScalars</code> or <code>utf8</code> when needed.</li><li><code>Dictionary</code> iteration order is not guaranteed.</li><li><code>Date</code> is an instant, not a calendar date; use <code>Calendar</code> for day math.</li><li><code>enum</code> with associated values needs <code>Hashable</code>/<code>Equatable</code> synthesis only if all payloads are.</li><li>Floating point equality is unreliable; compare with a tolerance.</li></ul>
+<h2 id="best-practices">Best practices</h2>
+<ul><li>One source of truth per piece of state.</li><li>Program to protocols at boundaries you actually swap or test.</li><li>Keep <code>body</code> pure and cheap; move side effects to <code>.task</code>/<code>.onChange</code>.</li><li>Type your errors; map them at the UI boundary.</li><li>Inject <code>Clock</code>/<code>Date</code>/<code>UUID</code> providers so tests are deterministic.</li><li>Profile Release builds on real devices.</li><li>Treat cancellation and <code>Sendable</code> seriously from the start.</li><li>Write the test that would have caught the bug.</li></ul>
+<h2 id="apple-platform-updates-to-track">Apple platform updates to track</h2>
+<ul><li><strong>Swift 6 strict concurrency</strong> — data-race checking is now part of the build.</li><li><strong><code>@Observable</code> and Observation</strong> — replaces <code>ObservableObject</code> for most cases.</li><li><strong><code>NavigationStack</code>/<code>NavigationPath</code></strong> — value-based navigation.</li><li><strong>SwiftData</strong> — declarative persistence with <code>@Model</code> and <code>@Query</code>.</li><li><strong>StoreKit 2</strong> — Swift-native purchases with verified transactions.</li><li><strong>App Intents &amp; interactive widgets</strong> — actions and widgets without launching the app.</li><li><strong>Swift Testing</strong> — <code>@Test</code>/<code>#expect</code> alongside XCTest.</li></ul>
+<h2 id="xcode-productivity">Xcode productivity</h2>
+<ul><li><code>⌘⇧O</code> open quickly (jump to any file or symbol).</li><li><code>⌘⇧0</code> open the documentation window; <code>⌥</code>-click for a symbol's docs.</li><li><code>⌘/</code> comment, <code>⌃I</code> re-indent, <code>⌃6</code> show the current file's symbols.</li><li><code>⌘⇧Y</code> toggle the debug console; <code>⌘⇧J</code> reveal the current file in the navigator.</li><li><code>⌘I</code> profile with Instruments; <code>⌘U</code> run tests.</li><li><code>⌃⌘→</code>/<code>⌃⌘←</code> move between editor panes.</li><li>Use Editor ▸ Refactor for rename/extract, which respects types.</li><li>Enable &quot;SwiftUI previews on canvas&quot; only when needed; it costs build time.</li><li>Custom SF Symbols, SwiftUI <code>#Preview</code>, and <code>Quick Look</code> for assets save context switches.</li></ul>
+<h2 id="useful-keyboard-shortcuts-macos-wide">Useful keyboard shortcuts (macOS-wide)</h2>
+<ul><li><code>⌘⌥P</code> — compile/run (see Xcode key bindings; default is <code>⌘R</code>).</li><li><code>⌘\</code> — toggle breakpoint on the current line.</li><li><code>⌘⇧F</code> — search across the project.</li><li><code>⌥⌘[</code> / <code>⌥⌘]</code> — fold/unfold code.</li><li><code>⌃⌘E</code> — rename all occurrences in scope.</li></ul>
+<h2 id="recommended-resources">Recommended resources</h2>
+<ul><li>The Swift Programming Language (swift.org) — the canonical language reference.</li><li>Apple Human Interface Guidelines — platform conventions.</li><li>Swift Evolution proposals — understand why APIs exist.</li><li>WWDC session videos — the fastest way to learn new APIs.</li><li>swift.org / Swift Forums — language direction and discussion.</li><li>Instruments Help — the definitive guide to each instrument.</li><li>Point-Free and SwiftUI-focused blogs — advanced patterns, read critically.</li><li>Apple sample code and SwiftUI tutorials — runnable references.</li></ul>
+<h2 id="version-awareness">Version awareness</h2>
+<p>APIs change behaviour across OS versions. Always check availability (<code>@available</code>, <code>#available</code>) before using a new API, and test on the oldest supported OS. When this site mentions an API, the article's version tag states the minimum target it assumes.</p>
+                </div>
+            </article>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</body>
+</html>

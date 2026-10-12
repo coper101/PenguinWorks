@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Real-World Project Structures — Swift Developer Hub</title>
+    <meta name="description" content="Concrete folder and module layouts for small, medium and large iOS apps, and how they evolve." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/architecture/real-world-project-structures/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Real-World Project Structures — Swift Developer Hub" />
+    <meta property="og:description" content="Concrete folder and module layouts for small, medium and large iOS apps, and how they evolve." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/architecture/real-world-project-structures/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Real-World Project Structures — Swift Developer Hub" />
+    <meta name="twitter:description" content="Concrete folder and module layouts for small, medium and large iOS apps, and how they evolve." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Real-World Project Structures","description":"Concrete folder and module layouts for small, medium and large iOS apps, and how they evolve.","about":["architecture","project-structure","examples"],"datePublished":"2026-01-15","dateModified":"2026-09-30","inLanguage":"en","publisher":{"@type":"Organization","name":"PenguinWorks"},"keywords":"architecture, project-structure, examples"}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar" data-sidebar aria-label="Documentation">
+            <nav class="sidebar-nav">
+                <p class="sidebar-label">Documentation</p>
+            <details class="nav-group">
+                <summary><span>Swift Fundamentals</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/language/variables-constants-types/">Variables, Constants and Types</a></li>
+                    <li><a href="/swift/language/optionals/">Optionals and Optional Binding</a></li>
+                    <li><a href="/swift/language/structs-vs-classes/">Structs vs Classes</a></li>
+                    <li><a href="/swift/language/value-vs-reference/">Value vs Reference Semantics</a></li>
+                    <li><a href="/swift/language/enums-associated-values/">Enums and Associated Values</a></li>
+                    <li><a href="/swift/language/protocols-extensions/">Protocols and Extensions</a></li>
+                    <li><a href="/swift/language/generics/">Generics</a></li>
+                    <li><a href="/swift/language/closures-capture-lists/">Closures and Capture Lists</a></li>
+                    <li><a href="/swift/language/error-handling/">Error Handling</a></li>
+                    <li><a href="/swift/language/access-control/">Access Control</a></li>
+                    <li><a href="/swift/language/property-wrappers/">Property Wrappers</a></li>
+                    <li><a href="/swift/language/memory-management-arc/">Memory Management and ARC</a></li>
+                    <li><a href="/swift/language/copy-on-write/">Copy-on-Write</a></li>
+                    <li><a href="/swift/language/existentials-opaque-types/">Existentials and Opaque Types</a></li>
+                    <li><a href="/swift/language/advanced-type-system/">Advanced Type System Concepts</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/language/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>SwiftUI</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/swiftui/view-lifecycle-identity/">View Lifecycle and Identity</a></li>
+                    <li><a href="/swift/swiftui/state-management/">State Management</a></li>
+                    <li><a href="/swift/swiftui/state-binding-observable-environment/">@State, @Binding, @Observable and @Environment</a></li>
+                    <li><a href="/swift/swiftui/layout-system-geometryreader/">Layout System and GeometryReader</a></li>
+                    <li><a href="/swift/swiftui/navigationstack-navigationpath/">NavigationStack and NavigationPath</a></li>
+                    <li><a href="/swift/swiftui/animations-transitions/">Animations and Transitions</a></li>
+                    <li><a href="/swift/swiftui/custom-layouts-modifiers/">Custom Layouts and Modifiers</a></li>
+                    <li><a href="/swift/swiftui/lists-grids-lazy-containers/">Lists, Grids and Lazy Containers</a></li>
+                    <li><a href="/swift/swiftui/view-performance-invalidation/">View Performance and Invalidation</a></li>
+                    <li><a href="/swift/swiftui/accessibility/">Accessibility</a></li>
+                    <li><a href="/swift/swiftui/widgets-app-intents/">Widgets and App Intents</a></li>
+                    <li><a href="/swift/swiftui/uikit-interoperability/">UIKit Interoperability</a></li>
+                    <li><a href="/swift/swiftui/common-swiftui-mistakes/">Common SwiftUI Mistakes</a></li>
+                    <li><a href="/swift/swiftui/modern-swiftui-patterns/">Modern SwiftUI Patterns</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/swiftui/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Concurrency</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/concurrency/async-await/">async/await</a></li>
+                    <li><a href="/swift/concurrency/task-taskgroup/">Task and TaskGroup</a></li>
+                    <li><a href="/swift/concurrency/actors-isolation/">Actors and Isolation</a></li>
+                    <li><a href="/swift/concurrency/mainactor/">MainActor</a></li>
+                    <li><a href="/swift/concurrency/sendable/">Sendable</a></li>
+                    <li><a href="/swift/concurrency/structured-concurrency/">Structured Concurrency</a></li>
+                    <li><a href="/swift/concurrency/cancellation/">Cancellation</a></li>
+                    <li><a href="/swift/concurrency/continuations/">Continuations</a></li>
+                    <li><a href="/swift/concurrency/asyncsequence/">AsyncSequence</a></li>
+                    <li><a href="/swift/concurrency/data-races/">Data Races</a></li>
+                    <li><a href="/swift/concurrency/swift6-concurrency/">Swift 6 Concurrency Checking</a></li>
+                    <li><a href="/swift/concurrency/concurrency-interview-questions/">Common Concurrency Interview Questions</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/concurrency/">Section overview</a>
+            </details>
+            <details class="nav-group" open>
+                <summary><span>Architecture</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/architecture/mvc-mvvm-mvp-viper-clean/">MVC, MVVM, MVP, VIPER and Clean Architecture</a></li>
+                    <li><a href="/swift/architecture/dependency-injection/">Dependency Injection</a></li>
+                    <li><a href="/swift/architecture/repository-pattern/">Repository Pattern</a></li>
+                    <li><a href="/swift/architecture/coordinator-pattern/">Coordinator Pattern</a></li>
+                    <li><a href="/swift/architecture/modular-architecture/">Modular Architecture</a></li>
+                    <li><a href="/swift/architecture/feature-based-organization/">Feature-Based Organization</a></li>
+                    <li><a href="/swift/architecture/solid-principles/">SOLID Principles</a></li>
+                    <li><a href="/swift/architecture/protocol-oriented-programming/">Protocol-Oriented Programming</a></li>
+                    <li><a href="/swift/architecture/testable-design/">Testable Application Design</a></li>
+                    <li><a href="/swift/architecture/architecture-tradeoffs/">Architecture Trade-offs</a></li>
+                    <li><a href="/swift/architecture/real-world-project-structures/" class="active" aria-current="page">Real-World Project Structures</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/architecture/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Performance</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/performance/instruments-overview/">Instruments Overview</a></li>
+                    <li><a href="/swift/performance/time-profiler/">Time Profiler</a></li>
+                    <li><a href="/swift/performance/memory-leaks-retain-cycles/">Memory Leaks and Retain Cycles</a></li>
+                    <li><a href="/swift/performance/allocations/">Allocations</a></li>
+                    <li><a href="/swift/performance/cpu-optimization/">CPU Optimization</a></li>
+                    <li><a href="/swift/performance/swiftui-rendering-performance/">SwiftUI Rendering Performance</a></li>
+                    <li><a href="/swift/performance/view-body-recomputation/">View Body Recomputation</a></li>
+                    <li><a href="/swift/performance/scrolling-performance/">Scrolling Performance</a></li>
+                    <li><a href="/swift/performance/image-decoding-caching/">Image Decoding and Caching</a></li>
+                    <li><a href="/swift/performance/app-startup-optimization/">App Startup Optimization</a></li>
+                    <li><a href="/swift/performance/networking-performance/">Networking Performance</a></li>
+                    <li><a href="/swift/performance/battery-energy/">Battery and Energy Usage</a></li>
+                    <li><a href="/swift/performance/background-execution/">Background Execution</a></li>
+                    <li><a href="/swift/performance/concurrency-bottlenecks/">Concurrency Bottlenecks</a></li>
+                    <li><a href="/swift/performance/debugging-freezes-hangs/">Debugging Freezes and Hangs</a></li>
+                    <li><a href="/swift/performance/profiling-walkthroughs/">Performance Profiling Walkthroughs</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/performance/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Debugging</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/debugging/lldb-commands/">LLDB Commands</a></li>
+                    <li><a href="/swift/debugging/breakpoints/">Breakpoints</a></li>
+                    <li><a href="/swift/debugging/memory-graph-debugger/">Memory Graph Debugger</a></li>
+                    <li><a href="/swift/debugging/thread-sanitizer/">Thread Sanitizer</a></li>
+                    <li><a href="/swift/debugging/address-sanitizer/">Address Sanitizer</a></li>
+                    <li><a href="/swift/debugging/console-logging/">Console Logging</a></li>
+                    <li><a href="/swift/debugging/oslog/">OSLog</a></li>
+                    <li><a href="/swift/debugging/crash-log-interpretation/">Crash Log Interpretation</a></li>
+                    <li><a href="/swift/debugging/xcode-debugging-techniques/">Xcode Debugging Techniques</a></li>
+                    <li><a href="/swift/debugging/network-debugging/">Network Debugging</a></li>
+                    <li><a href="/swift/debugging/diagnosing-swiftui-problems/">Diagnosing SwiftUI Problems</a></li>
+                    <li><a href="/swift/debugging/common-production-issues/">Common Production Issues</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/debugging/">Section overview</a>
+            </details>
+                <p class="sidebar-label">Practice</p>
+                <ul class="nav-flat">
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/mock-interview/">Mock interview</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                    <li><a href="/swift/tags/">Browse by tag</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="content-shell">
+            <div class="content">
+                <main id="main">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li><a href="/swift/architecture/">Architecture</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">Real-World Project Structures</li></ol></nav>
+                    <article class="article" data-article data-reading>
+                        <header class="article-head">
+                            <p class="article-kicker">Architecture</p>
+                            <h1>Real-World Project Structures</h1>
+                            <p class="article-lede">Concrete folder and module layouts for small, medium and large iOS apps, and how they evolve.</p>
+                            <div class="article-meta">
+                                <span class="chip chip-difficulty" data-difficulty="Intermediate">Intermediate</span>
+                    <span class="chip chip-time">10 min read</span>
+                    <span class="chip chip-version">General</span>
+                    <span class="chip chip-reviewed">Reviewed 2026-09-30</span>
+                            </div>
+                            <div class="article-tags">
+                                <a class="tag" href="/swift/tags/#architecture">#architecture</a> <a class="tag" href="/swift/tags/#project-structure">#project-structure</a> <a class="tag" href="/swift/tags/#examples">#examples</a>
+                            </div>
+                        </header>
+<section class="article-section article-prereq" aria-labelledby="prereq">
+                            <h2 id="prereq">Prerequisites</h2>
+                            <ul class="prereq-list"><li>architecture/feature-based-organization</li><li>architecture/modular-architecture</li></ul>
+                        </section>
+                        <div class="article-body">
+<h2 id="overview">Overview</h2>
+<p>Architecture patterns describe boundaries; project structure is where those boundaries live on disk. Below are three layouts that scale, from a solo app to a multi-team product.</p>
+<h2 id="small-app-one-developer">Small app (one developer)</h2>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-text">MyApp/
+  App/
+    MyApp.swift
+    RootView.swift
+  Features/
+    Home/
+      HomeView.swift
+      HomeModel.swift
+    Settings/
+      SettingsView.swift
+  Models/
+    Item.swift
+  Services/
+    APIClient.swift</code></pre></div>
+<p>One app target, feature folders, simple services. Add structure when it hurts, not before.</p>
+<h2 id="medium-app-small-team">Medium app (small team)</h2>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-text">MyApp/
+  App/                 # composition root, routing
+  Features/
+    Feed/
+      Views/
+      Models/
+      FeedRepository.swift
+      FeedTests/
+    Profile/
+    Checkout/
+  Core/
+    Domain/            # entities, use cases
+    Persistence/       # SwiftData or Core Data
+    Networking/
+  DesignSystem/        # shared UI components, tokens
+  Utilities/</code></pre></div>
+<p>Features own their view, models and tests. Core holds shared domain and infrastructure. Dependencies point inward.</p>
+<h2 id="large-app-multiple-teams">Large app (multiple teams)</h2>
+<div class="code-block" data-lang="text"><div class="code-head"><span class="code-lang">text</span><button class="copy-code" type="button" data-copy aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-text">Packages/
+  CoreDomain/          # entities, rules, no frameworks
+  Networking/
+  Persistence/
+  DesignSystem/
+  FeatureFeed/
+  FeatureProfile/
+  FeatureCheckout/
+App/                   # app target wires packages</code></pre></div>
+<p>Each package is a SwiftPM module with a deliberate public API. The app target depends on features; features depend on core/infra, never on each other. CI enforces the dependency graph.</p>
+<h2 id="how-structure-evolves">How structure evolves</h2>
+<ol><li>Start flat with feature folders.</li><li>Extract Core when duplication appears.</li><li>Extract modules when build times or boundaries require it.</li><li>Add a composition root when wiring grows.</li><li>Enforce with tooling as teams grow.</li></ol>
+<h2 id="real-world-use-cases">Real-world use cases</h2>
+<ul><li>A solo prototype that later becomes a funded product.</li><li>A 20-developer app split by feature ownership.</li><li>A shared design system consumed by multiple apps.</li></ul>
+<h2 id="common-pitfalls">Common pitfalls</h2>
+<ul><li>Starting at the large layout for a small app.</li><li>A <code>Helpers</code>/<code>Utils</code> folder with no cohesion.</li><li>Packages that all depend on one &quot;Common&quot; package, recreating a monolith.</li><li>Folder layout that does not match the module graph.</li></ul>
+<h2 id="best-practices">Best practices</h2>
+<ul><li>Match the structure to the current team size and pain.</li><li>Keep dependency direction one-directional.</li><li>Make folders that could become modules.</li><li>Let ADRs explain the structure's rationale.</li></ul>
+<h2 id="interview-questions">Interview questions</h2>
+<ol><li>How would you structure a new app expected to grow?</li><li>When do you split a feature into its own module?</li><li>How do you keep dependency direction clean across packages?</li></ol>
+<p><strong>Follow-up:</strong> What is a composition root? The single place in the app where concrete dependencies are constructed and wired together.</p>
+                        </div>
+<section class="article-section related" aria-labelledby="related">
+                            <h2 id="related">Related articles</h2>
+                            <div class="related-grid">
+                                <a class="related-card" href="/swift/architecture/modular-architecture/">
+                                    <span class="related-section">Architecture</span>
+                                    <span class="related-title">Modular Architecture</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                                </a>
+                                <a class="related-card" href="/swift/architecture/feature-based-organization/">
+                                    <span class="related-section">Architecture</span>
+                                    <span class="related-title">Feature-Based Organization</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Intermediate">Intermediate</span>
+                                </a>
+                                <a class="related-card" href="/swift/architecture/architecture-tradeoffs/">
+                                    <span class="related-section">Architecture</span>
+                                    <span class="related-title">Architecture Trade-offs</span>
+                                    <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                                </a>
+                            </div>
+                        </section>
+                    </article>
+            <nav class="pager" aria-label="Article navigation">
+                <a class="pager-link pager-prev" href="/swift/architecture/architecture-tradeoffs/">
+                    <span class="pager-dir"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H4M7.5 4l-4 4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Previous</span>
+                    <span class="pager-title">Architecture Trade-offs</span>
+                </a>
+                <span class="pager-spacer" aria-hidden="true"></span>
+            </nav>
+                </main>
+            </div>
+        <aside class="toc" data-toc aria-label="On this page">
+            <div class="toc-inner">
+                <p class="toc-label">On this page</p>
+                <ul>
+                    <li class="toc-l2"><a href="#overview">Overview</a></li>
+                    <li class="toc-l2"><a href="#small-app-one-developer">Small app (one developer)</a></li>
+                    <li class="toc-l2"><a href="#medium-app-small-team">Medium app (small team)</a></li>
+                    <li class="toc-l2"><a href="#large-app-multiple-teams">Large app (multiple teams)</a></li>
+                    <li class="toc-l2"><a href="#how-structure-evolves">How structure evolves</a></li>
+                    <li class="toc-l2"><a href="#real-world-use-cases">Real-world use cases</a></li>
+                    <li class="toc-l2"><a href="#common-pitfalls">Common pitfalls</a></li>
+                    <li class="toc-l2"><a href="#best-practices">Best practices</a></li>
+                    <li class="toc-l2"><a href="#interview-questions">Interview questions</a></li>
+                </ul>
+                <div class="toc-actions">
+                    <button class="toc-bookmark" type="button" data-bookmark aria-pressed="false" title="Bookmark this article">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                        <span data-bookmark-label>Bookmark</span>
+                    </button>
+                    <div class="progress-mini" aria-hidden="true"><span data-progress-bar></span></div>
+                </div>
+            </div>
+        </aside>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Performance — Swift Developer Hub</title>
+    <meta name="description" content="Diagnose and fix real performance problems — memory, CPU, rendering, startup, networking and energy — with symptoms, diagnostics and fixes for each." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/performance/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Performance — Swift Developer Hub" />
+    <meta property="og:description" content="Diagnose and fix real performance problems — memory, CPU, rendering, startup, networking and energy — with symptoms, diagnostics and fixes for each." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/performance/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Performance — Swift Developer Hub" />
+    <meta name="twitter:description" content="Diagnose and fix real performance problems — memory, CPU, rendering, startup, networking and energy — with symptoms, diagnostics and fixes for each." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Performance","description":"Diagnose and fix real performance problems — memory, CPU, rendering, startup, networking and energy — with symptoms, diagnostics and fixes for each.","inLanguage":"en","publisher":{"@type":"Organization","name":"PenguinWorks"}}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar" data-sidebar aria-label="Documentation">
+            <nav class="sidebar-nav">
+                <p class="sidebar-label">Documentation</p>
+            <details class="nav-group">
+                <summary><span>Swift Fundamentals</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/language/variables-constants-types/">Variables, Constants and Types</a></li>
+                    <li><a href="/swift/language/optionals/">Optionals and Optional Binding</a></li>
+                    <li><a href="/swift/language/structs-vs-classes/">Structs vs Classes</a></li>
+                    <li><a href="/swift/language/value-vs-reference/">Value vs Reference Semantics</a></li>
+                    <li><a href="/swift/language/enums-associated-values/">Enums and Associated Values</a></li>
+                    <li><a href="/swift/language/protocols-extensions/">Protocols and Extensions</a></li>
+                    <li><a href="/swift/language/generics/">Generics</a></li>
+                    <li><a href="/swift/language/closures-capture-lists/">Closures and Capture Lists</a></li>
+                    <li><a href="/swift/language/error-handling/">Error Handling</a></li>
+                    <li><a href="/swift/language/access-control/">Access Control</a></li>
+                    <li><a href="/swift/language/property-wrappers/">Property Wrappers</a></li>
+                    <li><a href="/swift/language/memory-management-arc/">Memory Management and ARC</a></li>
+                    <li><a href="/swift/language/copy-on-write/">Copy-on-Write</a></li>
+                    <li><a href="/swift/language/existentials-opaque-types/">Existentials and Opaque Types</a></li>
+                    <li><a href="/swift/language/advanced-type-system/">Advanced Type System Concepts</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/language/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>SwiftUI</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/swiftui/view-lifecycle-identity/">View Lifecycle and Identity</a></li>
+                    <li><a href="/swift/swiftui/state-management/">State Management</a></li>
+                    <li><a href="/swift/swiftui/state-binding-observable-environment/">@State, @Binding, @Observable and @Environment</a></li>
+                    <li><a href="/swift/swiftui/layout-system-geometryreader/">Layout System and GeometryReader</a></li>
+                    <li><a href="/swift/swiftui/navigationstack-navigationpath/">NavigationStack and NavigationPath</a></li>
+                    <li><a href="/swift/swiftui/animations-transitions/">Animations and Transitions</a></li>
+                    <li><a href="/swift/swiftui/custom-layouts-modifiers/">Custom Layouts and Modifiers</a></li>
+                    <li><a href="/swift/swiftui/lists-grids-lazy-containers/">Lists, Grids and Lazy Containers</a></li>
+                    <li><a href="/swift/swiftui/view-performance-invalidation/">View Performance and Invalidation</a></li>
+                    <li><a href="/swift/swiftui/accessibility/">Accessibility</a></li>
+                    <li><a href="/swift/swiftui/widgets-app-intents/">Widgets and App Intents</a></li>
+                    <li><a href="/swift/swiftui/uikit-interoperability/">UIKit Interoperability</a></li>
+                    <li><a href="/swift/swiftui/common-swiftui-mistakes/">Common SwiftUI Mistakes</a></li>
+                    <li><a href="/swift/swiftui/modern-swiftui-patterns/">Modern SwiftUI Patterns</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/swiftui/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Concurrency</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/concurrency/async-await/">async/await</a></li>
+                    <li><a href="/swift/concurrency/task-taskgroup/">Task and TaskGroup</a></li>
+                    <li><a href="/swift/concurrency/actors-isolation/">Actors and Isolation</a></li>
+                    <li><a href="/swift/concurrency/mainactor/">MainActor</a></li>
+                    <li><a href="/swift/concurrency/sendable/">Sendable</a></li>
+                    <li><a href="/swift/concurrency/structured-concurrency/">Structured Concurrency</a></li>
+                    <li><a href="/swift/concurrency/cancellation/">Cancellation</a></li>
+                    <li><a href="/swift/concurrency/continuations/">Continuations</a></li>
+                    <li><a href="/swift/concurrency/asyncsequence/">AsyncSequence</a></li>
+                    <li><a href="/swift/concurrency/data-races/">Data Races</a></li>
+                    <li><a href="/swift/concurrency/swift6-concurrency/">Swift 6 Concurrency Checking</a></li>
+                    <li><a href="/swift/concurrency/concurrency-interview-questions/">Common Concurrency Interview Questions</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/concurrency/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Architecture</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/architecture/mvc-mvvm-mvp-viper-clean/">MVC, MVVM, MVP, VIPER and Clean Architecture</a></li>
+                    <li><a href="/swift/architecture/dependency-injection/">Dependency Injection</a></li>
+                    <li><a href="/swift/architecture/repository-pattern/">Repository Pattern</a></li>
+                    <li><a href="/swift/architecture/coordinator-pattern/">Coordinator Pattern</a></li>
+                    <li><a href="/swift/architecture/modular-architecture/">Modular Architecture</a></li>
+                    <li><a href="/swift/architecture/feature-based-organization/">Feature-Based Organization</a></li>
+                    <li><a href="/swift/architecture/solid-principles/">SOLID Principles</a></li>
+                    <li><a href="/swift/architecture/protocol-oriented-programming/">Protocol-Oriented Programming</a></li>
+                    <li><a href="/swift/architecture/testable-design/">Testable Application Design</a></li>
+                    <li><a href="/swift/architecture/architecture-tradeoffs/">Architecture Trade-offs</a></li>
+                    <li><a href="/swift/architecture/real-world-project-structures/">Real-World Project Structures</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/architecture/">Section overview</a>
+            </details>
+            <details class="nav-group" open>
+                <summary><span>Performance</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/performance/instruments-overview/">Instruments Overview</a></li>
+                    <li><a href="/swift/performance/time-profiler/">Time Profiler</a></li>
+                    <li><a href="/swift/performance/memory-leaks-retain-cycles/">Memory Leaks and Retain Cycles</a></li>
+                    <li><a href="/swift/performance/allocations/">Allocations</a></li>
+                    <li><a href="/swift/performance/cpu-optimization/">CPU Optimization</a></li>
+                    <li><a href="/swift/performance/swiftui-rendering-performance/">SwiftUI Rendering Performance</a></li>
+                    <li><a href="/swift/performance/view-body-recomputation/">View Body Recomputation</a></li>
+                    <li><a href="/swift/performance/scrolling-performance/">Scrolling Performance</a></li>
+                    <li><a href="/swift/performance/image-decoding-caching/">Image Decoding and Caching</a></li>
+                    <li><a href="/swift/performance/app-startup-optimization/">App Startup Optimization</a></li>
+                    <li><a href="/swift/performance/networking-performance/">Networking Performance</a></li>
+                    <li><a href="/swift/performance/battery-energy/">Battery and Energy Usage</a></li>
+                    <li><a href="/swift/performance/background-execution/">Background Execution</a></li>
+                    <li><a href="/swift/performance/concurrency-bottlenecks/">Concurrency Bottlenecks</a></li>
+                    <li><a href="/swift/performance/debugging-freezes-hangs/">Debugging Freezes and Hangs</a></li>
+                    <li><a href="/swift/performance/profiling-walkthroughs/">Performance Profiling Walkthroughs</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/performance/">Section overview</a>
+            </details>
+            <details class="nav-group">
+                <summary><span>Debugging</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                    <li><a href="/swift/debugging/lldb-commands/">LLDB Commands</a></li>
+                    <li><a href="/swift/debugging/breakpoints/">Breakpoints</a></li>
+                    <li><a href="/swift/debugging/memory-graph-debugger/">Memory Graph Debugger</a></li>
+                    <li><a href="/swift/debugging/thread-sanitizer/">Thread Sanitizer</a></li>
+                    <li><a href="/swift/debugging/address-sanitizer/">Address Sanitizer</a></li>
+                    <li><a href="/swift/debugging/console-logging/">Console Logging</a></li>
+                    <li><a href="/swift/debugging/oslog/">OSLog</a></li>
+                    <li><a href="/swift/debugging/crash-log-interpretation/">Crash Log Interpretation</a></li>
+                    <li><a href="/swift/debugging/xcode-debugging-techniques/">Xcode Debugging Techniques</a></li>
+                    <li><a href="/swift/debugging/network-debugging/">Network Debugging</a></li>
+                    <li><a href="/swift/debugging/diagnosing-swiftui-problems/">Diagnosing SwiftUI Problems</a></li>
+                    <li><a href="/swift/debugging/common-production-issues/">Common Production Issues</a></li>
+                </ul>
+                <a class="nav-overview" href="/swift/debugging/">Section overview</a>
+            </details>
+                <p class="sidebar-label">Practice</p>
+                <ul class="nav-flat">
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/mock-interview/">Mock interview</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                    <li><a href="/swift/tags/">Browse by tag</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="content-shell">
+            <div class="content">
+                <main id="main">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/swift/">Swift Hub</a></li><li class="sep" aria-hidden="true">/</li><li aria-current="page">Performance</li></ol></nav>
+                    <article class="article section-page" data-article data-reading>
+                        <header class="article-head">
+                            <p class="article-kicker">Documentation</p>
+                            <h1>Performance</h1>
+                            <p class="article-lede">Diagnose and fix real performance problems — memory, CPU, rendering, startup, networking and energy — with symptoms, diagnostics and fixes for each.</p>
+                            <div class="article-meta">
+                                <span class="chip chip-difficulty" data-difficulty="Intermediate → Advanced">Intermediate → Advanced</span>
+                                <span class="chip chip-time">16 articles</span>
+                            </div>
+                            <div class="article-tags"><a class="tag" href="/swift/tags/#performance">#performance</a> <a class="tag" href="/swift/tags/#instruments">#instruments</a> <a class="tag" href="/swift/tags/#optimization">#optimization</a></div>
+                        </header>
+                        <div class="article-body">
+<p>Performance work is empirical. You measure, form a hypothesis, change one thing, and measure again. This section pairs each topic with the <strong>symptoms</strong> you can observe, the <strong>diagnostics</strong> that confirm the cause, and the <strong>fixes</strong> that actually move the number.</p>
+<p>Start with <strong>Instruments Overview</strong> and <strong>Time Profiler</strong>, then jump to the symptom you have: scrolling jank, memory growth, slow launch, or energy drain. Every article assumes you are measuring on a real device — the Simulator distorts CPU, GPU and memory behaviour.</p>
+                        </div>
+                        <section class="article-section" aria-labelledby="topics">
+                            <h2 id="topics">Topics in this section</h2>
+                            <div class="topic-grid">
+                <a class="topic-card" href="/swift/performance/instruments-overview/">
+                    <div class="topic-card-head">
+                        <h3>Instruments Overview</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Intermediate">Intermediate</span>
+                    </div>
+                    <p>Choose the right Instruments template for the problem and read a trace without getting lost.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#instruments</span> <span class="tag small">#profiling</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/time-profiler/">
+                    <div class="topic-card-head">
+                        <h3>Time Profiler</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Intermediate">Intermediate</span>
+                    </div>
+                    <p>Find where CPU time goes by sampling the call stack and reading weight.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#time-profiler</span> <span class="tag small">#cpu</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/memory-leaks-retain-cycles/">
+                    <div class="topic-card-head">
+                        <h3>Memory Leaks and Retain Cycles</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Detect, locate and break the reference cycles that keep objects alive forever.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#memory</span> <span class="tag small">#retain-cycles</span></span>
+                        <span class="topic-card-time">10 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/allocations/">
+                    <div class="topic-card-head">
+                        <h3>Allocations</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Reduce allocation churn and peak memory by understanding what allocates and why.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#allocations</span> <span class="tag small">#malloc</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/cpu-optimization/">
+                    <div class="topic-card-head">
+                        <h3>CPU Optimization</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Cut CPU work by changing algorithms and data flow before reaching for micro-optimisations.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#cpu</span> <span class="tag small">#algorithms</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/swiftui-rendering-performance/">
+                    <div class="topic-card-head">
+                        <h3>SwiftUI Rendering Performance</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Keep SwiftUI smooth by understanding invalidation, layout cost and what forces the renderer to work harder.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#swiftui</span> <span class="tag small">#rendering</span></span>
+                        <span class="topic-card-time">10 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/view-body-recomputation/">
+                    <div class="topic-card-head">
+                        <h3>View Body Recomputation</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Why bodies recompute, how to count them, and how to keep recomputation local.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#swiftui</span> <span class="tag small">#body</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/scrolling-performance/">
+                    <div class="topic-card-head">
+                        <h3>Scrolling Performance</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Eliminate dropped frames while scrolling by trimming per-row work and image cost.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#scrolling</span> <span class="tag small">#list</span></span>
+                        <span class="topic-card-time">10 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/image-decoding-caching/">
+                    <div class="topic-card-head">
+                        <h3>Image Decoding and Caching</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Decode images off the main thread, downsample to display size, and cache decoded results.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#images</span> <span class="tag small">#caching</span></span>
+                        <span class="topic-card-time">10 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/app-startup-optimization/">
+                    <div class="topic-card-head">
+                        <h3>App Startup Optimization</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Reduce launch time by understanding what blocks the first frame and moving work off the critical path.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#launch</span> <span class="tag small">#startup</span></span>
+                        <span class="topic-card-time">10 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/networking-performance/">
+                    <div class="topic-card-head">
+                        <h3>Networking Performance</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Intermediate">Intermediate</span>
+                    </div>
+                    <p>Cut latency, bandwidth and battery use with connection reuse, caching, compression and request coalescing.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#networking</span> <span class="tag small">#urlsession</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/battery-energy/">
+                    <div class="topic-card-head">
+                        <h3>Battery and Energy Usage</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Find what drains the battery and reduce energy with batching, coalescing and fewer wake-ups.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#battery</span> <span class="tag small">#energy</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/background-execution/">
+                    <div class="topic-card-head">
+                        <h3>Background Execution</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Do background work the way the system intends, with background tasks, URLSession and correct lifecycle handling.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#background</span> <span class="tag small">#bgtaskscheduler</span></span>
+                        <span class="topic-card-time">10 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/concurrency-bottlenecks/">
+                    <div class="topic-card-head">
+                        <h3>Concurrency Bottlenecks</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Find and fix main-thread blocking, actor contention and serialised hot paths.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#concurrency</span> <span class="tag small">#contention</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/debugging-freezes-hangs/">
+                    <div class="topic-card-head">
+                        <h3>Debugging Freezes and Hangs</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Reproduce, capture and fix main-thread hangs and watchdog terminations.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#hangs</span> <span class="tag small">#watchdog</span></span>
+                        <span class="topic-card-time">9 min</span>
+                    </div>
+                </a>
+                <a class="topic-card" href="/swift/performance/profiling-walkthroughs/">
+                    <div class="topic-card-head">
+                        <h3>Performance Profiling Walkthroughs</h3>
+                        <span class="chip chip-difficulty small" data-difficulty="Advanced">Advanced</span>
+                    </div>
+                    <p>Three end-to-end profiling scenarios, from symptom to verified fix.</p>
+                    <div class="topic-card-foot">
+                        <span class="topic-card-tags"><span class="tag small">#performance</span> <span class="tag small">#walkthrough</span> <span class="tag small">#methodology</span></span>
+                        <span class="topic-card-time">12 min</span>
+                    </div>
+                </a>
+                            </div>
+                        </section>
+                    </article>
+                </main>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Swift Developer Hub — Master Swift. Build Better Apps.</title>
+    <meta name="description" content="A developer hub for learning Swift and SwiftUI, diagnosing performance, structuring architecture and preparing for interviews. Documentation, tools and interview practice from PenguinWorks." />
+    <link rel="canonical" href="https://penguinworksco.work/swift/" />
+    <link rel="icon" type="image/svg+xml" href="/swift/assets/favicon.svg" />
+    <link rel="apple-touch-icon" href="/swift/assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Swift Developer Hub" />
+    <meta property="og:title" content="Swift Developer Hub — Master Swift. Build Better Apps." />
+    <meta property="og:description" content="A developer hub for learning Swift and SwiftUI, diagnosing performance, structuring architecture and preparing for interviews. Documentation, tools and interview practice from PenguinWorks." />
+    <meta property="og:url" content="https://penguinworksco.work/swift/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Swift Developer Hub — Master Swift. Build Better Apps." />
+    <meta name="twitter:description" content="A developer hub for learning Swift and SwiftUI, diagnosing performance, structuring architecture and preparing for interviews. Documentation, tools and interview practice from PenguinWorks." />
+    <link rel="stylesheet" href="/swift/styles.css" />
+    <script>try{var t=localStorage.getItem("swift-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Swift Developer Hub","url":"https://penguinworksco.work/swift/","publisher":{"@type":"Organization","name":"PenguinWorks"},"potentialAction":{"@type":"SearchAction","target":"https://penguinworksco.work/swift/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+    <script defer src="/swift/search-index.js"></script>
+    <script defer src="/swift/app.js"></script>
+</head>
+<body class="swift hub">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"><span></span></div>
+    <header class="topbar" data-topbar>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="sidebar" aria-label="Toggle documentation menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <a class="brand" href="/swift/" aria-label="Swift Developer Hub home">
+            <span class="brand-mark" aria-hidden="true">S</span>
+            <span class="brand-text">Swift Developer Hub</span>
+            <span class="brand-by">by PenguinWorks</span>
+        </a>
+        <div class="search" data-search>
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="search" id="global-search" data-search-input placeholder="Search topics, tags, concepts…" autocomplete="off" spellcheck="false" aria-label="Search the Swift Developer Hub" aria-controls="search-results" aria-expanded="false" />
+            <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            <div class="search-results" id="search-results" data-search-results hidden></div>
+        </div>
+        <nav class="topbar-nav" aria-label="Primary">
+            <a href="/swift/" aria-current="page">Home</a>
+            <a href="/swift/learn/">Learn</a>
+            <a href="/swift/tools/">Tools</a>
+            <a href="/swift/interviews/">Interviews</a>
+            <a href="/swift/recipes/">Recipes</a>
+            <a href="/swift/notes/">Notes</a>
+        </nav>
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Toggle light and dark theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+    </header>
+    <main id="main">
+        <section class="hub-hero">
+            <div class="hub-hero-inner">
+                <span class="hub-eyebrow">Swift · SwiftUI · Apple platforms</span>
+                <h1>Master Swift. Build Better Apps.</h1>
+                <p class="hub-lede">
+                    A developer hub for learning Swift and SwiftUI, diagnosing
+                    performance, structuring architecture and preparing for
+                    interviews — documentation, an engineering handbook and an
+                    interactive playground in one place.
+                </p>
+                <form class="hub-search" role="search" action="/swift/" data-hub-search>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <input type="search" placeholder="Search 80+ articles, tools and interview questions…" aria-label="Search the Swift Developer Hub" data-search-input autocomplete="off" />
+                    <kbd>/</kbd>
+                    <div class="search-results" data-search-results hidden></div>
+                </form>
+                <div class="hub-actions">
+                    <a class="btn btn-primary" href="/swift/learn/">Start learning</a>
+                    <a class="btn btn-secondary" href="/swift/tools/">Open developer tools</a>
+                    <a class="btn btn-ghost" href="/swift/interviews/">Prepare for interviews</a>
+                </div>
+                <p class="hub-brand-note">
+                    A <a href="/">PenguinWorks</a> project · Part of the <a href="/view-graph/">ViewGraph</a> developer ecosystem
+                </p>
+            </div>
+        </section>
+
+        <section class="hub-section" aria-labelledby="paths-title">
+            <div class="section-head">
+                <h2 id="paths-title">Featured learning paths</h2>
+                <p>Structured routes from beginner to advanced, with checkable progress.</p>
+            </div>
+            <div class="paths-grid">
+                    <a class="path-card" href="/swift/learn/#swift-beginner">
+                        <span class="path-level" data-difficulty="Beginner">Beginner</span>
+                        <h3>Swift Beginner Roadmap</h3>
+                        <p>Go from no Swift to writing working command-line and playground code confidently.</p>
+                        <span class="path-meta">8 steps · 3–4 weeks</span>
+                    </a>
+                    <a class="path-card" href="/swift/learn/#swiftui-beginner">
+                        <span class="path-level" data-difficulty="Beginner">Beginner</span>
+                        <h3>SwiftUI Beginner Roadmap</h3>
+                        <p>Build your first polished SwiftUI app with state, navigation and lists.</p>
+                        <span class="path-meta">8 steps · 4–5 weeks</span>
+                    </a>
+                    <a class="path-card" href="/swift/learn/#ios-intermediate">
+                        <span class="path-level" data-difficulty="Intermediate">Intermediate</span>
+                        <h3>Intermediate iOS Developer Roadmap</h3>
+                        <p>Handle real data, concurrency and debugging like a professional.</p>
+                        <span class="path-meta">8 steps · 6–8 weeks</span>
+                    </a>
+            </div>
+        </section>
+
+        <section class="hub-section" aria-labelledby="browse-title">
+            <div class="section-head">
+                <h2 id="browse-title">Browse by topic</h2>
+                <p>Six documentation tracks covering the whole Apple development surface.</p>
+            </div>
+            <div class="hub-grid">
+                    <a class="hub-card" href="/swift/language/">
+                        <span class="hub-card-icon" aria-hidden="true">⌘</span>
+                        <h3>Swift Fundamentals</h3>
+                        <p>The core of the Swift language — types, memory, protocols, generics and the newer type-system features that separate intermediate developers from senior ones.</p>
+                        <span class="hub-card-meta">15 articles · Beginner → Advanced</span>
+                    </a>
+                    <a class="hub-card" href="/swift/swiftui/">
+                        <span class="hub-card-icon" aria-hidden="true">▦</span>
+                        <h3>SwiftUI</h3>
+                        <p>How SwiftUI really works — identity, state ownership, layout, navigation, animation and the performance model behind its surprising behaviour.</p>
+                        <span class="hub-card-meta">14 articles · Beginner → Advanced</span>
+                    </a>
+                    <a class="hub-card" href="/swift/concurrency/">
+                        <span class="hub-card-icon" aria-hidden="true">⇄</span>
+                        <h3>Concurrency</h3>
+                        <p>Swift concurrency from async/await to Swift 6 strict checking — tasks, actors, isolation, Sendable and the mental model that keeps code correct under load.</p>
+                        <span class="hub-card-meta">12 articles · Intermediate → Advanced</span>
+                    </a>
+                    <a class="hub-card" href="/swift/architecture/">
+                        <span class="hub-card-icon" aria-hidden="true">◇</span>
+                        <h3>Architecture</h3>
+                        <p>How to structure an iOS codebase so it stays testable and changeable — patterns, dependency injection, modularisation and the trade-offs behind every choice.</p>
+                        <span class="hub-card-meta">11 articles · Intermediate → Advanced</span>
+                    </a>
+                    <a class="hub-card" href="/swift/performance/">
+                        <span class="hub-card-icon" aria-hidden="true">⚡</span>
+                        <h3>Performance</h3>
+                        <p>Diagnose and fix real performance problems — memory, CPU, rendering, startup, networking and energy — with symptoms, diagnostics and fixes for each.</p>
+                        <span class="hub-card-meta">16 articles · Intermediate → Advanced</span>
+                    </a>
+                    <a class="hub-card" href="/swift/debugging/">
+                        <span class="hub-card-icon" aria-hidden="true">⌁</span>
+                        <h3>Debugging</h3>
+                        <p>Find and fix bugs faster with LLDB, breakpoints, sanitizers, structured logging and a repeatable method for diagnosing production issues.</p>
+                        <span class="hub-card-meta">12 articles · Beginner → Advanced</span>
+                    </a>
+            </div>
+        </section>
+
+        <section class="hub-section" aria-labelledby="concepts-title">
+            <div class="section-head">
+                <h2 id="concepts-title">Popular Swift concepts</h2>
+                <p>The ideas developers look up most often.</p>
+            </div>
+            <div class="concept-cloud">
+                        <a class="concept" href="/swift/language/optionals/">Optionals</a>
+                        <a class="concept" href="/swift/language/copy-on-write/">Copy-on-Write</a>
+                        <a class="concept" href="/swift/concurrency/sendable/">Sendable</a>
+                        <a class="concept" href="/swift/concurrency/actors-isolation/">Actor reentrancy</a>
+                        <a class="concept" href="/swift/swiftui/view-lifecycle-identity/">View identity</a>
+                        <a class="concept" href="/swift/swiftui/state-binding-observable-environment/">@Observable</a>
+                        <a class="concept" href="/swift/performance/memory-leaks-retain-cycles/">Retain cycles</a>
+                        <a class="concept" href="/swift/performance/image-decoding-caching/">Image downsampling</a>
+                        <a class="concept" href="/swift/swiftui/navigationstack-navigationpath/">NavigationStack</a>
+                        <a class="concept" href="/swift/concurrency/structured-concurrency/">Structured concurrency</a>
+                        <a class="concept" href="/swift/architecture/repository-pattern/">Repository pattern</a>
+                        <a class="concept" href="/swift/performance/time-profiler/">Time Profiler</a>
+            </div>
+        </section>
+
+        <section class="hub-section" aria-labelledby="perf-title">
+            <div class="section-head">
+                <h2 id="perf-title">Featured performance guides</h2>
+                <p>Symptoms, diagnostics and fixes for the problems that hurt most.</p>
+            </div>
+            <div class="hub-grid">
+                    <a class="hub-card compact" href="/swift/performance/time-profiler/">
+                        <h3>Time Profiler</h3>
+                        <p>Find where CPU time goes by sampling the call stack and reading weight.</p>
+                    </a>
+                    <a class="hub-card compact" href="/swift/performance/scrolling-performance/">
+                        <h3>Scrolling Performance</h3>
+                        <p>Eliminate dropped frames while scrolling by trimming per-row work and image cost.</p>
+                    </a>
+                    <a class="hub-card compact" href="/swift/performance/memory-leaks-retain-cycles/">
+                        <h3>Memory Leaks and Retain Cycles</h3>
+                        <p>Detect, locate and break the reference cycles that keep objects alive forever.</p>
+                    </a>
+                    <a class="hub-card compact" href="/swift/performance/image-decoding-caching/">
+                        <h3>Image Decoding and Caching</h3>
+                        <p>Decode images off the main thread, downsample to display size, and cache decoded results.</p>
+                    </a>
+            </div>
+        </section>
+
+        <section class="hub-section" aria-labelledby="qotd-title">
+            <div class="section-head">
+                <h2 id="qotd-title">Interview question of the day</h2>
+                <p>A new question each day, with a full answer and follow-ups.</p>
+            </div>
+            <div class="qotd" data-qotd data-id="architecture-mvvm">
+                <div class="qotd-meta">
+                    <span class="chip chip-difficulty" data-difficulty="Mid">Mid</span>
+                    <span class="chip">Architecture</span>
+                </div>
+                <p class="qotd-question">Compare MVC and MVVM for a SwiftUI app.</p>
+                <button class="btn btn-secondary" type="button" data-qotd-reveal>Reveal answer</button>
+                <div class="qotd-answer" hidden>
+                    <p>MVC in Apple's tradition puts coordination in the view controller, which tends toward huge controllers and weak testability. MVVM moves presentation state and logic into a view model that exposes observable state; the view binds to it. With @Observable, view models are lightweight and testable without a UI.</p>
+                    <p>MVVM fits SwiftUI naturally because views are declarative. The cost is that view models can grow into god objects if given too many responsibilities; split by feature and keep the domain, persistence and networking behind protocols.</p>
+                </div>
+                <a class="qotd-more" href="/swift/interviews/#q-architecture-mvvm">See all interview questions →</a>
+            </div>
+        </section>
+
+        <section class="hub-section" aria-labelledby="tools-title">
+            <div class="section-head">
+                <h2 id="tools-title">Useful developer tools</h2>
+                <p>Client-side utilities that never send your data anywhere.</p>
+            </div>
+            <div class="tools-grid">
+                    <a class="tool-card" href="/swift/tools/#json">
+                        <h3>JSON Formatter and Validator</h3>
+                        <p>Format, validate and minify JSON with error positions.</p>
+                    </a>
+                    <a class="tool-card" href="/swift/tools/#codable">
+                        <h3>JSON to Codable</h3>
+                        <p>Generate Swift Codable structs from a JSON sample.</p>
+                    </a>
+                    <a class="tool-card" href="/swift/tools/#formatter">
+                        <h3>Swift Snippet Formatter</h3>
+                        <p>Lightweight indentation and whitespace cleanup for Swift snippets.</p>
+                    </a>
+                    <a class="tool-card" href="/swift/tools/#regex">
+                        <h3>Regex Tester</h3>
+                        <p>Test regular expressions against sample text with match highlighting.</p>
+                    </a>
+                    <a class="tool-card" href="/swift/tools/#date">
+                        <h3>Date Formatter Playground</h3>
+                        <p>Explore DateFormatter patterns and see formatted output live.</p>
+                    </a>
+                    <a class="tool-card" href="/swift/tools/#color">
+                        <h3>Color Converter</h3>
+                        <p>Convert between hex, RGB and HSL, and preview the result.</p>
+                    </a>
+            </div>
+            <a class="section-more" href="/swift/tools/">All 11 tools →</a>
+        </section>
+
+        <section class="hub-section" aria-labelledby="recent-title">
+            <div class="section-head">
+                <h2 id="recent-title">Recently updated articles</h2>
+                <p>Freshly reviewed against the latest Swift and iOS releases.</p>
+            </div>
+            <ul class="recent-list">
+                    <li>
+                        <a href="/swift/debugging/common-production-issues/">
+                            <span class="recent-title">Common Production Issues</span>
+                            <span class="recent-section">Debugging</span>
+                            <span class="recent-date">2026-09-30</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/swift/debugging/diagnosing-swiftui-problems/">
+                            <span class="recent-title">Diagnosing SwiftUI Problems</span>
+                            <span class="recent-section">Debugging</span>
+                            <span class="recent-date">2026-09-30</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/swift/debugging/network-debugging/">
+                            <span class="recent-title">Network Debugging</span>
+                            <span class="recent-section">Debugging</span>
+                            <span class="recent-date">2026-09-30</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/swift/debugging/xcode-debugging-techniques/">
+                            <span class="recent-title">Xcode Debugging Techniques</span>
+                            <span class="recent-section">Debugging</span>
+                            <span class="recent-date">2026-09-30</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/swift/debugging/crash-log-interpretation/">
+                            <span class="recent-title">Crash Log Interpretation</span>
+                            <span class="recent-section">Debugging</span>
+                            <span class="recent-date">2026-09-30</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/swift/debugging/oslog/">
+                            <span class="recent-title">OSLog</span>
+                            <span class="recent-section">Debugging</span>
+                            <span class="recent-date">2026-09-30</span>
+                        </a>
+                    </li>
+            </ul>
+        </section>
+
+        <section class="hub-section" aria-labelledby="snippets-title">
+            <div class="section-head">
+                <h2 id="snippets-title">Quick-access code snippets</h2>
+                <p>Copy-ready patterns for the tasks you do every day.</p>
+            </div>
+            <div class="snippet-grid">
+                    <div class="snippet">
+                        <div class="snippet-head"><span>Async fetch + decode</span><button class="copy-code" type="button" data-copy>Copy</button></div>
+                        <pre><code class="language-swift">func fetch&lt;T: Decodable&gt;(_ url: URL) async throws -&gt; T {
+    let (data, _) = try await URLSession.shared.data(from: url)
+    return try JSONDecoder().decode(T.self, from: data)
+}</code></pre>
+                    </div>
+                    <div class="snippet">
+                        <div class="snippet-head"><span>Break a retain cycle</span><button class="copy-code" type="button" data-copy>Copy</button></div>
+                        <pre><code class="language-swift">onDone = { [weak self] in
+    guard let self else { return }
+    self.finish()
+}</code></pre>
+                    </div>
+                    <div class="snippet">
+                        <div class="snippet-head"><span>Observable model</span><button class="copy-code" type="button" data-copy>Copy</button></div>
+                        <pre><code class="language-swift">@Observable
+final class Model {
+    var items: [Item] = []
+}</code></pre>
+                    </div>
+                    <div class="snippet">
+                        <div class="snippet-head"><span>Stable list identity</span><button class="copy-code" type="button" data-copy>Copy</button></div>
+                        <pre><code class="language-swift">ForEach(items) { item in
+    Row(item: item)
+}</code></pre>
+                    </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="/swift/" class="footer-logo"><span class="brand-mark" aria-hidden="true">S</span> Swift Developer Hub</a>
+                <p>An engineering handbook, interview platform and interactive playground for Swift, SwiftUI and Apple-platform developers. Built by PenguinWorks.</p>
+            </div>
+            <nav class="footer-col" aria-label="Documentation">
+                <h2>Documentation</h2>
+                <ul>
+                    <li><a href="/swift/language/">Swift Fundamentals</a></li>
+                    <li><a href="/swift/swiftui/">SwiftUI</a></li>
+                    <li><a href="/swift/concurrency/">Concurrency</a></li>
+                    <li><a href="/swift/architecture/">Architecture</a></li>
+                    <li><a href="/swift/performance/">Performance</a></li>
+                    <li><a href="/swift/debugging/">Debugging</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Practice">
+                <h2>Practice</h2>
+                <ul>
+                    <li><a href="/swift/learn/">Learning paths</a></li>
+                    <li><a href="/swift/interviews/">Interview preparation</a></li>
+                    <li><a href="/swift/recipes/">Code recipes</a></li>
+                    <li><a href="/swift/tools/">Developer tools</a></li>
+                    <li><a href="/swift/notes/">Developer notes</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="PenguinWorks">
+                <h2>PenguinWorks</h2>
+                <ul>
+                    <li><a href="/">Main website</a></li>
+                    <li><a href="/view-graph/">ViewGraph</a></li>
+                    <li><a href="/swift/">Swift Developer Hub</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-base">
+            <span>© 2026 PenguinWorks. Swift, SwiftUI and Apple are trademarks of Apple Inc. This independent site is not affiliated with Apple.</span>
+            <a class="footer-back" href="/swift/">Back to the hub</a>
+        </div>
+    </footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <script defer src="/swift/hub.js"></script>
+</body>
+</html>
