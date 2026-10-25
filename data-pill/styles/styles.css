@@ -1,5 +1,38 @@
 @import url(styles-footer.css);
 
+:root {
+    color-scheme: light dark;
+    --dp-bg: #FFFFFF;
+    --dp-surface: #F5F5F5;
+    --dp-surface-raised: #FFFFFF;
+    --dp-text: #222224;
+    --dp-text-muted: #5E6470;
+    --dp-accent: #2E96F9;
+    --dp-accent-soft: rgba(46, 150, 249, 0.10);
+    --dp-accent-soft-strong: rgba(46, 150, 249, 0.18);
+    --dp-glow: rgba(46, 150, 249, 0.14);
+    --dp-glow-secondary: rgba(46, 150, 249, 0.08);
+    --dp-dot: rgba(46, 150, 249, 0.10);
+    --dp-border: rgba(34, 34, 36, 0.10);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dp-bg: #000000;
+        --dp-surface: #242424;
+        --dp-surface-raised: #2E2E2E;
+        --dp-text: #CFCFCF;
+        --dp-text-muted: #9AA1AC;
+        --dp-accent: #2E96F9;
+        --dp-accent-soft: rgba(46, 150, 249, 0.16);
+        --dp-accent-soft-strong: rgba(46, 150, 249, 0.24);
+        --dp-glow: rgba(46, 150, 249, 0.16);
+        --dp-glow-secondary: rgba(46, 150, 249, 0.09);
+        --dp-dot: rgba(46, 150, 249, 0.13);
+        --dp-border: rgba(207, 207, 207, 0.14);
+    }
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -12,8 +45,15 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f7;
-    color: #000000;
+    background-color: var(--dp-bg);
+    background-image:
+        radial-gradient(circle at 12% -8%, var(--dp-glow), transparent 42%),
+        radial-gradient(circle at 88% 6%, var(--dp-glow-secondary), transparent 38%),
+        radial-gradient(circle, var(--dp-dot) 1px, transparent 1px);
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-size: auto, auto, 22px 22px;
+    background-attachment: fixed, fixed, fixed;
+    color: var(--dp-text);
     text-align: center;
     letter-spacing: 0px; /* Increases spacing */
     height: 100%; /* Ensure full height */
@@ -44,14 +84,14 @@ body {
 
 .subheader {
     font-size: 20px;
-    color: #555;
+    color: var(--dp-text-muted);
     margin-bottom: 50px;
     padding: 0px 10px;
 }
 
 .subheaderTwo {
     font-size: 20px;
-    color: #555;
+    color: var(--dp-text-muted);
     margin-bottom: 50px;
     padding: 0px 30px;
     text-align: left;
@@ -84,7 +124,7 @@ body {
 }
 
 .card {
-    background: white;
+    background: var(--dp-surface);
     width: calc(100% - 50px);
     padding: 22px 0px;
     margin: 30px 25px;
@@ -98,7 +138,7 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin: 0px 0px 12px;
-    color: #333;
+    color: var(--dp-text);
     padding: 0px 35px;
 }
 
@@ -107,7 +147,7 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin: 0px 0px 12px;
-    color: #333;
+    color: var(--dp-text);
     padding: 0px 35px;
 }
 
@@ -116,7 +156,7 @@ body {
     font-weight: 700;
     line-height: 1.3;
     margin: 22px 0px 8px;
-    color: #333;
+    color: var(--dp-text);
     padding: 0px 35px;
 }
 
@@ -129,7 +169,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.6;
-    color: #666;
+    color: var(--dp-text);
 }
 
 .card p {
@@ -138,7 +178,7 @@ body {
     line-height: 1.6;
     margin-top: 0px;
     margin-bottom: 10px;
-    color: #666;
+    color: var(--dp-text);
 }
 
 .card > p:last-child,
@@ -177,7 +217,7 @@ body {
     max-height: 440px;
     object-fit: contain;
     border-radius: 18px;
-    border: 0.5px solid rgba(0, 0, 0, 0.1); 
+    border: 0.5px solid var(--dp-border);
 }
 
 .card-subtitle {
@@ -213,7 +253,7 @@ body {
     height: 7px;
     pointer-events: none;
     transform: translateY(-50%);
-    background-color: #327aff;
+    background-color: var(--dp-accent);
     -webkit-mask: url("data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") center / contain no-repeat;
     mask: url("data:image/svg+xml,%3Csvg%20width%3D%2214%22%20height%3D%228%22%20viewBox%3D%220%200%2014%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%201L7%207L13%201%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") center / contain no-repeat;
 }
@@ -224,10 +264,10 @@ body {
     display: block;
     border: 0px;
     border-radius: 15px;
-    background-color: white;
+    background-color: var(--dp-surface-raised);
     background-image: none;
-    color: #327aff;
-    -webkit-text-fill-color: #327aff;
+    color: var(--dp-accent);
+    -webkit-text-fill-color: var(--dp-accent);
     font: inherit;
     font-size: 14px;
     font-weight: 600;
@@ -247,7 +287,7 @@ body {
 }
 
 .help-meta {
-    color: #666;
+    color: var(--dp-text-muted);
     font-size: 15px;
     font-weight: 400;
     line-height: 1.5;
@@ -273,8 +313,8 @@ body {
     min-height: 36px;
     padding: 6px 14px;
     border-radius: 18px;
-    background: #eef6ff;
-    color: #327aff;
+    background: var(--dp-accent-soft);
+    color: var(--dp-accent);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
@@ -282,7 +322,7 @@ body {
 
 .help-topic-grid a:hover {
     text-decoration: none;
-    background: #dfefff;
+    background: var(--dp-accent-soft-strong);
 }
 
 .help-card {
@@ -292,11 +332,11 @@ body {
 .help-card h3 {
     font-size: 17px;
     font-weight: 700;
-    color: #1f1f1f;
+    color: var(--dp-text);
     line-height: 1.3;
     margin: 26px 0px 8px;
     padding: 22px 35px 0px;
-    border-top: 1px solid #ececf0;
+    border-top: 1px solid var(--dp-border);
 }
 
 .help-card h3:first-of-type {
@@ -322,11 +362,11 @@ body {
 }
 
 .help-card a {
-    color: #327aff;
+    color: var(--dp-accent);
 }
 
 .help-card em {
-    color: #777;
+    color: var(--dp-text-muted);
     font-style: normal;
 }
 
@@ -337,8 +377,8 @@ body {
     margin: 10px 35px 18px;
     padding: 12px 14px;
     border-radius: 10px;
-    background: #eef6ff;
-    color: #327aff;
+    background: var(--dp-accent-soft);
+    color: var(--dp-accent);
     font-size: 15px;
     font-weight: 600;
     line-height: 1.4;
@@ -472,77 +512,5 @@ body {
 }
 
 .email {
-    color: #327aff;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1e1e1e;
-        color: white;
-    }
-
-    .subheader {
-        color: #acacac;
-    }
-
-    .subheaderTwo {
-        color: #acacac;
-    }
-
-    .card {
-        background: #303030;
-        color: white; 
-        /* box-shadow: 0 10px 30px black; */
-    }
-
-    .card h1,
-    .card h2,
-    .card h3 {
-        color: white;
-    }
-
-    .card p {
-        color: #9f9f9f;
-    }
-
-    .card ul {
-        color: #9f9f9f;
-    }
-
-    .help-meta {
-        color: #9f9f9f;
-    }
-
-    .help-topic-grid a {
-        background: rgba(50, 122, 255, 0.18);
-        color: #78a7ff;
-    }
-
-    .help-topic-grid a:hover {
-        background: rgba(50, 122, 255, 0.26);
-    }
-
-    .help-card h3 {
-        color: white;
-        border-top-color: #424242;
-    }
-
-    .help-card em {
-        color: #bdbdbd;
-    }
-
-    .setting-path {
-        background: rgba(50, 122, 255, 0.18);
-        color: #78a7ff;
-    }
-
-    .language-switcher::after {
-        background-color: #78a7ff;
-    }
-
-    .language-switcher select {
-        background-color: #303030;
-        color: #78a7ff;
-        -webkit-text-fill-color: #78a7ff;
-    }
+    color: var(--dp-accent);
 }

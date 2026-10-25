@@ -36,7 +36,7 @@ function main() {
     const allowExisting = process.argv.includes("--allow-existing");
     const xcodeProject = path.join(iosRoot, "Data Pill.xcodeproj");
     const projectFile = path.join(xcodeProject, "project.pbxproj");
-    const whatsNewFile = path.join(websiteRoot, "whats-new.html");
+    const whatsNewFile = path.join(websiteRoot, "data-pill", "whats-new.html");
 
     if (!fs.existsSync(iosRoot) || !fs.statSync(iosRoot).isDirectory()) {
         return fail(`iOS project path does not exist: ${iosRoot}. Provide the correct Data Pill iOS project directory.`);

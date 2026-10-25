@@ -2,23 +2,32 @@
 
 Website pages for PenguinWorks apps.
 
-## Apps
+## Site Structure
+
+The repository root is a PenguinWorks brand hub at `index.html`. It links to each
+app's site and is not a Data Pill landing page.
 
 ### Data Pill
 
-- **Directory:** repository root
-- **App:** Data Pill
+- **Directory:** `data-pill/`
+- **URL:** `https://penguinworksco.work/data-pill/`
 - **Main pages:**
-  - `index.html` - home page
-  - `help.html` - help documentation
-  - `support.html` - support page
-  - `whats-new.html` - release notes
-  - `privacy-policy.html` - privacy policy
-  - `terms-of-use.html` - terms of use
+  - `data-pill/index.html` - home page
+  - `data-pill/help.html` - help documentation
+  - `data-pill/support.html` - support page
+  - `data-pill/whats-new.html` - release notes
+  - `data-pill/privacy-policy.html` - privacy policy
+  - `data-pill/terms-of-use.html` - terms of use
+- **Shared assets:** `data-pill/assets/`, `data-pill/styles/`, `data-pill/scripts/`
+- **Sitemap:** `data-pill/sitemap.xml`
+- **Legacy redirects:** root-level `help.html`, `support.html`,
+  `whats-new.html`, `privacy-policy.html`, and `terms-of-use.html` redirect to
+  the matching `data-pill/` page. The root `/` remains the brand hub.
 
 ### Echo
 
 - **Directory:** `echo/`
+- **URL:** `https://penguinworksco.work/echo/`
 - **App:** Echo
 - **Main pages:**
   - `echo/index.html` - home page
@@ -26,6 +35,21 @@ Website pages for PenguinWorks apps.
   - `echo/support.html` - support page
   - `echo/privacy-policy.html` - privacy policy
   - `echo/terms-of-service.html` - terms of service
+
+### ViewGraph
+
+- **Directory:** `view-graph/`
+- **URL:** `https://penguinworksco.work/view-graph/`
+- **Sitemap:** `view-graph/sitemap.xml`
+
+### Weather Studio
+
+- **Directory:** `weather-studio/`
+- **URL:** `https://penguinworksco.work/weather-studio/`
+
+The root `sitemap.xml` lists the brand hub, Data Pill pages, and the Echo,
+ViewGraph, and Weather Studio sites. `CNAME` and `app-ads.txt` stay at the
+repository root; `app-ads.txt` must remain available at the domain root.
 
 ## Project Skills
 
@@ -43,7 +67,7 @@ Creates a new Data Pill What’s New release from the iOS project and screenshot
 - Stops if the release already exists or screenshots are not attached.
 - Generates descriptive screenshot filenames automatically.
 - Uploads confirmed screenshots to the Data Pill Firebase Storage `website/` directory.
-- Updates `whats-new.html` with the Firebase image URLs.
+- Updates `data-pill/whats-new.html` with the Firebase image URLs.
 - Adds German, Simplified Chinese, Turkish, and Filipino translations.
 - Validates translation keys, JavaScript, image URLs, and page structure.
 
@@ -65,4 +89,6 @@ Firebase uploads use the owner account `penguinworksco@gmail.com` with the `data
 
 ## Publishing
 
-Review the generated changes, then manually commit and push them to publish the website.
+Review the generated changes, then manually commit and push them to `main` to
+publish the website. Publishing remains main-based; the `/data-pill/` move does
+not change the deployment branch, domain, or Pages settings.

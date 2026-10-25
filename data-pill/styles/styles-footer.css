@@ -1,5 +1,5 @@
 footer {
-    background-color: white;  /* Background */
+    background-color: var(--dp-surface, #F5F5F5);  /* Background */
     padding: 20px 24px;  /* Space around footer */
 }
 
@@ -28,7 +28,7 @@ footer img {
 }
 
 footer a {
-    color: #BEBEBE;
+    color: var(--dp-text-muted, #5E6470);
     text-decoration: none;
     font-size: 15px;
     font-weight: normal;
@@ -48,10 +48,10 @@ footer a:hover {
 }
 
 @media (prefers-color-scheme: dark) {
-    footer {        
-        background-color: #303030;
+    footer {
+        background-color: var(--dp-surface, #242424);
     }
     footer a {
-        color: #BEBEBE;
+        color: var(--dp-text-muted, #9AA1AC);
     }
 }

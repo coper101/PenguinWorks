@@ -52,7 +52,7 @@ If the version is missing, ask for it before editing. If screenshots are not att
 
 ### 1. Run preflight and inspect both projects
 
-Run the Mandatory Preflight first. After it passes, identify the website repository and inspect its existing What’s New implementation before editing. Read `whats-new.html`, `scripts/i18n.js`, and the relevant shared CSS. Locate the iOS project and search it with `rg` for the release version, feature names, widget configuration, streaks, themes, or other terms represented by the screenshots.
+Run the Mandatory Preflight first. After it passes, identify the website repository and inspect its existing What’s New implementation before editing. Read `data-pill/whats-new.html`, `data-pill/scripts/i18n.js`, and the relevant shared CSS. Locate the iOS project and search it with `rg` for the release version, feature names, widget configuration, streaks, themes, or other terms represented by the screenshots.
 
 Use `app-store/releases/<version>/release_notes.txt` in the iOS project as the source of truth for the release title, summary, feature list, and terminology. It is the versioned release record prepared by `$dep-release-content`. Do not use the mutable `fastlane/metadata/*/release_notes.txt` folder as a source, and do not use `/docs/app-store/whats-new-<version>.md` as a fallback. Use the versioned `/Assets/<version>/` folder only to identify App Store promo artwork; never use those promo assets for the What’s New screenshot strip. Do not claim a feature based only on a screenshot when the release notes contradict it. If the release package is missing, stop and ask the user to prepare it with `$dep-release-content`.
 
@@ -66,13 +66,13 @@ For each screenshot:
 - If the user supplied local screenshots, inspect them when needed and use the project Firebase upload workflow.
 - Use a discovered, already-configured upload workflow only when it is clearly scoped to the intended Firebase project. Otherwise stop before uploading and ask the user to upload the files, then continue once URLs are available.
 
-When rerunning an existing release with `--allow-existing` and the user says not to upload, reuse the existing Firebase URLs already in `whats-new.html`; do not call the upload workflow.
+When rerunning an existing release with `--allow-existing` and the user says not to upload, reuse the existing Firebase URLs already in `data-pill/whats-new.html`; do not call the upload workflow.
 
 Never expose Firebase tokens in source files, logs, or the final response beyond URLs required by the page.
 
 ### 3. Add the release to the website
 
-Follow the existing `whats-new.html` structure and shared styles. Add a new version section in descending version order, keeping existing anchors stable. For each feature, include:
+Follow the existing `data-pill/whats-new.html` structure and shared styles. Add a new version section in descending version order, keeping existing anchors stable. For each feature, include:
 
 - A concise heading.
 - A short, accurate description based on the iOS project.
@@ -82,7 +82,7 @@ Keep product names `Data Pill`, `Super Pill`, and `Super Trial` unchanged. Keep 
 
 ### 4. Localize the new copy
 
-Add every new visible string to the existing dictionaries in `scripts/i18n.js` for:
+Add every new visible string to the existing dictionaries in `data-pill/scripts/i18n.js` for:
 
 - `en`
 - `de`
@@ -90,17 +90,17 @@ Add every new visible string to the existing dictionaries in `scripts/i18n.js` f
 - `tr`
 - `fil`
 
-Use `data-i18n` or `data-i18n-html` keys in `whats-new.html`; do not hardcode translated page text directly into the HTML. Keep technical iOS setting paths readable and preserve product names. Check that translated text remains suitable for narrow iOS WebView widths.
+Use `data-i18n` or `data-i18n-html` keys in `data-pill/whats-new.html`; do not hardcode translated page text directly into the HTML. Keep technical iOS setting paths readable and preserve product names. Check that translated text remains suitable for narrow iOS WebView widths.
 
 ### 5. Validate
 
 Run the project’s available checks. At minimum:
 
 ```bash
-node --check scripts/i18n.js
+node --check data-pill/scripts/i18n.js
 ```
 
-Verify that every `data-i18n` key used by `whats-new.html` exists in all five dictionaries. Check for broken local image paths and malformed HTML around the new section. If a browser or WebView preview is available, test desktop and narrow mobile widths, the language switcher, and anchors.
+Verify that every `data-i18n` key used by `data-pill/whats-new.html` exists in all five dictionaries. Check for broken local image paths and malformed HTML around the new section. If a browser or WebView preview is available, test desktop and narrow mobile widths, the language switcher, and anchors.
 
 Do not commit, push, publish, or modify production Firebase data unless the user explicitly asks for that action. End with a concise summary of changed files, validation results, and any manual Firebase upload step still required.
 

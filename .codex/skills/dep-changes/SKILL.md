@@ -17,7 +17,7 @@ Run all checks before staging or committing:
 4. Confirm the remote URL is `https://github.com/coper101/PenguinWorks.git`.
 5. Confirm the worktree contains changes. Stop if it is clean.
 6. Run relevant project checks:
-   - `node --check scripts/i18n.js`
+   - `node --check data-pill/scripts/i18n.js`
    - `git diff --check`
    - Verify all `data-i18n` keys used by the website exist in the five language dictionaries.
    - Verify referenced local image files exist and Firebase image URLs are syntactically valid.

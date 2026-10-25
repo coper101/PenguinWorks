@@ -56,12 +56,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 function updateThemeColor() {
     const metaThemeColor = document.querySelector("meta[name='theme-color']");
+    if (!metaThemeColor) {
+        return;
+    }
     const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
     if (isDarkMode) {
         metaThemeColor.setAttribute("content", "#000000"); // Dark mode color
     } else {
-        metaThemeColor.setAttribute("content", "#f5f5f7"); // Light mode color
+        metaThemeColor.setAttribute("content", "#FFFFFF"); // Light mode color
     }
 }
 
