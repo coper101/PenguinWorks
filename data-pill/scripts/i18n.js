@@ -6,6 +6,7 @@
         en: {
             "footer.support": "Support",
             "footer.help": "Help",
+            "footer.articles": "Articles",
             "footer.whatsNew": "What's New?",
             "home.title": "Data Pill",
             "home.subtitle": "Effortlessly Monitor Data Usage, Wherever You Are!",
@@ -176,6 +177,7 @@
         de: {
             "footer.support": "Support",
             "footer.help": "Hilfe",
+            "footer.articles": "Artikel",
             "footer.whatsNew": "Neuigkeiten",
             "home.title": "Data Pill",
             "home.subtitle": "Überwache deine Datennutzung mühelos, egal wo du bist.",
@@ -346,6 +348,7 @@
         "zh-Hans": {
             "footer.support": "支持",
             "footer.help": "帮助",
+            "footer.articles": "文章",
             "footer.whatsNew": "新功能",
             "home.title": "Data Pill",
             "home.subtitle": "无论身在何处，都能轻松监控数据用量。",
@@ -516,6 +519,7 @@
         tr: {
             "footer.support": "Destek",
             "footer.help": "Yardım",
+            "footer.articles": "Makaleler",
             "footer.whatsNew": "Yenilikler",
             "home.title": "Data Pill",
             "home.subtitle": "Nerede olursan ol veri kullanımını zahmetsizce takip et.",
@@ -686,6 +690,7 @@
         fil: {
             "footer.support": "Suporta",
             "footer.help": "Tulong",
+            "footer.articles": "Mga Artikulo",
             "footer.whatsNew": "Ano ang Bago",
             "home.title": "Data Pill",
             "home.subtitle": "Madaling i-monitor ang data usage mo, nasaan ka man.",

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "generated": "2026-10-25",
+  "articles": [
+    {
+      "slug": "how-mobile-data-tracking-works",
+      "title": "How Mobile Data Tracking Works on iPhone (and Where It Stops)",
+      "summary": "Your iPhone and your carrier count data differently. Here is what each number means, why they rarely match exactly, and how to use both without guessing.",
+      "url": "https://penguinworksco.work/data-pill/articles/how-mobile-data-tracking-works/",
+      "published": "2026-10-25",
+      "updated": "2026-10-25",
+      "category": "Data Tracking",
+      "tags": [
+        "iOS",
+        "data usage",
+        "carrier billing",
+        "daily budget"
+      ],
+      "readingMinutes": 7,
+      "image": null
+    }
+  ]
+}

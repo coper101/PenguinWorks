@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Mobile Data Tracking Works on iPhone (and Where It Stops) - Data Pill</title>
+    <meta name="description" content="Your iPhone and your carrier count data differently. What each number means, why they rarely match exactly, and how to use both without guessing.">
+    <link rel="canonical" href="https://penguinworksco.work/data-pill/articles/how-mobile-data-tracking-works/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How Mobile Data Tracking Works on iPhone (and Where It Stops)">
+    <meta property="og:description" content="Your iPhone and your carrier count data differently. What each number means, why they rarely match exactly, and how to use both without guessing.">
+    <meta property="og:url" content="https://penguinworksco.work/data-pill/articles/how-mobile-data-tracking-works/">
+    <meta property="article:published_time" content="2026-10-25">
+    <meta property="article:modified_time" content="2026-10-25">
+    <link rel="icon" type="image/png" href="../../assets/data-pill-icon.png">
+    <link rel="stylesheet" href="../assets/articles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How Mobile Data Tracking Works on iPhone (and Where It Stops)",
+        "description": "Your iPhone and your carrier count data differently. What each number means, why they rarely match exactly, and how to use both without guessing.",
+        "datePublished": "2026-10-25",
+        "dateModified": "2026-10-25",
+        "author": { "@type": "Organization", "name": "Data Pill" },
+        "publisher": { "@type": "Organization", "name": "PenguinWorks" },
+        "mainEntityOfPage": "https://penguinworksco.work/data-pill/articles/how-mobile-data-tracking-works/"
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="../../index.html">
+            <img src="../../assets/data-pill-icon.png" alt="" width="40" height="40">
+            <span>Data Pill</span>
+        </a>
+        <a class="back-link" href="../">All guides</a>
+    </header>
+
+    <main class="article-page">
+        <article>
+            <header class="article-header">
+                <p class="eyebrow">Data Tracking · 25 October 2026 · 7 min read</p>
+                <h1>How Mobile Data Tracking Works on iPhone (and Where It Stops)</h1>
+                <p class="article-summary">Your iPhone and your carrier count data differently. Here is what each number means, why they rarely match exactly, and how to use both without guessing.</p>
+            </header>
+
+            <div class="article-body">
+                <p>There are two numbers that matter when you are trying to make a mobile plan last: what your iPhone says you used, and what your carrier says you used. They are related, but they are not the same measurement. Understanding the difference removes most of the confusion around “missing” data and surprise overages.</p>
+
+                <h2>The two ledgers</h2>
+                <p>Your iPhone tracks traffic that passes through its cellular interface. In Settings, iOS shows a running total for the current period, plus a per-app breakdown. That number is useful because it updates quickly and tells you <em>which</em> apps are responsible.</p>
+                <p>Your carrier measures traffic at the network. That ledger is what your bill is based on, and it is the only number that can decide whether you exceeded your allowance. It may include network-level accounting, rounding, and services that are billed differently from ordinary internet traffic.</p>
+                <p>Both ledgers are legitimate. They answer different questions. The device ledger answers “what did my phone send and receive?” The carrier ledger answers “what am I being charged for?”</p>
+
+                <h2>What iOS actually counts</h2>
+                <p>iOS cellular usage is a record of bytes sent and received over the cellular connection. It is not a live carrier feed. That has a few practical consequences:</p>
+                <ul>
+                    <li><strong>It starts where you tell it to.</strong> The current-period counter resets when you reset it, not necessarily when your billing cycle resets. If the two are out of sync, the totals will disagree even when both are correct.</li>
+                    <li><strong>It includes background traffic.</strong> Photos syncing, app refreshes, software updates, and system services can use data without an app being open.</li>
+                    <li><strong>It can include hotspot traffic.</strong> Data used by devices connected to your personal hotspot passes through your phone and normally counts against your plan.</li>
+                    <li><strong>It does not know your contract.</strong> Zero-rated streaming, carrier bonuses, roaming passes, and promotional data are billing rules, not device measurements. iOS will still count the bytes.</li>
+                </ul>
+
+                <div class="callout">
+                    <p><strong>Rule of thumb:</strong> use the iPhone counter to understand behaviour and the carrier statement to settle the bill. Do not expect them to match to the megabyte.</p>
+                </div>
+
+                <h2>Why the numbers rarely match exactly</h2>
+                <p>A small gap is normal. Common causes include:</p>
+                <ul>
+                    <li><strong>Different reset times.</strong> A carrier cycle might start at midnight in the carrier’s time zone while your device counter was reset at a different moment.</li>
+                    <li><strong>Rounding.</strong> Carriers often bill in blocks or round at the end of a session. A device counts the bytes it observed.</li>
+                    <li><strong>Compression and optimisation.</strong> Some carriers or services reduce the bytes that cross the network. The carrier may bill the uncompressed amount, or may not bill certain traffic at all.</li>
+                    <li><strong>Traffic the phone cannot attribute.</strong> System services and tethering can be counted by both sides in slightly different ways.</li>
+                    <li><strong>Delayed reporting.</strong> Carrier usage can lag by hours. Device usage is available immediately.</li>
+                </ul>
+                <p>A gap of a few percent is usually explained by timing and rounding. A large, persistent gap is worth investigating: check for hotspot use, a changed billing cycle, or a plan feature that treats some traffic differently.</p>
+
+                <h2>What Data Pill can and cannot do</h2>
+                <p>Data Pill reads the usage records available on your device and turns them into a plan view: how much of the allowance is used, how many days are left, a recommended daily budget, and how today compares with that budget. It is designed to make the device-side picture understandable.</p>
+                <p>It cannot replace your carrier’s billing system. No app can promise that its number is the amount you will be charged, because the carrier is the authority on billing. What an app can do is help you notice a fast-moving day before it becomes an expensive one.</p>
+                <p>That is why a daily budget is more useful than a single “data used” number. A budget converts the remaining allowance into a per-day pace. If today is running hot, the budget shows it while there is still time to change behaviour.</p>
+
+                <h2>Setting up a trustworthy plan view</h2>
+                <ol>
+                    <li><strong>Match the cycle.</strong> Enter the real start and end dates of your current plan period, not an approximate month.</li>
+                    <li><strong>Use the right allowance.</strong> Enter the data amount your plan actually includes, and keep the plan limit separate if your carrier treats them differently.</li>
+                    <li><strong>Set a daily limit only if you want a hard personal threshold.</strong> It is a preference, not a carrier rule. The calculated daily budget is separate and adapts to the days remaining.</li>
+                    <li><strong>Check both ledgers periodically.</strong> Compare the device total with the carrier app near the end of the cycle. If they drift apart, look for hotspot use, a changed reset date, or a billing feature.</li>
+                    <li><strong>Reset deliberately.</strong> If you reset the iOS counter, do it at the same moment as the billing cycle so the two stay comparable.</li>
+                </ol>
+
+                <h2>Where the gigabytes go</h2>
+                <p>Most unexpected usage falls into a few categories: video, photo backups, app updates, hotspot sessions, and background refresh. Video is usually the largest because quality adapts silently. A short clip at a high setting can be larger than a day of messaging.</p>
+                <p>You do not need to disable everything. Start with the largest, easiest wins: lower streaming quality on cellular, defer large downloads and updates to Wi-Fi, and check which apps have background refresh enabled. Then use your daily budget to confirm the change is working.</p>
+
+                <h2>The honest summary</h2>
+                <p>Your iPhone gives you a fast, detailed estimate of cellular traffic. Your carrier gives you the billed truth. Neither is wrong; they are measuring different things. Use the device view to change behaviour early, use the carrier view to verify the bill, and keep the plan dates and allowance accurate so your budget reflects reality.</p>
+                <p>Data Pill is built around that division of labour: a clear, local view of what your phone recorded, with the assumption that the carrier remains the final authority.</p>
+            </div>
+
+            <section class="related" aria-labelledby="related-title">
+                <h2 id="related-title">Keep reading</h2>
+                <p><a href="../">Browse all Learn &amp; Guides articles</a> for more practical explanations of mobile data, limits, and budgets.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>Data Pill by PenguinWorks. <a href="../../support.html">Support</a> · <a href="../../help.html">Help</a> · <a href="../../whats-new.html">What's New</a></p>
+        <p class="updated">Published 25 October 2026 · Reviewed by the Data Pill team</p>
+    </footer>
+</body>
+</html>

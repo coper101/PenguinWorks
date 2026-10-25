@@ -60,4 +60,16 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://penguinworksco.work/data-pill/articles/</loc>
+        <lastmod>2026-10-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://penguinworksco.work/data-pill/articles/how-mobile-data-tracking-works/</loc>
+        <lastmod>2026-10-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
 </urlset>

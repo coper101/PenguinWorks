@@ -19,6 +19,8 @@ app's site and is not a Data Pill landing page.
   - `data-pill/privacy-policy.html` - privacy policy
   - `data-pill/terms-of-use.html` - terms of use
 - **Shared assets:** `data-pill/assets/`, `data-pill/styles/`, `data-pill/scripts/`
+- **Learn & Guides:** `data-pill/articles/` (`index.html`, generated `index.json`,
+  one folder per published article)
 - **Sitemap:** `data-pill/sitemap.xml`
 - **Legacy redirects:** root-level `help.html`, `support.html`,
   `whats-new.html`, `privacy-policy.html`, and `terms-of-use.html` redirect to
@@ -50,6 +52,26 @@ app's site and is not a Data Pill landing page.
 The root `sitemap.xml` lists the brand hub, Data Pill pages, and the Echo,
 ViewGraph, and Weather Studio sites. `CNAME` and `app-ads.txt` stay at the
 repository root; `app-ads.txt` must remain available at the domain root.
+
+## Data Pill Articles
+
+The Learn & Guides hub is at
+`https://penguinworksco.work/data-pill/articles/`. Published articles live in
+`data-pill/articles/<slug>/` with a `meta.json` and `index.html`. Drafts use
+`"draft": true` (or an underscore-prefixed folder) and are excluded from the
+public index and the app feed.
+
+After adding or editing an article, regenerate the hub and feed:
+
+```bash
+node data-pill/articles/scripts/build-index.js
+```
+
+Then update `data-pill/sitemap.xml` and `sitemap.xml`, verify locally, and
+publish through the normal `main` flow. The iOS app reads the versioned
+`data-pill/articles/index.json` feed, so new articles do not require an app
+update. See `data-pill/articles/EDITORIAL.md` for the monthly workflow,
+standards, and six-month outline.
 
 ## Project Skills
 
